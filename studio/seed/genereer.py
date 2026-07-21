@@ -60,7 +60,7 @@ pagina = {
         "fineprint": L(hero["fineprint"]),
         "foto": beeld(
             "hero-breed.jpg",
-            "Ontvangstruimte van een kantoor: een kentiapalm en een ficus in keramische potten naast een eiken balie, links een lege lichte wand",
+            "Ontvangstruimte van een kantoor met een volle groep planten, een kentiapalm, ficus, monstera en varen in keramische potten naast een eiken balie, links een rustige lichte wand",
         ),
         "meta": [
             {"_type": "metaItem", "_key": f"meta{i}", "label": L(m["label"]), "waarde": L(m["waarde"])}
@@ -153,9 +153,9 @@ documenten.append({
 })
 
 SCENARIO_ALTS = {
-    "ontvangst": "Wachtbank van eikenhout met linnen kussens, ernaast een kentiapalm en een zamioculcas",
-    "directie": "Vergaderhoek met walnoten tafel, wollen stoelen en een grote ficus in een keramische pot",
-    "praktijk": "Twee linnen fauteuils met bijzettafel en kentiapalm in een rustige wachtruimte",
+    "ontvangst": "Eiken balie met daarnaast een volle groep planten: kentiapalm, monstera, ficus en varen in keramische potten",
+    "directie": "Vergaderruimte met walnoten tafel en wollen stoelen, langs de wand een groep planten met monstera, kentiapalm en ficus",
+    "praktijk": "Wachtruimte met twee linnen fauteuils en een volle groep planten, kentiapalm, monstera en varens, in keramische potten",
 }
 
 for i, item in enumerate(sc["items"]):
