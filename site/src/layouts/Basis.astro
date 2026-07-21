@@ -1,0 +1,68 @@
+---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/500-italic.css';
+import '../styles/tokens.css';
+import '../styles/basis.css';
+import '../styles/pagina.css';
+import ogBeeld from '../beelden/hero-breed.jpg';
+
+interface Props {
+  titel: string;
+  beschrijving: string;
+  /* De bedankt-pagina blijft altijd noindex, ook na livegang */
+  nooitIndexeren?: boolean;
+}
+
+const { titel, beschrijving, nooitIndexeren = false } = Astro.props;
+
+/* Tot de livegang krijgt alles noindex; omzetten via PUBLIC_INDEXEERBAAR=ja */
+const indexeerbaar = import.meta.env.PUBLIC_INDEXEERBAAR === 'ja' && !nooitIndexeren;
+---
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{titel}</title>
+  <meta name="description" content={beschrijving} />
+  {!indexeerbaar && <meta name="robots" content="noindex" />}
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  <meta property="og:title" content={titel} />
+  <meta property="og:description" content={beschrijving} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:image" content={new URL(ogBeeld.src, Astro.site)} />
+  <script is:inline>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <slot />
+  <script>
+    /* Eén bewegingsprincipe: fade-up op sectieniveau, één duur.
+       Respecteert prefers-reduced-motion; zonder JS is alles zichtbaar omdat
+       de .js-klasse hierboven dan nooit gezet wordt. */
+    const els = document.querySelectorAll('.reveal');
+    const stil = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (stil || !('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+      );
+      els.forEach((el) => io.observe(el));
+    }
+  </script>
+</body>
+</html>

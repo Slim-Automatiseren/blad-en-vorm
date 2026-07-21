@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import bandBreed from '../beelden/band-breed.jpg';
+import { beeldBron } from '../lib/beeld';
+import type { SanityBeeld } from '../lib/beeld';
+
+interface Props {
+  tagline: string;
+  foto?: SanityBeeld;
+}
+const { tagline, foto } = Astro.props;
+const eigenFoto = beeldBron(foto, [960, 1440, 1920]);
+---
+<section class="tag-band" aria-hidden="true">
+  {eigenFoto ? (
+    <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="100vw" loading="lazy" alt="" />
+  ) : (
+    <Image src={bandBreed} widths={[960, 1440, 1920]} sizes="100vw" alt="" />
+  )}
+  <div class="scrim"></div>
+  <div class="tekst">
+    <h2>{tagline}</h2>
+    <span class="pip" aria-hidden="true"></span>
+  </div>
+</section>

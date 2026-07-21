@@ -1,0 +1,42 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Nav from '../componenten/Nav.astro';
+import Hero from '../componenten/Hero.astro';
+import Zekerheden from '../componenten/Zekerheden.astro';
+import Maandbedrag from '../componenten/Maandbedrag.astro';
+import Pakketten from '../componenten/Pakketten.astro';
+import Werkwijze from '../componenten/Werkwijze.astro';
+import Scenarios from '../componenten/Scenarios.astro';
+import Marco from '../componenten/Marco.astro';
+import TaglineBand from '../componenten/TaglineBand.astro';
+import Vragen from '../componenten/Vragen.astro';
+import Contact from '../componenten/Contact.astro';
+import Voet from '../componenten/Voet.astro';
+import { haalInhoud } from '../lib/inhoud';
+
+const inhoud = await haalInhoud('nl');
+const pakketOpties = [...inhoud.pakketten.kaarten, inhoud.pakketten.xl].map(
+  (p) => `${p.code} ${p.naam}`,
+);
+---
+<Basis
+  titel="Blad & Vorm · Interieurbeplanting voor kantoren"
+  beschrijving="Interieurbeplanting voor de zakelijke markt in Wassenaar en omstreken. Advies, levering, plaatsing en doorlopend onderhoud voor één vast bedrag per maand."
+>
+  <Nav ctaLang={inhoud.hero.ctaPrimair} ctaKort="Kennismaken" />
+
+  <main id="hoofd">
+    <Hero hero={inhoud.hero} />
+    <Zekerheden zekerheden={inhoud.zekerheden} />
+    <Maandbedrag maandbedrag={inhoud.maandbedrag} />
+    <Pakketten pakketten={inhoud.pakketten} />
+    <Werkwijze werkwijze={inhoud.werkwijze} />
+    <Scenarios scenarios={inhoud.scenarios} />
+    <Marco marco={inhoud.marco} />
+    <TaglineBand tagline={inhoud.tagline} foto={inhoud.taglineFoto} />
+    <Vragen vragen={inhoud.vragen} />
+    <Contact contact={inhoud.contact} instellingen={inhoud.instellingen} pakketOpties={pakketOpties} />
+  </main>
+
+  <Voet instellingen={inhoud.instellingen} />
+</Basis>

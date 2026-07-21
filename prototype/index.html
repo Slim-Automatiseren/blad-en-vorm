@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Blad &amp; Vorm · twee richtingen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/base.css">
+<style>
+  .brand .mark { background-image: url("shared/logo.png"); }
+
+  .intro { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 4vw, 3rem); }
+  .intro h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.3rem);
+    line-height: 1.1;
+    margin-top: 1.2rem;
+    max-width: 20ch;
+  }
+  .intro p { color: var(--muted); max-width: 58ch; margin-top: 1.4rem; }
+
+  .keuze { display: grid; gap: 1.5rem; padding-bottom: clamp(3rem, 8vw, 6rem); }
+  @media (min-width: 780px) { .keuze { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+
+  .kaart {
+    border: 1px solid var(--line);
+    background: var(--stone);
+    padding: 2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-decoration: none;
+    transition: border-color var(--dur) var(--ease);
+  }
+  .kaart:hover { border-color: var(--green); }
+  .kaart h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.6rem;
+    color: var(--green);
+  }
+  .kaart p { color: var(--muted); font-size: 0.95rem; }
+  .kaart .ga { margin-top: auto; padding-top: 0.6rem; color: var(--green); font-size: 0.9rem; }
+
+  .let-op {
+    border-top: 1px solid var(--line);
+    padding: 2rem 0 4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .let-op p { max-width: 62ch; }
+  .let-op strong { color: var(--green); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <div class="wrap">
+    <span class="dot"></span>
+    <span>Stijlproef &nbsp;·&nbsp; alleen de bovenkant van de pagina, teksten en beeld zijn voorlopig</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="name">Blad &amp; Vorm</span>
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <span class="label">Twee ontwerprichtingen</span>
+    <h1>Twee manieren om hetzelfde verhaal te vertellen.</h1>
+    <p>
+      Beide richtingen gebruiken dezelfde kleuren uit uw logo en dezelfde teksten. Wat verschilt is de
+      opbouw: hoe de pagina is ingedeeld, hoe groot de typografie is, en hoe het beeld straks wordt
+      ingezet. Bekijk ze allebei en laat weten welke het dichtst bij uw idee zit.
+    </p>
+  </section>
+
+  <section class="keuze">
+    <a class="kaart" href="richting-a/">
+      <span class="label">Richting A</span>
+      <h2>Redactioneel</h2>
+      <p>
+        Rustig en teruggetrokken, met de sfeer van een monografie van een architectenbureau. De pagina
+        is asymmetrisch opgebouwd, de typografie heeft hoog contrast en de hero staat op een
+        paginabreed beeld: links een rustige tekstzone, rechts de beplanting in de ruimte.
+      </p>
+      <span class="ga">Bekijk richting A</span>
+    </a>
+
+    <a class="kaart" href="richting-b/">
+      <span class="label">Richting B</span>
+      <h2>Architecturaal</h2>
+      <p>
+        Dezelfde ingetogenheid, maar ruimer en warmer. Alles staat gecentreerd, de koppen zijn groter
+        en zachter van vorm, en het beeld loopt als een brede band over de volle breedte. Diep groen
+        komt terug als groot vlak.
+      </p>
+      <span class="ga">Bekijk richting B</span>
+    </a>
+  </section>
+
+  <section class="let-op">
+    <p>
+      <strong>Richting A is uitgewerkt tot een volledige pagina</strong>, met pakketten, werkwijze,
+      veelgestelde vragen en een contactformulier. Richting B toont alleen de bovenkant, genoeg om de
+      sfeer te vergelijken. De foto's zijn tijdelijk beeld tot de eigen fotografie er is, en de
+      teksten zijn een voorzet, geen eindversie.
+    </p>
+  </section>
+</main>
+
+<script src="shared/reveal.js"></script>
+</body>
+</html>

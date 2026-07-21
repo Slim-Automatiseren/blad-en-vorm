@@ -1,0 +1,31 @@
+---
+import { pijlerIconen } from '../lib/iconen';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  maandbedrag: Inhoud['maandbedrag'];
+}
+const { maandbedrag } = Astro.props;
+---
+<section id="maandbedrag">
+  <div class="wrap">
+    <div class="grid2">
+      <div class="rail reveal">
+        <span class="label">{maandbedrag.railLabel}</span>
+        <p class="rail-note">{maandbedrag.railNote}</p>
+      </div>
+      <div class="reveal">
+        <h2 class="section-h">{maandbedrag.kop}</h2>
+        <p class="lede">{maandbedrag.lede}</p>
+        <div class="pijlers-grid">
+          {maandbedrag.pijlers.map((p) => (
+            <div class="p-item">
+              <Fragment set:html={pijlerIconen[p.icoon] ?? pijlerIconen.advies} />
+              <h3>{p.titel}</h3><p>{p.tekst}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

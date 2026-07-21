@@ -1,0 +1,18 @@
+---
+import { vinkje } from '../lib/iconen';
+
+interface Props {
+  zekerheden: string[];
+}
+const { zekerheden } = Astro.props;
+---
+<div class="strip reveal">
+  <div class="wrap">
+    {zekerheden.map((z) => (
+      <div class="z-item">
+        <Fragment set:html={vinkje} />
+        <span>{z}</span>
+      </div>
+    ))}
+  </div>
+</div>

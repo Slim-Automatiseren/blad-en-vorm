@@ -1,0 +1,37 @@
+---
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  marco: Inhoud['marco'];
+}
+const { marco } = Astro.props;
+
+/* Zolang er geen foto in Sanity staat, toont de plaat "Foto volgt" */
+const foto = beeldBron(marco.foto, [280, 560, 840], 4 / 3);
+---
+<section>
+  <div class="wrap">
+    <div class="marco-grid">
+      <figure class="plate reveal">
+        <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+        {foto ? (
+          <img
+            src={foto.src}
+            srcset={foto.srcset}
+            sizes="(min-width: 800px) 280px, 100vw"
+            loading="lazy"
+            alt={foto.alt ?? 'Marco Hilhorst van Blad & Vorm'}
+          />
+        ) : (
+          <span class="leeg">Foto volgt</span>
+        )}
+      </figure>
+      <div class="reveal">
+        <span class="label">{marco.label}</span>
+        <h2 class="section-h kop-na-label">{marco.kop}</h2>
+        <p class="lede">{marco.tekst}</p>
+      </div>
+    </div>
+  </div>
+</section>

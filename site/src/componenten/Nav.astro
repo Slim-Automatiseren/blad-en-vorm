@@ -1,0 +1,25 @@
+---
+import logoHexagon from '../beelden/logo-hexagon.png';
+
+interface Props {
+  ctaLang: string;
+  ctaKort: string;
+}
+const { ctaLang, ctaKort } = Astro.props;
+---
+<a class="skip" href="#hoofd">Naar de inhoud</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#hoofd">
+      <img class="mark" src={logoHexagon.src} width="29" height="34" alt="" aria-hidden="true" />
+      <span class="name">Blad &amp; Vorm</span>
+    </a>
+    <nav class="links" aria-label="Paginanavigatie">
+      <a href="#maandbedrag" class="only-wide">Aanpak</a>
+      <a href="#pakketten" class="only-wide">Pakketten</a>
+      <a href="#werkwijze" class="only-wide">Werkwijze</a>
+      <a href="#contact" class="btn"><span class="lang">{ctaLang}</span><span class="kort">{ctaKort}</span></a>
+    </nav>
+  </div>
+</header>

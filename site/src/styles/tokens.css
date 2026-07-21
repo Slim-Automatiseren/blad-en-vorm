@@ -1,0 +1,40 @@
+/* Blad & Vorm, merktokens
+   Bron: officieel brandbook (docs/brandbook-blad_en_vorm.png, versie 1.0).
+   Contrast gemeten volgens WCAG 2.1, onderbouwing in docs/huisstijl.md */
+
+:root {
+  /* Ondergronden, officieel */
+  --paper: #F7F4EF;   /* Off White */
+  --stone: #ECE6DD;   /* Warm Beige */
+
+  /* Merk en tekst, officieel */
+  --green:      #304533;   /* Primary Green: koppen, merk */
+  --green-deep: #25352A;   /* verdiept groen, alleen voor hover-states */
+  --text:       #4B4B4B;   /* Dark Grey: lopende tekst */
+
+  /* Goud, officieel. Ornament op licht, tekst alleen op groen */
+  --gold:       #B88A24;   /* Gold Accent */
+  --gold-light: #D4A94A;   /* afgeleide: tekstgoud op het groene vlak, 4,73:1 */
+
+  /* Afgeleiden, niet in het brandbook maar nodig voor het systeem */
+  --muted: #5E5D50;   /* secundaire tekst, AA op beide ondergronden */
+  --leaf:  #4A5F38;   /* ornament-groen voor illustratieve SVG */
+  --line:  #D5CFC2;   /* haarlijn */
+
+  /* Ruimte */
+  --wrap: 1160px;
+  --pad:  clamp(1.25rem, 5vw, 4rem);
+  --rail: 200px;
+
+  /* Beweging: één principe, één duur */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur:  0.6s;
+}
+
+/*  Gemeten contrast:
+      groen op off-white 9,45:1   donkergrijs op off-white 7,95:1
+      groen op beige     8,36:1   donkergrijs op beige     7,03:1
+      goud op off-white  2,86:1   ZAKT, dus ornament
+      goud op beige      2,53:1   ZAKT, dus ornament
+      op het groene vlak: off-white 9,45:1, goud-licht 4,73:1 (AA),
+      puur goud 3,31:1 (alleen grote tekst of ornament) */

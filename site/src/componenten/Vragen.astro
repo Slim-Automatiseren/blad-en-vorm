@@ -1,0 +1,25 @@
+---
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  vragen: Inhoud['vragen'];
+}
+const { vragen } = Astro.props;
+---
+<section id="vragen" class="band">
+  <div class="wrap">
+    <div class="vragen-kolom">
+      <div class="reveal">
+        <h2 class="section-h">Veelgestelde vragen</h2>
+        <div class="faq">
+          {vragen.map((v) => (
+            <details>
+              <summary>{v.vraag}</summary>
+              <p class="antwoord">{v.antwoord}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

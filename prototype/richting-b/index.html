@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Blad &amp; Vorm · richting B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/base.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+  /* Richting B, architecturaal.
+     Symmetrisch en gecentreerd, ruimer, zachtere serif. Diep groen als groot vlak,
+     en dat is de enige plek waar goud tekstkleur mag zijn. */
+
+  .hero {
+    padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+    text-align: center;
+  }
+
+  .hero .label { display: block; }
+
+  .hero h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(3.1rem, 7.8vw, 5.9rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 1.6rem auto 0;
+    max-width: 17ch;
+  }
+
+  /* Gecentreerde haarlijn met gouden ruit. Ornament, geen tekst. */
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2.4rem auto;
+    max-width: 20rem;
+  }
+  .divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  .divider .pip {
+    width: 7px; height: 7px; flex: none;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .hero .sub {
+    color: var(--muted);
+    font-size: clamp(1.06rem, 2vw, 1.24rem);
+    max-width: 48ch;
+    margin: 0 auto;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2.4rem;
+  }
+  .fineprint { margin-top: 1.1rem; color: var(--muted); font-size: 0.85rem; }
+
+  /* Brede beeldband, één keer, als bewuste pauze */
+  /* Cinematisch, niet 16:9. Op volle breedte wordt 16:9 ruim 800px hoog en dan
+     zakt het groene vlak eronder ver buiten beeld. */
+  .band {
+    margin: clamp(3rem, 6vw, 5rem) 0 0;
+    aspect-ratio: 21 / 9;
+    max-height: 56vh;
+    background: var(--stone);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .band svg { width: clamp(70px, 9vw, 120px); height: auto; color: var(--leaf); opacity: 0.3; }
+  .band figcaption {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Diep groen vlak. Hier haalt goud wél AA, dus hier mag het tekst zijn. */
+  .strip { background: var(--green); color: var(--paper); }
+  .strip .wrap {
+    display: grid;
+    gap: 2rem;
+    padding-top: clamp(2.2rem, 4vw, 3.2rem);
+    padding-bottom: clamp(2.2rem, 4vw, 3.2rem);
+  }
+  @media (min-width: 760px) {
+    .strip .wrap { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+  }
+  .strip div { text-align: center; }
+  @media (min-width: 760px) {
+    .strip div { text-align: left; }
+    .strip div + div { border-left: 1px solid rgba(212, 169, 74, 0.3); padding-left: 3rem; }
+  }
+  .strip dt {
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+  .strip dd {
+    margin: 0;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    line-height: 1.25;
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#hoofd">Naar de inhoud</a>
+
+<div class="ribbon">
+  <div class="wrap">
+    <span class="dot"></span>
+    <span>Stijlproef richting B &nbsp;·&nbsp; alleen de hero, teksten en beeld zijn voorlopig</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="name">Blad &amp; Vorm</span>
+    </a>
+    <nav class="links">
+      <a href="#" class="only-wide">Aanpak</a>
+      <a href="#" class="only-wide">Pakketten</a>
+      <a href="#" class="only-wide">Werkwijze</a>
+      <a href="#" class="btn"><span class="lang">Plan een kennismaking</span><span class="kort">Kennismaken</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="hoofd">
+  <section class="hero">
+    <div class="wrap reveal">
+      <span class="label">Interieurbeplanting voor kantoren</span>
+      <h1>Groen dat uw kantoor afmaakt, en verzorgd blijft.</h1>
+
+      <div class="divider"><span class="pip" aria-hidden="true"></span></div>
+
+      <p class="sub">
+        Advies, levering, plaatsing en doorlopend onderhoud. Eén vast bedrag per maand,
+        en altijd dezelfde persoon die langskomt.
+      </p>
+
+      <div class="actions">
+        <a href="#" class="btn">Plan een kennismaking</a>
+        <a href="#" class="btn ghost">Bekijk de pakketten</a>
+      </div>
+      <p class="fineprint">Kennismaking van 20 minuten op locatie, vrijblijvend.</p>
+    </div>
+
+    <figure class="band reveal">
+      <svg viewBox="0 0 100 160" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+        <path d="M50 158 C50 120 50 96 50 60"/>
+        <path d="M50 96 C34 92 24 80 22 62 C40 62 50 74 50 96"/>
+        <path d="M50 84 C66 80 76 68 78 50 C60 50 50 62 50 84"/>
+        <path d="M50 68 C38 64 32 54 31 40 C44 42 50 52 50 68"/>
+        <path d="M50 58 C62 54 68 44 69 32 C57 34 50 44 50 58"/>
+      </svg>
+      <figcaption>Hier komt fotografie</figcaption>
+    </figure>
+  </section>
+
+  <section class="strip">
+    <dl class="wrap">
+      <div>
+        <dt>Vanaf</dt>
+        <dd>95 euro per maand</dd>
+      </div>
+      <div>
+        <dt>Werkgebied</dt>
+        <dd>Wassenaar en omstreken</dd>
+      </div>
+      <div>
+        <dt>Onderhoud</dt>
+        <dd>Altijd dezelfde persoon</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="wrap">
+    <div class="proof-end">
+      <p>
+        Einde van de stijlproef. Dit is bewust alleen de bovenkant van de pagina, zodat de richting
+        te beoordelen is voordat de rest gebouwd wordt.
+        <a href="../richting-a/">Bekijk richting A</a>.
+      </p>
+    </div>
+  </div>
+</main>
+
+<script src="../shared/reveal.js"></script>
+</body>
+</html>

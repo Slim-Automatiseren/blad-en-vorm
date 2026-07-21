@@ -1,0 +1,279 @@
+/* Blad & Vorm, paginastijlen (richting A, redactioneel)
+   Asymmetrisch raster met linkerrail, hoog typografisch contrast, haarlijnen,
+   goud alleen als ornament. Copy komt uit Sanity, fallback in src/inhoud/seed.json. */
+
+section { padding-top: clamp(3rem, 7vw, 5.5rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
+section.band { background: var(--stone); }
+
+/* Rail-raster: smalle linkerkolom met label, content rechts */
+.grid2 { display: grid; gap: 2.2rem; }
+@media (min-width: 880px) {
+  .grid2 { grid-template-columns: var(--rail) 1fr; gap: clamp(2rem, 5vw, 4.5rem); }
+}
+.rail .label { display: block; }
+.rail .rail-note { margin-top: 0.8rem; color: var(--muted); font-size: 0.9rem; max-width: 22ch; }
+
+h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-spacing: -0.01em; }
+.lede { color: var(--muted); font-size: clamp(1rem, 1.9vw, 1.14rem); line-height: 1.6; max-width: 58ch; margin-top: 1.2rem; }
+
+/* ---------- Hero: paginabreed beeld, tekst op de rustige linkerzone ---------- */
+.hero { position: relative; display: flex; align-items: center; padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+.hero > .wrap { position: relative; z-index: 1; width: 100%; }
+.hero-inhoud { max-width: 620px; }
+.hero-bg { position: absolute; inset: 0; overflow: hidden; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 62%; display: block; }
+/* Tekstzone: dekkend papier tot voorbij de tekstkolom, daarna uitlopend over het beeld.
+   De solide stop staat in px zodat de tekst op elke breedte op dekkende ondergrond staat. */
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.6) 52%, rgba(247, 244, 239, 0) 74%);
+}
+@media (min-width: 960px) { .hero { min-height: clamp(560px, 78vh, 800px); } }
+@media (max-width: 959px) {
+  .hero { display: block; padding-bottom: 0; }
+  .hero-bg { position: relative; inset: auto; height: min(78vw, 440px); margin-top: 2.4rem; }
+  .hero-bg::after { display: none; }
+  .hero-bg img { object-position: 70% 62%; }
+}
+.hero h1 {
+  font-size: clamp(2.9rem, 7vw, 5.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin-top: 1.5rem;
+  max-width: 15ch;
+}
+.hero h1 em {
+  font-style: italic;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.14em;
+}
+.rule { display: flex; align-items: center; gap: 0.9rem; margin: 2rem 0 1.6rem; max-width: 30rem; }
+.rule::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.pip { width: 7px; height: 7px; flex: none; border: 1px solid var(--gold); transform: rotate(45deg); }
+.hero .sub { color: var(--muted); font-size: clamp(1.02rem, 1.9vw, 1.16rem); max-width: 44ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+.fineprint { margin-top: 1rem; color: var(--muted); font-size: 0.85rem; }
+
+.meta {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  margin: 2.8rem 0 0; padding-top: 1.6rem; border-top: 1px solid var(--line);
+}
+@media (max-width: 480px) { .meta { grid-template-columns: 1fr 1fr; } }
+.meta dt { margin-bottom: 0.35rem; }
+.meta dd { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.3rem; line-height: 1.25; color: var(--green); }
+
+/* ---------- Omkaderde plaat ---------- */
+.plate {
+  position: relative; margin: 0;
+  background: var(--stone); border: 1px solid var(--line);
+  padding: 0; overflow: hidden;
+}
+.plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.plate .tick { position: absolute; width: 12px; height: 12px; opacity: 0.85; z-index: 2; }
+.plate .tick::before, .plate .tick::after { content: ""; position: absolute; background: var(--gold); }
+.plate .tick::before { width: 12px; height: 1px; top: 0; }
+.plate .tick::after  { width: 1px; height: 12px; left: 0; }
+.plate .tl { top: 9px; left: 9px; }
+.plate .tr { top: 9px; right: 9px; transform: scaleX(-1); }
+.plate .bl { bottom: 9px; left: 9px; transform: scaleY(-1); }
+.plate .br { bottom: 9px; right: 9px; transform: scale(-1, -1); }
+
+/* ---------- Zekerhedenstrip onder de hero ---------- */
+.strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--stone); }
+.strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+.strip .z-item {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 1.15rem 1rem;
+  border-left: 1px solid var(--line);
+}
+.strip .z-item:first-child { border-left: none; }
+.strip .z-item svg { width: 17px; height: 17px; flex: none; color: var(--leaf); }
+.strip .z-item span { font-size: 0.88rem; color: var(--text); line-height: 1.35; }
+@media (max-width: 880px) {
+  .strip .wrap { grid-template-columns: 1fr 1fr; }
+  .strip .z-item:nth-child(3) { border-left: none; }
+  .strip .z-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 440px) {
+  .strip .wrap { grid-template-columns: 1fr; }
+  .strip .z-item { border-left: none; border-top: 1px solid var(--line); padding: 0.85rem 0.2rem; }
+  .strip .z-item:first-child { border-top: none; }
+}
+
+/* ---------- Pakketten ---------- */
+.cards { display: grid; gap: 1.25rem; margin-top: 2rem; }
+@media (min-width: 820px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+.card {
+  border: 1px solid var(--line); background: var(--paper);
+  padding: 1.8rem 1.6rem; display: flex; flex-direction: column; gap: 0.85rem;
+}
+.card .kicker { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.card h3 { font-size: 1.75rem; line-height: 1.1; }
+.card .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; color: var(--green); }
+.card .prijs small { font-family: "Inter", system-ui, sans-serif; font-size: 0.8rem; color: var(--muted); }
+.card .desc { color: var(--muted); font-style: italic; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.1rem; }
+.card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.card ul li { display: flex; gap: 0.6rem; font-size: 0.93rem; align-items: baseline; color: var(--text); }
+.card ul li::before { content: ""; width: 5px; height: 5px; flex: none; background: var(--gold); margin-top: 0.5rem; }
+.card .foot { margin-top: auto; padding-top: 0.8rem; }
+.card .foot .btn { width: 100%; justify-content: center; padding-left: 0.6rem; padding-right: 0.6rem; white-space: nowrap; }
+
+/* Fotoachtergrond onder de pakketsectie: één sfeerbeeld met groene waas,
+   de lichte kaarten drijven erop. Geen foto's per kaart, dat leest als portfolio. */
+.foto-band { position: relative; overflow: hidden; }
+.foto-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.foto-band > .scrim { position: absolute; inset: 0; background: rgba(32, 43, 26, 0.82); }
+.foto-band > .wrap { position: relative; z-index: 1; }
+.foto-band .rail .label { color: rgba(247, 244, 239, 0.72); }
+.foto-band .rail .rail-note { color: rgba(247, 244, 239, 0.75); }
+.foto-band h2.section-h { color: var(--paper); }
+.foto-band .lede { color: rgba(247, 244, 239, 0.78); }
+.foto-band .xl-band { background: rgba(247, 244, 239, 0.08); border-color: rgba(247, 244, 239, 0.25); }
+.foto-band .xl-band h3 { color: var(--paper); }
+.foto-band .xl-band .prijs { color: var(--gold-light); }
+.foto-band .xl-band .prijs small { color: rgba(247, 244, 239, 0.6); }
+.foto-band .xl-band p.x-desc { color: rgba(247, 244, 239, 0.75); }
+.foto-band .xl-band .kicker { color: rgba(247, 244, 239, 0.6); }
+.foto-band .xl-band .btn { background: var(--paper); border-color: var(--paper); color: var(--green); }
+.foto-band .xl-band .btn:hover { background: var(--stone); border-color: var(--stone); }
+
+.xl-band {
+  margin-top: 1.25rem; border: 1px solid var(--line); background: var(--stone);
+  display: grid; gap: 1.2rem; padding: 1.8rem 1.6rem;
+}
+@media (min-width: 820px) {
+  .xl-band { grid-template-columns: 1fr auto; align-items: center; gap: 2.5rem; }
+}
+.xl-band .kicker { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.xl-band h3 { font-size: 1.75rem; }
+.xl-band .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; color: var(--green); margin-top: 0.2rem; }
+.xl-band p.x-desc { color: var(--muted); font-size: 0.95rem; margin-top: 0.6rem; max-width: 56ch; }
+
+/* ---------- Werkwijze ---------- */
+.steps { display: grid; gap: 0; border-top: 1px solid var(--line); margin-top: 2rem; }
+@media (min-width: 780px) { .steps { grid-template-columns: repeat(4, 1fr); border-top: none; } }
+.step { padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
+@media (min-width: 780px) {
+  .step { padding: 0 1.5rem; border-bottom: none; border-left: 1px solid var(--line); }
+  .step:first-child { padding-left: 0; border-left: none; }
+}
+.step .num { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); }
+.step h3 { font-size: 1.45rem; margin-top: 0.5rem; margin-bottom: 0.45rem; }
+.step p { color: var(--muted); font-size: 0.94rem; }
+
+/* ---------- Scenario's ---------- */
+.scenario { display: grid; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--line); align-items: center; }
+.scenario:first-of-type { border-top: 1px solid var(--line); margin-top: 2rem; }
+@media (min-width: 760px) { .scenario { grid-template-columns: 260px 1fr; gap: 2.5rem; } }
+.scenario .plate { aspect-ratio: 4 / 3; }
+.scenario h3 { font-size: 1.6rem; margin-bottom: 0.4rem; }
+.scenario p { color: var(--muted); font-size: 0.97rem; max-width: 52ch; }
+.scenario .past { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.9rem; font-size: 0.88rem; color: var(--green); text-decoration: none; }
+.scenario .past:hover { text-decoration: underline; }
+
+/* ---------- Marco ---------- */
+.marco-grid { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 800px) { .marco-grid { grid-template-columns: 280px 1fr; gap: 3.5rem; } }
+.marco-grid .plate { aspect-ratio: 3 / 4; display: flex; align-items: center; justify-content: center; }
+.marco-grid .plate .leeg {
+  font-size: 0.64rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+/* Kop direct onder een label (Marco, contact, bedankt-pagina) */
+.kop-na-label { margin-top: 1rem; }
+
+/* ---------- Vragen ---------- */
+.vragen-kolom { max-width: 840px; margin: 0 auto; }
+.vragen-kolom .section-h { text-align: center; }
+.faq { border-top: 1px solid var(--line); margin-top: 2rem; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding: 1.15rem 0; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500;
+  font-size: 1.3rem; color: var(--green);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: "Inter", system-ui, sans-serif; color: var(--gold); font-size: 1.1rem; flex: none; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq .antwoord { padding: 0 0 1.3rem; color: var(--muted); font-size: 0.97rem; max-width: 62ch; }
+
+/* ---------- Pijler-iconen ---------- */
+.pijlers-grid { display: grid; gap: 1.5rem 2rem; margin-top: 2.2rem; }
+@media (min-width: 620px) { .pijlers-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 980px) { .pijlers-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.p-item { border-top: 1px solid var(--line); padding-top: 1.1rem; }
+.p-item svg { width: 30px; height: 30px; color: var(--green); }
+.p-item h3 { font-family: "Inter", system-ui, sans-serif; font-weight: 500; font-size: 1rem; color: var(--green); margin: 0.7rem 0 0.3rem; }
+.p-item p { color: var(--muted); font-size: 0.93rem; }
+
+/* ---------- Plantladder op de kaarten ---------- */
+.card-top { display: flex; justify-content: space-between; align-items: flex-end; }
+.card-top svg { color: var(--leaf); opacity: 0.75; }
+
+/* ---------- Tagline-band ---------- */
+.tag-band { position: relative; overflow: hidden; height: clamp(220px, 32vw, 340px); padding: 0; }
+.tag-band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+.tag-band .scrim { position: absolute; inset: 0; background: rgba(32, 43, 26, 0.62); }
+.tag-band .tekst {
+  position: relative; z-index: 1; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+}
+.tag-band .tekst h2 {
+  font-style: italic; font-weight: 500; color: #F7F4EF;
+  font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: 0.01em;
+}
+.tag-band .tekst .pip { border-color: var(--gold-light); }
+
+/* ---------- Contact ---------- */
+.contact-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 860px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+.methods { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+.method { display: flex; flex-direction: column; gap: 0.15rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+.method .val { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.45rem; color: var(--green); }
+.method .val a { text-decoration: none; }
+.wa {
+  display: inline-flex; align-items: center; gap: 0.6rem; align-self: flex-start;
+  margin-top: 0.3rem; padding: 0.6rem 1rem; border: 1px solid var(--line); border-radius: 2px;
+  font-size: 0.9rem; text-decoration: none; color: var(--text);
+  transition: border-color var(--dur) var(--ease);
+}
+.wa:hover { border-color: var(--green); }
+.wa svg { width: 18px; height: 18px; color: var(--leaf); }
+
+form.enq { display: flex; flex-direction: column; gap: 1rem; }
+form.enq label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.4rem; }
+form.enq label .los { text-transform: none; letter-spacing: 0; }
+form.enq input, form.enq textarea, form.enq select {
+  width: 100%; background: var(--paper); border: 1px solid var(--line);
+  color: var(--text); font-family: "Inter", system-ui, sans-serif; font-size: 1rem;
+  padding: 0.8rem 0.9rem; border-radius: 2px; resize: vertical;
+}
+form.enq select { appearance: none; }
+form.enq input:focus, form.enq textarea:focus, form.enq select:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: transparent; }
+form.enq select.flash { outline: 2px solid var(--gold); outline-offset: 1px; }
+form.enq .form-note { color: var(--muted); font-size: 0.82rem; }
+form.enq .form-fout { display: none; border: 1px solid var(--gold); padding: 0.9rem 1rem; font-size: 0.92rem; color: var(--text); }
+.succes { border: 1px solid var(--line); background: var(--paper); padding: 1.6rem; display: none; }
+.succes h3 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+.succes p { color: var(--muted); font-size: 0.95rem; }
+.veld-web { position: absolute; left: -9999px; top: -9999px; }
+
+/* ---------- Bedankt-pagina ---------- */
+.bedankt { min-height: 55vh; display: flex; align-items: center; }
+.bedankt .terug { display: inline-flex; margin-top: 2rem; }
+
+/* ---------- Footer ---------- */
+footer.site { border-top: 1px solid var(--line); padding-top: 3rem; padding-bottom: 3rem; }
+footer.site .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: flex-start; }
+footer.site .tagline { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; color: var(--green); font-size: 1.1rem; margin-top: 0.3rem; }
+footer.site .meta-f { display: flex; flex-direction: column; gap: 0.35rem; text-align: right; }
+footer.site .meta-f span { color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 600px) { footer.site .meta-f { text-align: left; } }
+footer.site .onder {
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between;
+  color: var(--muted); font-size: 0.82rem;
+}
+footer.site .onder a { color: var(--muted); }

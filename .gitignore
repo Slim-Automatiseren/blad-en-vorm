@@ -1,0 +1,15 @@
+# Sleutels en omgevingsbestanden, nooit committen (zie CLAUDE.md)
+.env
+.env.*
+!.env.example
+
+# Afhankelijkheden en bouwuitvoer
+node_modules/
+site/dist/
+site/.astro/
+site/.netlify/
+studio/dist/
+studio/.sanity/
+
+# Systeem
+.DS_Store

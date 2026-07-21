@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Blad &amp; Vorm · richting A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/base.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+  /* Richting A, redactioneel.
+     Asymmetrisch raster met linkerrail, hoog typografisch contrast, haarlijnen,
+     goud alleen als ornament. Copy-bron: docs/copy-nl.md */
+
+  section { padding-top: clamp(3rem, 7vw, 5.5rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
+  section.band { background: var(--stone); }
+
+  /* Rail-raster: smalle linkerkolom met label, content rechts */
+  .grid2 { display: grid; gap: 2.2rem; }
+  @media (min-width: 880px) {
+    .grid2 { grid-template-columns: var(--rail) 1fr; gap: clamp(2rem, 5vw, 4.5rem); }
+  }
+  .rail .label { display: block; }
+  .rail .rail-note { margin-top: 0.8rem; color: var(--muted); font-size: 0.9rem; max-width: 22ch; }
+
+  h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-spacing: -0.01em; }
+  .lede { color: var(--muted); font-size: clamp(1rem, 1.9vw, 1.14rem); line-height: 1.6; max-width: 58ch; margin-top: 1.2rem; }
+
+  /* ---------- Hero: paginabreed beeld, tekst op de rustige linkerzone ---------- */
+  .hero { position: relative; display: flex; align-items: center; padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+  .hero > .wrap { position: relative; z-index: 1; width: 100%; }
+  .hero-inhoud { max-width: 620px; }
+  .hero-bg { position: absolute; inset: 0; overflow: hidden; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 62%; display: block; }
+  /* Tekstzone: dekkend papier tot voorbij de tekstkolom, daarna uitlopend over het beeld.
+     De solide stop staat in px zodat de tekst op elke breedte op dekkende ondergrond staat. */
+  .hero-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.6) 52%, rgba(247, 244, 239, 0) 74%);
+  }
+  @media (min-width: 960px) { .hero { min-height: clamp(560px, 78vh, 800px); } }
+  @media (max-width: 959px) {
+    .hero { display: block; padding-bottom: 0; }
+    .hero-bg { position: relative; inset: auto; height: min(78vw, 440px); margin-top: 2.4rem; }
+    .hero-bg::after { display: none; }
+    .hero-bg img { object-position: 70% 62%; }
+  }
+  .hero h1 {
+    font-size: clamp(2.9rem, 7vw, 5.1rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    margin-top: 1.5rem;
+    max-width: 15ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.14em;
+  }
+  .rule { display: flex; align-items: center; gap: 0.9rem; margin: 2rem 0 1.6rem; max-width: 30rem; }
+  .rule::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .pip { width: 7px; height: 7px; flex: none; border: 1px solid var(--gold); transform: rotate(45deg); }
+  .hero .sub { color: var(--muted); font-size: clamp(1.02rem, 1.9vw, 1.16rem); max-width: 44ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .fineprint { margin-top: 1rem; color: var(--muted); font-size: 0.85rem; }
+
+  .meta {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin: 2.8rem 0 0; padding-top: 1.6rem; border-top: 1px solid var(--line);
+  }
+  @media (max-width: 480px) { .meta { grid-template-columns: 1fr 1fr; } }
+  .meta dt { margin-bottom: 0.35rem; }
+  .meta dd { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.3rem; line-height: 1.25; color: var(--green); }
+
+  /* ---------- Omkaderde plaat ---------- */
+  .plate {
+    position: relative; margin: 0;
+    background: var(--stone); border: 1px solid var(--line);
+    padding: 0; overflow: hidden;
+  }
+  .plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .plate .tick { position: absolute; width: 12px; height: 12px; opacity: 0.85; z-index: 2; }
+  .plate .tick::before, .plate .tick::after { content: ""; position: absolute; background: var(--gold); }
+  .plate .tick::before { width: 12px; height: 1px; top: 0; }
+  .plate .tick::after  { width: 1px; height: 12px; left: 0; }
+  .plate .tl { top: 9px; left: 9px; }
+  .plate .tr { top: 9px; right: 9px; transform: scaleX(-1); }
+  .plate .bl { bottom: 9px; left: 9px; transform: scaleY(-1); }
+  .plate .br { bottom: 9px; right: 9px; transform: scale(-1, -1); }
+
+  /* ---------- Zekerhedenstrip onder de hero ---------- */
+  .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--stone); }
+  .strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .strip .z-item {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 1.15rem 1rem;
+    border-left: 1px solid var(--line);
+  }
+  .strip .z-item:first-child { border-left: none; }
+  .strip .z-item svg { width: 17px; height: 17px; flex: none; color: var(--leaf); }
+  .strip .z-item span { font-size: 0.88rem; color: var(--text); line-height: 1.35; }
+  @media (max-width: 880px) {
+    .strip .wrap { grid-template-columns: 1fr 1fr; }
+    .strip .z-item:nth-child(3) { border-left: none; }
+    .strip .z-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 440px) {
+    .strip .wrap { grid-template-columns: 1fr; }
+    .strip .z-item { border-left: none; border-top: 1px solid var(--line); padding: 0.85rem 0.2rem; }
+    .strip .z-item:first-child { border-top: none; }
+  }
+
+  /* ---------- Pakketten ---------- */
+  .cards { display: grid; gap: 1.25rem; margin-top: 2rem; }
+  @media (min-width: 820px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card {
+    border: 1px solid var(--line); background: var(--paper);
+    padding: 1.8rem 1.6rem; display: flex; flex-direction: column; gap: 0.85rem;
+  }
+  .card .kicker { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .card h3 { font-size: 1.75rem; line-height: 1.1; }
+  .card .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; color: var(--green); }
+  .card .prijs small { font-family: "Inter", system-ui, sans-serif; font-size: 0.8rem; color: var(--muted); }
+  .card .desc { color: var(--muted); font-size: 0.95rem; font-style: italic; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.1rem; }
+  .card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+  .card ul li { display: flex; gap: 0.6rem; font-size: 0.93rem; align-items: baseline; color: var(--text); }
+  .card ul li::before { content: ""; width: 5px; height: 5px; flex: none; background: var(--gold); margin-top: 0.5rem; }
+  .card .foot { margin-top: auto; padding-top: 0.8rem; }
+  .card .foot .btn { width: 100%; justify-content: center; padding-left: 0.6rem; padding-right: 0.6rem; white-space: nowrap; }
+
+  /* Fotoachtergrond onder de pakketsectie: één sfeerbeeld met groene waas,
+     de lichte kaarten drijven erop. Geen foto's per kaart, dat leest als portfolio. */
+  .foto-band { position: relative; overflow: hidden; }
+  .foto-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .foto-band > .scrim { position: absolute; inset: 0; background: rgba(32, 43, 26, 0.82); }
+  .foto-band > .wrap { position: relative; z-index: 1; }
+  .foto-band .rail .label { color: rgba(247, 244, 239, 0.72); }
+  .foto-band .rail .rail-note { color: rgba(247, 244, 239, 0.75); }
+  .foto-band h2.section-h { color: var(--paper); }
+  .foto-band .lede { color: rgba(247, 244, 239, 0.78); }
+  .foto-band .xl-band { background: rgba(247, 244, 239, 0.08); border-color: rgba(247, 244, 239, 0.25); }
+  .foto-band .xl-band h3 { color: var(--paper); }
+  .foto-band .xl-band .prijs { color: var(--gold-light); }
+  .foto-band .xl-band .prijs small { color: rgba(247, 244, 239, 0.6); }
+  .foto-band .xl-band p.x-desc { color: rgba(247, 244, 239, 0.75); }
+  .foto-band .xl-band .kicker { color: rgba(247, 244, 239, 0.6) !important; }
+  .foto-band .xl-band .btn { background: var(--paper); border-color: var(--paper); color: var(--green); }
+  .foto-band .xl-band .btn:hover { background: var(--stone); border-color: var(--stone); }
+
+  .xl-band {
+    margin-top: 1.25rem; border: 1px solid var(--line); background: var(--stone);
+    display: grid; gap: 1.2rem; padding: 1.8rem 1.6rem;
+  }
+  @media (min-width: 820px) {
+    .xl-band { grid-template-columns: 1fr auto; align-items: center; gap: 2.5rem; }
+  }
+  .xl-band h3 { font-size: 1.75rem; }
+  .xl-band .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; color: var(--green); margin-top: 0.2rem; }
+  .xl-band p.x-desc { color: var(--muted); font-size: 0.95rem; margin-top: 0.6rem; max-width: 56ch; }
+
+  /* ---------- Werkwijze ---------- */
+  .steps { display: grid; gap: 0; border-top: 1px solid var(--line); margin-top: 2rem; }
+  @media (min-width: 780px) { .steps { grid-template-columns: repeat(4, 1fr); border-top: none; } }
+  .step { padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 780px) {
+    .step { padding: 0 1.5rem; border-bottom: none; border-left: 1px solid var(--line); }
+    .step:first-child { padding-left: 0; border-left: none; }
+  }
+  .step .num { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); }
+  .step h3 { font-size: 1.45rem; margin-top: 0.5rem; margin-bottom: 0.45rem; }
+  .step p { color: var(--muted); font-size: 0.94rem; }
+
+  /* ---------- Scenario's ---------- */
+  .scenario { display: grid; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--line); align-items: center; }
+  .scenario:first-of-type { border-top: 1px solid var(--line); margin-top: 2rem; }
+  @media (min-width: 760px) { .scenario { grid-template-columns: 260px 1fr; gap: 2.5rem; } }
+  .scenario .plate { aspect-ratio: 4 / 3; }
+  .scenario h3 { font-size: 1.6rem; margin-bottom: 0.4rem; }
+  .scenario p { color: var(--muted); font-size: 0.97rem; max-width: 52ch; }
+  .scenario .past { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.9rem; font-size: 0.88rem; color: var(--green); text-decoration: none; }
+  .scenario .past:hover { text-decoration: underline; }
+
+  /* ---------- Marco ---------- */
+  .marco-grid { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 800px) { .marco-grid { grid-template-columns: 280px 1fr; gap: 3.5rem; } }
+  .marco-grid .plate { aspect-ratio: 3 / 4; display: flex; align-items: center; justify-content: center; }
+  .marco-grid .plate .leeg {
+    font-size: 0.64rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ---------- Vragen ---------- */
+  .vragen-kolom { max-width: 840px; margin: 0 auto; }
+  .vragen-kolom .section-h { text-align: center; }
+  .faq { border-top: 1px solid var(--line); margin-top: 2rem; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    padding: 1.15rem 0; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500;
+    font-size: 1.3rem; color: var(--green);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-family: "Inter", system-ui, sans-serif; color: var(--gold); font-size: 1.1rem; flex: none; }
+  .faq details[open] summary::after { content: "\2212"; }
+  .faq .antwoord { padding: 0 0 1.3rem; color: var(--muted); font-size: 0.97rem; max-width: 62ch; }
+
+  /* ---------- Pijler-iconen ---------- */
+  .pijlers-grid { display: grid; gap: 1.5rem 2rem; margin-top: 2.2rem; }
+  @media (min-width: 620px) { .pijlers-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .pijlers-grid { grid-template-columns: 1fr 1fr 1fr; } }
+  .p-item { border-top: 1px solid var(--line); padding-top: 1.1rem; }
+  .p-item svg { width: 30px; height: 30px; color: var(--green); }
+  .p-item h3 { font-family: "Inter", system-ui, sans-serif; font-weight: 500; font-size: 1rem; color: var(--green); margin: 0.7rem 0 0.3rem; }
+  .p-item p { color: var(--muted); font-size: 0.93rem; }
+
+  /* ---------- Plantladder op de kaarten ---------- */
+  .card-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .card-top svg { color: var(--leaf); opacity: 0.75; }
+
+  /* ---------- Tagline-band ---------- */
+  .tag-band { position: relative; overflow: hidden; height: clamp(220px, 32vw, 340px); }
+  .tag-band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+  .tag-band .scrim { position: absolute; inset: 0; background: rgba(32, 43, 26, 0.62); }
+  .tag-band .tekst {
+    position: relative; z-index: 1; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+  }
+  .tag-band .tekst h2 {
+    font-style: italic; font-weight: 500; color: #F7F4EF;
+    font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: 0.01em;
+  }
+  .tag-band .tekst .pip { border-color: var(--gold-light); }
+
+  /* ---------- Contact ---------- */
+  .contact-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 860px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .methods { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .method { display: flex; flex-direction: column; gap: 0.15rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+  .method .val { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.45rem; color: var(--green); }
+  .method .val a { text-decoration: none; }
+  .wa {
+    display: inline-flex; align-items: center; gap: 0.6rem; align-self: flex-start;
+    margin-top: 0.3rem; padding: 0.6rem 1rem; border: 1px solid var(--line); border-radius: 2px;
+    font-size: 0.9rem; text-decoration: none; color: var(--text);
+    transition: border-color var(--dur) var(--ease);
+  }
+  .wa:hover { border-color: var(--green); }
+  .wa svg { width: 18px; height: 18px; color: var(--leaf); }
+
+  form.enq { display: flex; flex-direction: column; gap: 1rem; }
+  form.enq label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.4rem; }
+  form.enq input, form.enq textarea, form.enq select {
+    width: 100%; background: var(--paper); border: 1px solid var(--line);
+    color: var(--text); font-family: "Inter", system-ui, sans-serif; font-size: 1rem;
+    padding: 0.8rem 0.9rem; border-radius: 2px; resize: vertical;
+  }
+  form.enq select { appearance: none; }
+  form.enq input:focus, form.enq textarea:focus, form.enq select:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: transparent; }
+  form.enq select.flash { outline: 2px solid var(--gold); outline-offset: 1px; }
+  form.enq .form-note { color: var(--muted); font-size: 0.82rem; }
+  .succes { border: 1px solid var(--line); background: var(--paper); padding: 1.6rem; display: none; }
+  .succes h3 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .succes p { color: var(--muted); font-size: 0.95rem; }
+  .veld-web { position: absolute; left: -9999px; top: -9999px; }
+
+  /* ---------- Footer ---------- */
+  footer.site { border-top: 1px solid var(--line); padding-top: 3rem; padding-bottom: 3rem; }
+  footer.site .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: flex-start; }
+  footer.site .tagline { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; color: var(--green); font-size: 1.1rem; margin-top: 0.3rem; }
+  footer.site .meta-f { display: flex; flex-direction: column; gap: 0.35rem; text-align: right; }
+  footer.site .meta-f span { color: var(--muted); font-size: 0.85rem; }
+  @media (max-width: 600px) { footer.site .meta-f { text-align: left; } }
+  footer.site .onder {
+    margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between;
+    color: var(--muted); font-size: 0.82rem;
+  }
+  footer.site .onder a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#hoofd">Naar de inhoud</a>
+
+<div class="ribbon">
+  <div class="wrap">
+    <span class="dot"></span>
+    <span>Voorvertoning richting A &nbsp;·&nbsp; teksten in afstemming, fotografie volgt</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#hoofd">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="name">Blad &amp; Vorm</span>
+    </a>
+    <nav class="links">
+      <a href="#maandbedrag" class="only-wide">Aanpak</a>
+      <a href="#pakketten" class="only-wide">Pakketten</a>
+      <a href="#werkwijze" class="only-wide">Werkwijze</a>
+      <a href="#contact" class="btn"><span class="lang">Plan een kennismaking</span><span class="kort">Kennismaken</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="hoofd">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inhoud reveal">
+        <span class="label">Interieurbeplanting voor kantoren</span>
+          <h1>Groen dat uw kantoor afmaakt, <em>en verzorgd blijft</em>.</h1>
+          <div class="rule"><span class="pip" aria-hidden="true"></span></div>
+          <p class="sub">
+            Advies, levering, plaatsing en doorlopend onderhoud. Eén vast bedrag per maand,
+            en altijd dezelfde persoon die langskomt.
+          </p>
+          <div class="actions">
+            <a href="#contact" class="btn">Plan een kennismaking</a>
+            <a href="#pakketten" class="btn ghost">Bekijk de pakketten</a>
+          </div>
+          <p class="fineprint">Kennismaking van 20 minuten op locatie, vrijblijvend.</p>
+          <dl class="meta">
+            <div><dt class="label">Vanaf</dt><dd>95 euro per maand</dd></div>
+            <div><dt class="label">Werkgebied</dt><dd>Wassenaar en omstreken</dd></div>
+            <div><dt class="label">Onderhoud</dt><dd>Altijd dezelfde persoon</dd></div>
+          </dl>
+      </div>
+    </div>
+    <div class="hero-bg">
+      <img src="../shared/img/hero-breed.jpg" alt="Ontvangstruimte van een kantoor: een kentiapalm en een ficus in keramische potten naast een eiken balie, links een lege lichte wand">
+    </div>
+  </section>
+
+  <!-- ============ Zekerheden ============ -->
+  <div class="strip reveal">
+    <div class="wrap">
+      <div class="z-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Vrijblijvende kennismaking van 20 minuten</span>
+      </div>
+      <div class="z-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Vast maandbedrag, geen meerwerk achteraf</span>
+      </div>
+      <div class="z-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Kosteloos vervangen bij uitval</span>
+      </div>
+      <div class="z-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Altijd hetzelfde aanspreekpunt</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Maandbedrag ============ -->
+  <section id="maandbedrag">
+    <div class="wrap">
+      <div class="grid2">
+        <div class="rail reveal">
+          <span class="label">In het maandbedrag</span>
+          <p class="rail-note">Alles in één bedrag, geen losse rekeningen.</p>
+        </div>
+        <div class="reveal">
+          <h2 class="section-h">Eén bedrag per maand. Alles zit erin.</h2>
+          <p class="lede">Geen losse offertes, geen meerwerk achteraf. Het maandbedrag dekt het volledige traject, van het eerste advies tot het vervangen van een plant die zijn beste tijd heeft gehad.</p>
+          <div class="pijlers-grid">
+            <div class="p-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><path d="M8 16c0-4.5 3.5-8 8-8-0.5 5-3.5 8-8 8z"/></svg>
+              <h3>Advies en ontwerp</h3><p>Een plan dat past bij uw ruimte, uw licht en uw uitstraling.</p>
+            </div>
+            <div class="p-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="12" height="10"/><path d="M15 11h4l2 3v4h-6"/><circle cx="7" cy="18" r="0.5"/><circle cx="18" cy="18" r="0.5"/></svg>
+              <h3>Levering en plaatsing</h3><p>Alles komt compleet binnen en wordt op de juiste plek gezet.</p>
+            </div>
+            <div class="p-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4c3 4 5 6.5 5 9a5 5 0 1 1-10 0c0-2.5 2-5 5-9z"/></svg>
+              <h3>Onderhoud en verzorging</h3><p>Water, voeding en verzorging op vaste momenten.</p>
+            </div>
+            <div class="p-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.6-5.6"/><path d="M20 12a8 8 0 0 1-13.6 5.6"/><path d="M18 3v4h-4"/><path d="M6 21v-4h4"/></svg>
+              <h3>Vervanging bij uitval</h3><p>Gaat een plant achteruit, dan vervangen wij hem kosteloos.</p>
+            </div>
+            <div class="p-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>
+              <h3>Eén vast aanspreekpunt</h3><p>U schakelt altijd met dezelfde persoon, niet met een planning.</p>
+            </div>
+            <div class="p-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="15"/><path d="M4 11h16M9 3v5M15 3v5"/><path d="M9 16l2 2 4-4"/></svg>
+              <h3>Vast maandbedrag</h3><p>Het bedrag dat we afspreken is het bedrag dat u betaalt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Pakketten ============ -->
+  <section id="pakketten" class="foto-band">
+    <img src="../shared/img/pakketten-achtergrond.jpg" alt="" aria-hidden="true">
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="grid2">
+        <div class="rail reveal">
+          <span class="label">Pakketten</span>
+          <p class="rail-note">Vaste prijzen, open op de pagina.</p>
+        </div>
+        <div class="reveal">
+          <h2 class="section-h">Een opzet die bij uw ruimte past.</h2>
+          <p class="lede">Vier startpunten met een vaste prijs per maand. De precieze invulling, soorten en potten stemmen we af op uw ruimte.</p>
+
+          <div class="cards">
+            <div class="card">
+              <div class="card-top"><span class="kicker">S</span><svg width="26" height="26" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/></svg></div>
+              <h3>Impact</h3>
+              <span class="prijs">95 euro <small>per maand</small></span>
+              <p class="desc">Kleine ingreep, groot verschil.</p>
+              <ul>
+                <li>3 planten</li>
+                <li>Hoogte 1,20 tot 1,80 m</li>
+                <li>Onderhoud 1 tot 2 keer per maand</li>
+              </ul>
+              <div class="foot"><a href="#contact" class="btn ghost pakket-cta" data-pakket="S Impact">Vraag dit pakket aan</a></div>
+            </div>
+            <div class="card">
+              <div class="card-top"><span class="kicker">M</span><svg width="32" height="32" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/><path d="M44 56 C44 46 44 40 44 32"/><path d="M44 44 C39 42 36 38 35 32 C41 32 44 36 44 44"/></svg></div>
+              <h3>Corporate</h3>
+              <span class="prijs">195 euro <small>per maand</small></span>
+              <p class="desc">Representatief en professioneel.</p>
+              <ul>
+                <li>5 tot 7 planten</li>
+                <li>Hoogte 1,20 tot 1,80 m</li>
+                <li>Onderhoud 1 tot 2 keer per maand</li>
+              </ul>
+              <div class="foot"><a href="#contact" class="btn ghost pakket-cta" data-pakket="M Corporate">Vraag dit pakket aan</a></div>
+            </div>
+            <div class="card">
+              <div class="card-top"><span class="kicker">L</span><svg width="38" height="38" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/><path d="M44 56 C44 46 44 40 44 32"/><path d="M44 44 C39 42 36 38 35 32 C41 32 44 36 44 44"/><path d="M16 56 C16 48 16 44 16 36"/><path d="M16 48 C11 46 8 42 7 36 C13 36 16 40 16 48"/><path d="M16 44 C21 42 24 38 25 32 C19 32 16 36 16 44"/></svg></div>
+              <h3>Signature</h3>
+              <span class="prijs">395 euro <small>per maand</small></span>
+              <p class="desc">Meer impact, meer rust.</p>
+              <ul>
+                <li>10 tot 15 planten</li>
+                <li>Hoogte 1,20 tot 1,80 m</li>
+                <li>Onderhoud 2 keer per maand</li>
+              </ul>
+              <div class="foot"><a href="#contact" class="btn ghost pakket-cta" data-pakket="L Signature">Vraag dit pakket aan</a></div>
+            </div>
+          </div>
+
+          <div class="xl-band">
+            <div>
+              <span class="kicker" style="font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);">XL</span>
+              <h3>Complete</h3>
+              <span class="prijs">vanaf 695 euro <small>per maand</small></span>
+              <p class="x-desc">Complete groene totaalbeleving, voor grotere locaties. 20 tot 30 planten of meer, hoogte 1,20 tot 2,00 m, onderhoud 2 keer per maand. In overleg samengesteld.</p>
+            </div>
+            <a href="#contact" class="btn pakket-cta" data-pakket="XL Complete">Vraag dit pakket aan</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Werkwijze ============ -->
+  <section id="werkwijze">
+    <div class="wrap">
+      <div class="grid2">
+        <div class="rail reveal">
+          <span class="label">Werkwijze</span>
+          <p class="rail-note">Van kennismaking tot verzorging.</p>
+        </div>
+        <div class="reveal">
+          <h2 class="section-h">In vier stappen naar blijvend groen.</h2>
+          <div class="steps">
+            <div class="step"><span class="num">01</span><h3>Kennismaking</h3><p>We bekijken uw ruimte en wensen op locatie. Twintig minuten, vrijblijvend.</p></div>
+            <div class="step"><span class="num">02</span><h3>Voorstel</h3><p>U ontvangt een concreet voorstel met beplanting, potten en het maandbedrag.</p></div>
+            <div class="step"><span class="num">03</span><h3>Plaatsing</h3><p>Wij leveren en plaatsen alles compleet, op afspraak.</p></div>
+            <div class="step"><span class="num">04</span><h3>Verzorging</h3><p>Wij komen terug op vaste momenten en vervangen waar nodig.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Scenario's ============ -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid2">
+        <div class="rail reveal">
+          <span class="label">Voor wie</span>
+          <p class="rail-note">Drie ruimtes, drie startpunten.</p>
+        </div>
+        <div class="reveal">
+          <h2 class="section-h">Ruimtes waar de eerste indruk telt.</h2>
+
+          <div class="scenario">
+            <figure class="plate">
+              <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+              <img src="../shared/img/scenario-ontvangst.jpg" alt="Wachtbank van eikenhout met linnen kussens, ernaast een kentiapalm en een zamioculcas">
+            </figure>
+            <div>
+              <h3>Ontvangstruimte en entree</h3>
+              <p>Het eerste dat een bezoeker ziet. Een verzorgd groenaccent bij de balie of wachtplek wekt vertrouwen voordat er een woord is gezegd.</p>
+              <a class="past" href="#pakketten"><span class="pip" aria-hidden="true"></span> Past bij S Impact</a>
+            </div>
+          </div>
+
+          <div class="scenario">
+            <figure class="plate">
+              <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+              <img src="../shared/img/scenario-directie.jpg" alt="Vergaderhoek met walnoten tafel, wollen stoelen en een grote ficus in een keramische pot">
+            </figure>
+            <div>
+              <h3>Directiekantoor en vergaderruimte</h3>
+              <p>Beplanting op het niveau van de ruimte, rustig en representatief.</p>
+              <a class="past" href="#pakketten"><span class="pip" aria-hidden="true"></span> Past bij M Corporate</a>
+            </div>
+          </div>
+
+          <div class="scenario">
+            <figure class="plate">
+              <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+              <img src="../shared/img/scenario-praktijk.jpg" alt="Twee linnen fauteuils met bijzettafel en kentiapalm in een rustige wachtruimte">
+            </figure>
+            <div>
+              <h3>Praktijk en wellness</h3>
+              <p>Groen dat kalmeert. Voor wachtruimtes en behandelkamers waar uw bezoekers tot rust moeten komen.</p>
+              <a class="past" href="#pakketten"><span class="pip" aria-hidden="true"></span> Past bij L Signature</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Marco ============ -->
+  <section>
+    <div class="wrap">
+      <div class="marco-grid">
+        <figure class="plate reveal">
+          <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+          <span class="leeg">Foto volgt</span>
+        </figure>
+        <div class="reveal">
+          <span class="label">Blad &amp; Vorm</span>
+          <h2 class="section-h" style="margin-top:1rem;">Eén aanspreekpunt, van advies tot verzorging.</h2>
+          <p class="lede">Blad &amp; Vorm is het bedrijf van Marco Hilhorst. Dat betekent dat degene die uw ruimte bekijkt, het plan maakt en het onderhoud doet, dezelfde persoon is. Op afspraak, discreet, en met oog voor uw ruimte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ Tagline-band ============ -->
+  <section class="tag-band" aria-hidden="true">
+    <img src="../shared/img/band-breed.jpg" alt="">
+    <div class="scrim"></div>
+    <div class="tekst">
+      <h2>Groen dat klopt.</h2>
+      <span class="pip" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <!-- ============ Vragen ============ -->
+  <section id="vragen" class="band">
+    <div class="wrap">
+      <div class="vragen-kolom">
+        <div class="reveal">
+          <h2 class="section-h">Veelgestelde vragen</h2>
+          <div class="faq">
+            <details>
+              <summary>Wat kost het per maand?</summary>
+              <p class="antwoord">De pakketten staan open op deze pagina, vanaf 95 euro per maand. Dat bedrag dekt advies, levering, plaatsing, onderhoud en vervanging. U krijgt geen losse rekeningen achteraf.</p>
+            </details>
+            <details>
+              <summary>Wat gebeurt er als een plant achteruitgaat?</summary>
+              <p class="antwoord">Dan vervangen wij hem kosteloos. Vervanging bij uitval zit in het maandbedrag.</p>
+            </details>
+            <details>
+              <summary>Wie komt er over de vloer?</summary>
+              <p class="antwoord">Altijd dezelfde persoon. Bezoeken gaan op afspraak, en in overleg buiten uw kantoortijden of spreekuren.</p>
+            </details>
+            <details>
+              <summary>Moet ik zelf iets doen?</summary>
+              <p class="antwoord">Nee. Water, voeding en verzorging doen wij, op vaste momenten die u van tevoren kent.</p>
+            </details>
+            <details>
+              <summary>Hoe snel staat het er?</summary>
+              <p class="antwoord">Na de kennismaking ontvangt u binnen enkele dagen een voorstel. Na akkoord plannen we de plaatsing in overleg.</p>
+            </details>
+            <details>
+              <summary>Zit ik ergens aan vast?</summary>
+              <p class="antwoord">De looptijd en voorwaarden staan in het voorstel, zodat u vooraf precies weet waar u aan toe bent.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="label">Contact</span>
+          <h2 class="section-h" style="margin-top:1rem;">Begin met een vrijblijvende kennismaking.</h2>
+          <p class="lede">Laat uw gegevens achter en u hoort snel van ons. Liever direct contact? Bellen of appen kan ook.</p>
+          <div class="methods">
+            <div class="method"><span class="label">E-mail</span><span class="val"><a href="mailto:info@bladvorm.nl">info@bladvorm.nl</a></span></div>
+            <div class="method"><span class="label">Telefoon</span><span class="val"><a href="tel:+31615129685">06 15 12 96 85</a></span></div>
+            <a href="https://wa.me/31615129685" class="wa">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8.9-.1.2-.3.2-.5.1-1.2-.6-2-1.1-2.8-2.4-.2-.4.2-.3.6-1 .1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 3.9 3.5 1.5.6 2 .7 2.7.6.4-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="reveal">
+          <form class="enq" id="contactForm" novalidate>
+            <div>
+              <label for="f-naam">Naam</label>
+              <input id="f-naam" name="naam" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="f-bedrijf">Bedrijf</label>
+              <input id="f-bedrijf" name="bedrijf" type="text" autocomplete="organization" required>
+            </div>
+            <div>
+              <label for="f-mail">E-mail</label>
+              <input id="f-mail" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div>
+              <label for="f-tel">Telefoon <span style="text-transform:none;letter-spacing:0;">(niet verplicht)</span></label>
+              <input id="f-tel" name="telefoon" type="tel" autocomplete="tel">
+            </div>
+            <div>
+              <label for="f-pakket">Waar gaat het om?</label>
+              <select id="f-pakket" name="pakket">
+                <option value="" disabled selected hidden>Maak uw keuze</option>
+                <option>S Impact</option>
+                <option>M Corporate</option>
+                <option>L Signature</option>
+                <option>XL Complete</option>
+                <option>Ik weet het nog niet</option>
+              </select>
+            </div>
+            <div>
+              <label for="f-ber">Bericht</label>
+              <textarea id="f-ber" name="bericht" rows="4" placeholder="Vertel kort over uw ruimte en wensen"></textarea>
+            </div>
+            <div class="veld-web" aria-hidden="true">
+              <label for="f-web">Website</label>
+              <input id="f-web" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button class="btn" type="submit">Verstuur</button>
+            <p class="form-note">Uw gegevens gebruiken we alleen om contact met u op te nemen.</p>
+          </form>
+          <div class="succes" id="formSucces" role="status">
+            <h3>Dank voor uw bericht.</h3>
+            <p>U hoort snel van ons.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ Footer ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="brand" href="#hoofd">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="name">Blad &amp; Vorm</span>
+        </a>
+        <p class="tagline">Groen dat klopt</p>
+      </div>
+      <div class="meta-f">
+        <span>Interieurbeplanting voor de zakelijke markt</span>
+        <span>Wassenaar en omstreken</span>
+        <span>info@bladvorm.nl · 06 15 12 96 85</span>
+      </div>
+    </div>
+    <div class="onder">
+      <span>Blad &amp; Vorm is een handelsnaam van Hilforce · KvK 42033993</span>
+      <span><a href="#">Algemene voorwaarden</a> · <a href="#">Privacyverklaring</a> · NL / EN</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../shared/reveal.js"></script>
+<script>
+  (function () {
+    // Pakket-CTA: vult het interesseveld zichtbaar voor
+    var select = document.getElementById('f-pakket');
+    document.querySelectorAll('.pakket-cta').forEach(function (a) {
+      a.addEventListener('click', function () {
+        select.value = a.getAttribute('data-pakket');
+        select.classList.add('flash');
+        setTimeout(function () { select.classList.remove('flash'); }, 1800);
+      });
+    });
+
+    // Formulier: nep-verzending met honeypot en tijdcontrole,
+    // in productie vervangt een echt endpoint dit blok
+    var start = Date.now();
+    var form = document.getElementById('contactForm');
+    var succes = document.getElementById('formSucces');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var spam = form.website.value !== '' || (Date.now() - start) < 3000;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      // spam wordt stil geaccepteerd zodat een bot geen signaal krijgt
+      form.style.display = 'none';
+      succes.style.display = 'block';
+      succes.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  })();
+</script>
+</body>
+</html>

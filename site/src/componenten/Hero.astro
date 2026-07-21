@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import heroBreed from '../beelden/hero-breed.jpg';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  hero: Inhoud['hero'];
+}
+const { hero } = Astro.props;
+
+const standaardAlt =
+  'Ontvangstruimte van een kantoor: een kentiapalm en een ficus in keramische potten naast een eiken balie, links een lege lichte wand';
+const eigenFoto = beeldBron(hero.foto, [640, 960, 1440, 1920]);
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inhoud reveal">
+      <span class="label">{hero.label}</span>
+      <h1>{hero.kop} <em>{hero.kopAccent}</em>.</h1>
+      <div class="rule"><span class="pip" aria-hidden="true"></span></div>
+      <p class="sub">{hero.sub}</p>
+      <div class="actions">
+        <a href="#contact" class="btn">{hero.ctaPrimair}</a>
+        <a href="#pakketten" class="btn ghost">{hero.ctaSecundair}</a>
+      </div>
+      <p class="fineprint">{hero.fineprint}</p>
+      <dl class="meta">
+        {hero.meta.map((m) => (
+          <div><dt class="label">{m.label}</dt><dd>{m.waarde}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </div>
+  <div class="hero-bg">
+    {eigenFoto ? (
+      <img
+        src={eigenFoto.src}
+        srcset={eigenFoto.srcset}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        alt={eigenFoto.alt ?? standaardAlt}
+      />
+    ) : (
+      <Image
+        src={heroBreed}
+        widths={[640, 960, 1376]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        alt={standaardAlt}
+      />
+    )}
+  </div>
+</section>

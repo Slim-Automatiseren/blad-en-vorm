@@ -1,0 +1,29 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Nav from '../componenten/Nav.astro';
+import Voet from '../componenten/Voet.astro';
+import { haalInhoud } from '../lib/inhoud';
+
+/* Landingspagina na een formulierverzending zonder JS (de Pages Function
+   stuurt hierheen door). Altijd noindex. */
+const inhoud = await haalInhoud('nl');
+const f = inhoud.contact.formulier;
+---
+<Basis titel="Dank voor uw bericht · Blad & Vorm" beschrijving={f.succesTekst} nooitIndexeren>
+  <Nav ctaLang={inhoud.hero.ctaPrimair} ctaKort="Kennismaken" />
+
+  <main id="hoofd">
+    <section class="bedankt">
+      <div class="wrap">
+        <div>
+          <span class="label">{inhoud.contact.label}</span>
+          <h1 class="section-h kop-na-label">{f.succesKop}</h1>
+          <p class="lede">{f.succesTekst}</p>
+          <a class="btn ghost terug" href="/">Terug naar de pagina</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Voet instellingen={inhoud.instellingen} />
+</Basis>

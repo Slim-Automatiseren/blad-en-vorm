@@ -1,0 +1,176 @@
+{
+  "hero": {
+    "label": "Interieurbeplanting voor kantoren",
+    "kop": "Groen dat uw kantoor afmaakt,",
+    "kopAccent": "en verzorgd blijft",
+    "sub": "Advies, levering, plaatsing en doorlopend onderhoud. Eén vast bedrag per maand, en altijd dezelfde persoon die langskomt.",
+    "ctaPrimair": "Plan een kennismaking",
+    "ctaSecundair": "Bekijk de pakketten",
+    "fineprint": "Kennismaking van 20 minuten op locatie, vrijblijvend.",
+    "meta": [
+      { "label": "Vanaf", "waarde": "95 euro per maand" },
+      { "label": "Werkgebied", "waarde": "Wassenaar en omstreken" },
+      { "label": "Onderhoud", "waarde": "Altijd dezelfde persoon" }
+    ]
+  },
+  "zekerheden": [
+    "Vrijblijvende kennismaking van 20 minuten",
+    "Vast maandbedrag, geen meerwerk achteraf",
+    "Kosteloos vervangen bij uitval",
+    "Altijd hetzelfde aanspreekpunt"
+  ],
+  "maandbedrag": {
+    "railLabel": "In het maandbedrag",
+    "railNote": "Alles in één bedrag, geen losse rekeningen.",
+    "kop": "Eén bedrag per maand. Alles zit erin.",
+    "lede": "Geen losse offertes, geen meerwerk achteraf. Het maandbedrag dekt het volledige traject, van het eerste advies tot het vervangen van een plant die zijn beste tijd heeft gehad.",
+    "pijlers": [
+      { "icoon": "advies", "titel": "Advies en ontwerp", "tekst": "Een plan dat past bij uw ruimte, uw licht en uw uitstraling." },
+      { "icoon": "levering", "titel": "Levering en plaatsing", "tekst": "Alles komt compleet binnen en wordt op de juiste plek gezet." },
+      { "icoon": "onderhoud", "titel": "Onderhoud en verzorging", "tekst": "Water, voeding en verzorging op vaste momenten." },
+      { "icoon": "vervanging", "titel": "Vervanging bij uitval", "tekst": "Gaat een plant achteruit, dan vervangen wij hem kosteloos." },
+      { "icoon": "aanspreekpunt", "titel": "Eén vast aanspreekpunt", "tekst": "U schakelt altijd met dezelfde persoon, niet met een planning." },
+      { "icoon": "maandbedrag", "titel": "Vast maandbedrag", "tekst": "Het bedrag dat we afspreken is het bedrag dat u betaalt." }
+    ]
+  },
+  "pakketten": {
+    "railLabel": "Pakketten",
+    "railNote": "Vaste prijzen, open op de pagina.",
+    "kop": "Een opzet die bij uw ruimte past.",
+    "lede": "Vier startpunten met een vaste prijs per maand. De precieze invulling, soorten en potten stemmen we af op uw ruimte.",
+    "ctaTekst": "Vraag dit pakket aan",
+    "kaarten": [
+      {
+        "code": "S",
+        "naam": "Impact",
+        "prijsBedrag": 95,
+        "vanaf": false,
+        "beschrijving": "Kleine ingreep, groot verschil.",
+        "punten": ["3 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
+      },
+      {
+        "code": "M",
+        "naam": "Corporate",
+        "prijsBedrag": 195,
+        "vanaf": false,
+        "beschrijving": "Representatief en professioneel.",
+        "punten": ["5 tot 7 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
+      },
+      {
+        "code": "L",
+        "naam": "Signature",
+        "prijsBedrag": 395,
+        "vanaf": false,
+        "beschrijving": "Meer impact, meer rust.",
+        "punten": ["10 tot 15 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 2 keer per maand"]
+      }
+    ],
+    "xl": {
+      "code": "XL",
+      "naam": "Complete",
+      "prijsBedrag": 695,
+      "vanaf": true,
+      "beschrijving": "Complete groene totaalbeleving, voor grotere locaties. 20 tot 30 planten of meer, hoogte 1,20 tot 2,00 m, onderhoud 2 keer per maand. In overleg samengesteld."
+    }
+  },
+  "werkwijze": {
+    "railLabel": "Werkwijze",
+    "railNote": "Van kennismaking tot verzorging.",
+    "kop": "In vier stappen naar blijvend groen.",
+    "stappen": [
+      { "titel": "Kennismaking", "tekst": "We bekijken uw ruimte en wensen op locatie. Twintig minuten, vrijblijvend." },
+      { "titel": "Voorstel", "tekst": "U ontvangt een concreet voorstel met beplanting, potten en het maandbedrag." },
+      { "titel": "Plaatsing", "tekst": "Wij leveren en plaatsen alles compleet, op afspraak." },
+      { "titel": "Verzorging", "tekst": "Wij komen terug op vaste momenten en vervangen waar nodig." }
+    ]
+  },
+  "scenarios": {
+    "railLabel": "Voor wie",
+    "railNote": "Drie ruimtes, drie startpunten.",
+    "kop": "Ruimtes waar de eerste indruk telt.",
+    "items": [
+      {
+        "titel": "Ontvangstruimte en entree",
+        "tekst": "Het eerste dat een bezoeker ziet. Een verzorgd groenaccent bij de balie of wachtplek wekt vertrouwen voordat er een woord is gezegd.",
+        "pastBij": "Past bij S Impact",
+        "beeldSlot": "ontvangst"
+      },
+      {
+        "titel": "Directiekantoor en vergaderruimte",
+        "tekst": "Beplanting op het niveau van de ruimte, rustig en representatief.",
+        "pastBij": "Past bij M Corporate",
+        "beeldSlot": "directie"
+      },
+      {
+        "titel": "Praktijk en wellness",
+        "tekst": "Groen dat kalmeert. Voor wachtruimtes en behandelkamers waar uw bezoekers tot rust moeten komen.",
+        "pastBij": "Past bij L Signature",
+        "beeldSlot": "praktijk"
+      }
+    ]
+  },
+  "marco": {
+    "label": "Blad & Vorm",
+    "kop": "Eén aanspreekpunt, van advies tot verzorging.",
+    "tekst": "Blad & Vorm is het bedrijf van Marco Hilhorst. Dat betekent dat degene die uw ruimte bekijkt, het plan maakt en het onderhoud doet, dezelfde persoon is. Op afspraak, discreet, en met oog voor uw ruimte."
+  },
+  "tagline": "Groen dat klopt.",
+  "vragen": [
+    {
+      "vraag": "Wat kost het per maand?",
+      "antwoord": "De pakketten staan open op deze pagina, vanaf 95 euro per maand. Dat bedrag dekt advies, levering, plaatsing, onderhoud en vervanging. U krijgt geen losse rekeningen achteraf."
+    },
+    {
+      "vraag": "Wat gebeurt er als een plant achteruitgaat?",
+      "antwoord": "Dan vervangen wij hem kosteloos. Vervanging bij uitval zit in het maandbedrag."
+    },
+    {
+      "vraag": "Wie komt er over de vloer?",
+      "antwoord": "Altijd dezelfde persoon. Bezoeken gaan op afspraak, en in overleg buiten uw kantoortijden of spreekuren."
+    },
+    {
+      "vraag": "Moet ik zelf iets doen?",
+      "antwoord": "Nee. Water, voeding en verzorging doen wij, op vaste momenten die u van tevoren kent."
+    },
+    {
+      "vraag": "Hoe snel staat het er?",
+      "antwoord": "Na de kennismaking ontvangt u binnen enkele dagen een voorstel. Na akkoord plannen we de plaatsing in overleg."
+    },
+    {
+      "vraag": "Zit ik ergens aan vast?",
+      "antwoord": "De looptijd en voorwaarden staan in het voorstel, zodat u vooraf precies weet waar u aan toe bent."
+    }
+  ],
+  "contact": {
+    "label": "Contact",
+    "kop": "Begin met een vrijblijvende kennismaking.",
+    "lede": "Laat uw gegevens achter en u hoort snel van ons. Liever direct contact? Bellen of appen kan ook.",
+    "formulier": {
+      "veldNaam": "Naam",
+      "veldBedrijf": "Bedrijf",
+      "veldEmail": "E-mail",
+      "veldTelefoon": "Telefoon",
+      "veldTelefoonToevoeging": "(niet verplicht)",
+      "veldPakket": "Waar gaat het om?",
+      "keuzePlaceholder": "Maak uw keuze",
+      "optieWeetNiet": "Ik weet het nog niet",
+      "veldBericht": "Bericht",
+      "berichtPlaceholder": "Vertel kort over uw ruimte en wensen",
+      "knop": "Verstuur",
+      "privacy": "Uw gegevens gebruiken we alleen om contact met u op te nemen.",
+      "foutmelding": "Versturen is niet gelukt. Mail ons gerust rechtstreeks, dan reageren we alsnog snel.",
+      "succesKop": "Dank voor uw bericht.",
+      "succesTekst": "U hoort snel van ons."
+    }
+  },
+  "instellingen": {
+    "email": "info@bladvorm.nl",
+    "telefoonWeergave": "06 15 12 96 85",
+    "telefoonInternationaal": "+31615129685",
+    "whatsappNummer": "31615129685",
+    "branche": "Interieurbeplanting voor de zakelijke markt",
+    "werkgebied": "Wassenaar en omstreken",
+    "kvkRegel": "Blad & Vorm is een handelsnaam van Hilforce · KvK 42033993",
+    "voetTagline": "Groen dat klopt"
+  }
+}
