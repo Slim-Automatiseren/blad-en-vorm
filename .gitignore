@@ -1,7 +1,13 @@
-# Sleutels en omgevingsbestanden, nooit committen (zie CLAUDE.md)
+# Sleutels en omgevingsbestanden, nooit committen
 .env
 .env.*
 !.env.example
+
+# Interne werkdocumenten: blijven lokaal, gaan niet in de (openbare) repo
+/CLAUDE.md
+/blad-en-vorm-project.md
+/demo-pitch-concept/
+/docs/
 
 # Afhankelijkheden en bouwuitvoer
 node_modules/
