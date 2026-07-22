@@ -8,8 +8,8 @@ export const pijlerIconen: Record<string, string> = {
   advies: `<svg ${lijn}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></svg>`,
   // Bestelbus met echte wielen
   levering: `<svg ${lijn}><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>`,
-  // Waterdruppel: verzorging
-  onderhoud: `<svg ${lijn}><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C8 11.1 7 13 7 15a7 7 0 0 0 5 7Z"/></svg>`,
+  // Waterdruppel: verzorging (symmetrische druppel)
+  onderhoud: `<svg ${lijn}><path d="M12 2.5C10.5 5.5 6 10 6 14.5a6 6 0 0 0 12 0C18 10 13.5 5.5 12 2.5Z"/></svg>`,
   // Twee pijlen rond: vervanging
   vervanging: `<svg ${lijn}><path d="M3 12a9 9 0 0 1 9-9 9.7 9.7 0 0 1 6.7 2.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.7 9.7 0 0 1-6.7-2.7L3 16"/><path d="M8 16H3v5"/></svg>`,
   // Persoon: één vast aanspreekpunt
