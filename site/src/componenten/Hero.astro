@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import heroBreed from '../beelden/hero-breed.jpg';
+import heroMobiel from '../beelden/hero-mobiel.jpg';
 import { beeldBron } from '../lib/beeld';
 import type { Inhoud } from '../lib/inhoud';
 
@@ -33,24 +34,27 @@ const eigenFoto = beeldBron(hero.foto, [640, 960, 1440, 1920]);
     </div>
   </div>
   <div class="hero-bg">
-    {eigenFoto ? (
-      <img
-        src={eigenFoto.src}
-        srcset={eigenFoto.srcset}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-        alt={eigenFoto.alt ?? standaardAlt}
-      />
-    ) : (
-      <Image
-        src={heroBreed}
-        widths={[640, 960, 1376]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-        alt={standaardAlt}
-      />
-    )}
+    <picture>
+      <source media="(max-width: 959px)" srcset={heroMobiel.src} sizes="100vw" />
+      {eigenFoto ? (
+        <img
+          src={eigenFoto.src}
+          srcset={eigenFoto.srcset}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          alt={eigenFoto.alt ?? standaardAlt}
+        />
+      ) : (
+        <Image
+          src={heroBreed}
+          widths={[640, 960, 1376]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          alt={standaardAlt}
+        />
+      )}
+    </picture>
   </div>
 </section>

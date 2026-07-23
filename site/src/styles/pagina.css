@@ -30,10 +30,13 @@ h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-sp
 }
 @media (min-width: 960px) { .hero { min-height: clamp(560px, 78vh, 800px); } }
 @media (max-width: 959px) {
-  .hero { display: block; padding-bottom: 0; }
-  .hero-bg { position: relative; inset: auto; height: min(78vw, 440px); margin-top: 2.4rem; }
-  .hero-bg::after { display: none; }
-  .hero-bg img { object-position: 70% 62%; }
+  .hero { min-height: min(184vw, 770px); align-items: flex-start; padding-top: clamp(2.4rem, 9vw, 3.6rem); padding-bottom: 2.4rem; }
+  .hero-bg::after { background: linear-gradient(90deg, var(--paper) 0, rgba(247, 244, 239, 0.92) 54%, rgba(247, 244, 239, 0.82) 66%, rgba(247, 244, 239, 0.32) 79%, rgba(247, 244, 239, 0) 91%); }
+  .hero-bg img { object-position: 50% 50%; transform: scale(1.08); transform-origin: left center; }
+  .hero .hero-inhoud h1 { font-size: 2.5rem; max-width: 20ch; }
+  .hero .hero-inhoud .sub { max-width: 22ch; }
+  .hero .fineprint { max-width: 20ch; }
+  .hero .meta { display: none; }
 }
 .hero h1 {
   font-size: clamp(2.9rem, 7vw, 5.1rem);

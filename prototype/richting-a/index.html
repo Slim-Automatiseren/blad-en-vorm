@@ -44,10 +44,13 @@
   }
   @media (min-width: 960px) { .hero { min-height: clamp(560px, 78vh, 800px); } }
   @media (max-width: 959px) {
-    .hero { display: block; padding-bottom: 0; }
-    .hero-bg { position: relative; inset: auto; height: min(78vw, 440px); margin-top: 2.4rem; }
-    .hero-bg::after { display: none; }
-    .hero-bg img { object-position: 70% 62%; }
+    .hero { min-height: min(184vw, 770px); align-items: flex-start; padding-top: clamp(2.4rem, 9vw, 3.6rem); padding-bottom: 2.4rem; }
+    .hero-bg::after { background: linear-gradient(90deg, var(--paper) 0, rgba(247, 244, 239, 0.92) 54%, rgba(247, 244, 239, 0.82) 66%, rgba(247, 244, 239, 0.32) 79%, rgba(247, 244, 239, 0) 91%); }
+    .hero-bg img { object-position: 50% 50%; transform: scale(1.08); transform-origin: left center; }
+    .hero .hero-inhoud h1 { font-size: 2.5rem; max-width: 20ch; }
+    .hero .hero-inhoud .sub { max-width: 22ch; }
+    .hero .fineprint { max-width: 20ch; }
+    .hero .meta { display: none; }
   }
   .hero h1 {
     font-size: clamp(2.9rem, 7vw, 5.1rem);
@@ -317,7 +320,7 @@
     <div class="wrap">
       <div class="hero-inhoud reveal">
         <span class="label">Interieurbeplanting voor kantoren</span>
-          <h1>Groen dat uw kantoor afmaakt, <em>en verzorgd blijft</em>.</h1>
+          <h1>Een groen kantoor, <em>zonder omkijken</em>.</h1>
           <div class="rule"><span class="pip" aria-hidden="true"></span></div>
           <p class="sub">
             Advies, levering, plaatsing en doorlopend onderhoud. Eén vast bedrag per maand,
@@ -336,7 +339,10 @@
       </div>
     </div>
     <div class="hero-bg">
-      <img src="../shared/img/hero-breed.jpg" alt="Ontvangstruimte van een kantoor: een kentiapalm en een ficus in keramische potten naast een eiken balie, links een lege lichte wand">
+      <picture>
+        <source media="(max-width: 959px)" srcset="../shared/img/hero-mobiel.jpg">
+        <img src="../shared/img/hero-breed.jpg" alt="Ontvangstruimte van een kantoor: een kentiapalm en een ficus in keramische potten naast een eiken balie, links een lege lichte wand">
+      </picture>
     </div>
   </section>
 
@@ -585,15 +591,15 @@
             </details>
             <details>
               <summary>Wat gebeurt er als een plant achteruitgaat?</summary>
-              <p class="antwoord">Dan vervangen wij hem kosteloos. Vervanging bij uitval zit in het maandbedrag.</p>
+              <p class="antwoord">U meldt het bij ons en wij vervangen de plant kosteloos. Vervanging bij uitval hoort bij het maandbedrag, dus u krijgt er geen aparte rekening voor.</p>
             </details>
             <details>
               <summary>Wie komt er over de vloer?</summary>
-              <p class="antwoord">Altijd dezelfde persoon. Bezoeken gaan op afspraak, en in overleg buiten uw kantoortijden of spreekuren.</p>
+              <p class="antwoord">Altijd dezelfde persoon, zodat u niet elke keer opnieuw hoeft uit te leggen wat waar staat. Bezoeken gaan op afspraak, in overleg buiten uw kantoortijden of spreekuren.</p>
             </details>
             <details>
               <summary>Moet ik zelf iets doen?</summary>
-              <p class="antwoord">Nee. Water, voeding en verzorging doen wij, op vaste momenten die u van tevoren kent.</p>
+              <p class="antwoord">Nee, u hoeft niets te doen. Water, voeding en verzorging nemen wij op ons, op vaste momenten die u van tevoren kent.</p>
             </details>
             <details>
               <summary>Hoe snel staat het er?</summary>
@@ -601,7 +607,7 @@
             </details>
             <details>
               <summary>Zit ik ergens aan vast?</summary>
-              <p class="antwoord">De looptijd en voorwaarden staan in het voorstel, zodat u vooraf precies weet waar u aan toe bent.</p>
+              <p class="antwoord">Alle afspraken, looptijd en voorwaarden staan in het voorstel, zodat u vooraf precies weet waar u aan toe bent. Geen kleine lettertjes achteraf.</p>
             </details>
           </div>
         </div>

@@ -1,8 +1,8 @@
 {
   "hero": {
     "label": "Interieurbeplanting voor kantoren",
-    "kop": "Groen dat uw kantoor afmaakt,",
-    "kopAccent": "en verzorgd blijft",
+    "kop": "Een groen kantoor,",
+    "kopAccent": "zonder omkijken",
     "sub": "Advies, levering, plaatsing en doorlopend onderhoud. Eén vast bedrag per maand, en altijd dezelfde persoon die langskomt.",
     "ctaPrimair": "Plan een kennismaking",
     "ctaSecundair": "Bekijk de pakketten",
@@ -122,15 +122,15 @@
     },
     {
       "vraag": "Wat gebeurt er als een plant achteruitgaat?",
-      "antwoord": "Dan vervangen wij hem kosteloos. Vervanging bij uitval zit in het maandbedrag."
+      "antwoord": "U meldt het bij ons en wij vervangen de plant kosteloos. Vervanging bij uitval hoort bij het maandbedrag, dus u krijgt er geen aparte rekening voor."
     },
     {
       "vraag": "Wie komt er over de vloer?",
-      "antwoord": "Altijd dezelfde persoon. Bezoeken gaan op afspraak, en in overleg buiten uw kantoortijden of spreekuren."
+      "antwoord": "Altijd dezelfde persoon, zodat u niet elke keer opnieuw hoeft uit te leggen wat waar staat. Bezoeken gaan op afspraak, in overleg buiten uw kantoortijden of spreekuren."
     },
     {
       "vraag": "Moet ik zelf iets doen?",
-      "antwoord": "Nee. Water, voeding en verzorging doen wij, op vaste momenten die u van tevoren kent."
+      "antwoord": "Nee, u hoeft niets te doen. Water, voeding en verzorging nemen wij op ons, op vaste momenten die u van tevoren kent."
     },
     {
       "vraag": "Hoe snel staat het er?",
@@ -138,7 +138,7 @@
     },
     {
       "vraag": "Zit ik ergens aan vast?",
-      "antwoord": "De looptijd en voorwaarden staan in het voorstel, zodat u vooraf precies weet waar u aan toe bent."
+      "antwoord": "Alle afspraken, looptijd en voorwaarden staan in het voorstel, zodat u vooraf precies weet waar u aan toe bent. Geen kleine lettertjes achteraf."
     }
   ],
   "contact": {
