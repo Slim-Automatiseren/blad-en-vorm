@@ -39,36 +39,89 @@ const slots: Record<string, { beeld: ImageMetadata; alt: string }> = {
       <div class="reveal">
         <h2 class="section-h">{scenarios.kop}</h2>
 
-        {scenarios.items.map((s) => {
-          const eigenFoto = beeldBron(s.foto, [320, 520, 760], 3 / 4);
-          const slot = slots[s.beeldSlot];
-          return (
-            <div class="scenario">
-              {(eigenFoto || slot) && (
-                <figure class="plate">
-                  <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
-                  {eigenFoto ? (
-                    <img
-                      src={eigenFoto.src}
-                      srcset={eigenFoto.srcset}
-                      sizes="(min-width: 760px) 260px, 100vw"
-                      loading="lazy"
-                      alt={eigenFoto.alt ?? slot?.alt ?? ''}
-                    />
-                  ) : (
-                    <Image src={slot.beeld} widths={[320, 520, 760]} sizes="(min-width: 760px) 260px, 100vw" alt={slot.alt} />
-                  )}
-                </figure>
-              )}
-              <div>
+        <div class="vw-rail" id="vwRail">
+          {scenarios.items.map((s) => {
+            const eigenFoto = beeldBron(s.foto, [320, 520, 760], 3 / 4);
+            const slot = slots[s.beeldSlot];
+            return (
+              <article class="vw-card">
+                {(eigenFoto || slot) && (
+                  <figure class="plate">
+                    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+                    {eigenFoto ? (
+                      <img
+                        src={eigenFoto.src}
+                        srcset={eigenFoto.srcset}
+                        sizes="(min-width: 880px) 320px, 74vw"
+                        loading="lazy"
+                        alt={eigenFoto.alt ?? slot?.alt ?? ''}
+                      />
+                    ) : (
+                      <Image src={slot.beeld} widths={[320, 520, 760]} sizes="(min-width: 880px) 320px, 74vw" alt={slot.alt} />
+                    )}
+                  </figure>
+                )}
                 <h3>{s.titel}</h3>
                 <p>{s.tekst}</p>
                 <a class="past" href="#pakketten"><span class="pip" aria-hidden="true"></span> {s.pastBij}</a>
-              </div>
-            </div>
-          );
-        })}
+              </article>
+            );
+          })}
+        </div>
+        <span class="vw-hint" id="vwHint">Sleep om te bekijken</span>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  /* Voor wie: horizontale rij ruimtetypes. Slepen met de muis, en de hint
+     verschijnt alleen als er echt iets te scrollen valt. Zonder JS blijft de
+     rij met touch of trackpad scrollbaar, dus de inhoud is altijd bereikbaar. */
+  const rail = document.getElementById('vwRail');
+  const hint = document.getElementById('vwHint');
+  if (rail) {
+    const meetHint = () => {
+      if (hint) hint.classList.toggle('zichtbaar', rail.scrollWidth - rail.clientWidth > 8);
+    };
+    meetHint();
+    window.addEventListener('resize', meetHint);
+
+    let neer = false;
+    let startX = 0;
+    let startL = 0;
+    let bewogen = 0;
+    rail.addEventListener('dragstart', (e) => e.preventDefault());
+    rail.addEventListener('pointerdown', (e) => {
+      neer = true;
+      bewogen = 0;
+      startX = e.clientX;
+      startL = rail.scrollLeft;
+      rail.classList.add('slepen');
+      rail.setPointerCapture(e.pointerId);
+    });
+    rail.addEventListener('pointermove', (e) => {
+      if (!neer) return;
+      const d = e.clientX - startX;
+      bewogen = Math.abs(d);
+      rail.scrollLeft = startL - d;
+    });
+    const stop = () => {
+      neer = false;
+      rail.classList.remove('slepen');
+    };
+    rail.addEventListener('pointerup', stop);
+    rail.addEventListener('pointercancel', stop);
+    /* Een sleep mag geen klik op de "Past bij"-link worden */
+    rail.addEventListener(
+      'click',
+      (e) => {
+        if (bewogen > 6) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true,
+    );
+  }
+</script>
