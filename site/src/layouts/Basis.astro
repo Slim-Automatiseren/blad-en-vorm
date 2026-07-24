@@ -40,14 +40,12 @@ const indexeerbaar = import.meta.env.PUBLIC_INDEXEERBAAR === 'ja' && !nooitIndex
   <meta property="og:image" content={new URL(ogBeeld.src, Astro.site)} />
   <script is:inline>
     document.documentElement.classList.add('js');
-    /* Beslis vóór de eerste paint of het logo zich tekent: één keer per bezoek,
+    /* Beslis vóór de eerste paint of het logo zich tekent: bij elke paginalading,
        nooit bij reduced-motion. Zo geen flits van het volledige logo dat daarna
        terugspringt, en zonder JS staat het logo er gewoon meteen. */
     try {
-      var stil = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!stil && !sessionStorage.getItem('bv-logo-getekend')) {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('logo-teken');
-        sessionStorage.setItem('bv-logo-getekend', '1');
       }
     } catch (e) {}
   </script>
