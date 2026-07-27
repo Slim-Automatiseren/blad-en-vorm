@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import bandBreed from '../beelden/band-breed.jpg';
+import bandBreedVoor from '../beelden/band-breed-voor.jpg';
 import { beeldBron } from '../lib/beeld';
 import type { Inhoud } from '../lib/inhoud';
 
@@ -11,6 +12,12 @@ const { filosofie } = Astro.props;
 
 /* Brede plaat, 21:9 op desktop (16:10 op mobiel via CSS); één crop-ratio volstaat. */
 const eigenFoto = beeldBron(filosofie.foto, [700, 1100, 1600], 9 / 21);
+
+/* De voor/na-vergelijking bestaat alleen voor het meegebouwde AI-paar (dezelfde
+   ruimte, één keer zonder en één keer met planten). Zodra Marco een eigen foto
+   in Sanity zet, is er geen bijpassende "voor"-versie van díe foto, dus valt de
+   sectie dan terug op één enkele plaat, zoals voorheen. */
+const toonVoorNa = !eigenFoto;
 ---
 <section id="filosofie">
   <div class="wrap">
@@ -22,17 +29,64 @@ const eigenFoto = beeldBron(filosofie.foto, [700, 1100, 1600], 9 / 21);
       <div class="reveal">
         <h2 class="section-h">{filosofie.kop}<br />{filosofie.kopVervolg} <em>{filosofie.kopAccent}</em>.</h2>
         <p class="lede">{filosofie.tekst}</p>
-        <div class="filosofie-plate">
-          <figure class="plate">
-            <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
-            {eigenFoto ? (
+
+        {toonVoorNa ? (
+          <div class="voor-na">
+            <div class="vn-interactief">
+              <div class="vn-frame plate">
+                <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+                <Image class="vn-na" src={bandBreed} widths={[700, 1100, 1600]} sizes="(min-width: 700px) 900px, 92vw" alt={filosofie.fotoAlt} />
+                <div class="vn-voor-laag">
+                  <Image src={bandBreedVoor} widths={[700, 1100, 1600]} sizes="(min-width: 700px) 900px, 92vw" alt="" />
+                </div>
+                <input type="range" class="vn-schuif" min="0" max="100" value="50" aria-label="Sleep om de ruimte voor en na Blad & Vorm te vergelijken" />
+                <div class="vn-lijn" aria-hidden="true"><span class="vn-greep">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></svg>
+                </span></div>
+                <span class="vn-label vn-label-voor" aria-hidden="true">Voor</span>
+                <span class="vn-label vn-label-na" aria-hidden="true">Na</span>
+              </div>
+              <p class="vn-hint">Sleep om de ruimte voor en na Blad &amp; Vorm te vergelijken.</p>
+            </div>
+            <div class="vn-fallback">
+              <div class="vn-fallback-grid">
+                <figure>
+                  <div class="plate">
+                    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+                    <Image src={bandBreedVoor} widths={[500, 700]} sizes="(min-width: 620px) 45vw, 92vw" alt="Lichte zaal met kalkverf-wanden en travertin vloer, zonder beplanting" />
+                  </div>
+                  <figcaption>Voor</figcaption>
+                </figure>
+                <figure>
+                  <div class="plate">
+                    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+                    <Image src={bandBreed} widths={[500, 700]} sizes="(min-width: 620px) 45vw, 92vw" alt={filosofie.fotoAlt} />
+                  </div>
+                  <figcaption>Na</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div class="filosofie-plate">
+            <figure class="plate">
+              <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
               <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 700px) 900px, 92vw" loading="lazy" alt={eigenFoto.alt ?? filosofie.fotoAlt} />
-            ) : (
-              <Image src={bandBreed} widths={[700, 1100, 1600]} sizes="(min-width: 700px) 900px, 92vw" alt={filosofie.fotoAlt} />
-            )}
-          </figure>
-        </div>
+            </figure>
+          </div>
+        )}
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Voor/na-slider: de zichtbare lijn en greep volgen de schuifwaarde via --vn-pos
+  document.querySelectorAll('.vn-frame').forEach((frame) => {
+    const schuif = frame.querySelector('.vn-schuif') as HTMLInputElement | null;
+    if (!schuif) return;
+    schuif.addEventListener('input', () => {
+      (frame as HTMLElement).style.setProperty('--vn-pos', `${schuif.value}%`);
+    });
+  });
+</script>
