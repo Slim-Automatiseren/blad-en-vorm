@@ -11,7 +11,7 @@ export const pakket = defineType({
       type: 'string',
       options: { list: ['S', 'M', 'L', 'XL'], layout: 'radio', direction: 'horizontal' },
       validation: (regel) => regel.required(),
-      description: 'S, M en L staan als kaarten naast elkaar; XL krijgt de brede band eronder.',
+      description: 'Bepaalt de standaardfoto en de vaste volgorde van klein naar groot.',
     }),
     defineField({
       name: 'naam',
@@ -20,31 +20,37 @@ export const pakket = defineType({
       validation: (regel) => regel.required(),
     }),
     defineField({
+      name: 'foto',
+      title: 'Foto',
+      type: 'image',
+      options: { hotspot: true },
+      description:
+        'Sfeerbeeld bovenin de kaart; de reeks toont per pakket iets meer groen. Leeg veld betekent: standaardfoto uit de site.',
+    }),
+    defineField({
       name: 'prijsBedrag',
       title: 'Prijs per maand (alleen het getal, in euro)',
       type: 'number',
-      description: 'Wordt momenteel niet op de site getoond; prijzen gaan via het persoonlijke voorstel.',
       validation: (regel) => regel.positive(),
     }),
     defineField({
       name: 'vanaf',
       title: 'Toon als "vanaf"-prijs',
       type: 'boolean',
-      description: 'Wordt momenteel niet op de site getoond; prijzen gaan via het persoonlijke voorstel.',
       initialValue: false,
     }),
     defineField({
       name: 'beschrijving',
       title: 'Beschrijving',
       type: 'taalTekst',
-      description: 'Bij S, M en L één korte zin; bij XL de volledige omschrijving.',
+      description: 'Eén korte zin onder de prijs.',
     }),
     defineField({
       name: 'punten',
-      title: 'Opsommingspunten (alleen S, M en L)',
+      title: 'Opsommingspunten',
       type: 'array',
       of: [defineArrayMember({ type: 'taalString' })],
-      description: 'Wordt momenteel niet op de site getoond; prijzen gaan via het persoonlijke voorstel.',
+      description: 'Korte specificaties, drie of vier regels per kaart.',
     }),
     defineField({
       name: 'volgorde',

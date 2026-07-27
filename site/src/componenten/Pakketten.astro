@@ -1,19 +1,38 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import achtergrond from '../beelden/pakketten-achtergrond.jpg';
+import fotoImpact from '../beelden/pakket-impact.jpg';
+import fotoCorporate from '../beelden/pakket-corporate.jpg';
+import fotoSignature from '../beelden/pakket-signature.jpg';
+import fotoPrestige from '../beelden/pakket-prestige.jpg';
 import { beeldBron } from '../lib/beeld';
-import { plantladders } from '../lib/iconen';
 import type { Inhoud } from '../lib/inhoud';
 
 interface Props {
   pakketten: Inhoud['pakketten'];
 }
 const { pakketten } = Astro.props;
-const eigenFoto = beeldBron(pakketten.achtergrondFoto, [960, 1440]);
+const eigenAchtergrond = beeldBron(pakketten.achtergrondFoto, [960, 1440]);
+
+/* Standaardfoto per maat: de reeks toont per stap iets meer groen (vraag Marco).
+   Een eigen foto uit Sanity gaat voor. */
+const kaartFotos: Record<string, ImageMetadata> = {
+  S: fotoImpact,
+  M: fotoCorporate,
+  L: fotoSignature,
+  XL: fotoPrestige,
+};
+
+function prijsRegel(k: { prijsBedrag?: number; vanaf?: boolean }): string | null {
+  if (!k.prijsBedrag) return null;
+  const vanaf = k.vanaf ? `${pakketten.vanafWoord} ` : '';
+  return `${vanaf}${k.prijsBedrag} ${pakketten.euroWoord}`;
+}
 ---
 <section id="pakketten" class="foto-band">
-  {eigenFoto ? (
-    <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="100vw" loading="lazy" alt="" aria-hidden="true" />
+  {eigenAchtergrond ? (
+    <img src={eigenAchtergrond.src} srcset={eigenAchtergrond.srcset} sizes="100vw" loading="lazy" alt="" aria-hidden="true" />
   ) : (
     <Image src={achtergrond} widths={[960, 1376]} sizes="100vw" alt="" aria-hidden="true" />
   )}
@@ -28,13 +47,32 @@ const eigenFoto = beeldBron(pakketten.achtergrondFoto, [960, 1440]);
         <h2 class="section-h">{pakketten.kop}</h2>
 
         <div class="cards">
-          {pakketten.kaarten.map((k) => (
-            <div class="card">
-              <Fragment set:html={plantladders[k.code] ?? plantladders.S} />
-              <h3>{k.naam}</h3>
-              <p class="desc">{k.beschrijving}</p>
-            </div>
-          ))}
+          {pakketten.kaarten.map((k) => {
+            const eigenFoto = beeldBron(k.foto, [480, 768], 2 / 3);
+            const standaard = kaartFotos[k.code] ?? fotoImpact;
+            const prijs = prijsRegel(k);
+            return (
+              <div class="card">
+                <figure class="kaart-foto" aria-hidden="true">
+                  {eigenFoto ? (
+                    <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 980px) 22vw, (min-width: 620px) 45vw, 92vw" loading="lazy" alt="" />
+                  ) : (
+                    <Image src={standaard} widths={[480, 768]} sizes="(min-width: 980px) 22vw, (min-width: 620px) 45vw, 92vw" alt="" />
+                  )}
+                </figure>
+                <div class="kaart-inhoud">
+                  <h3>{k.naam}</h3>
+                  {prijs && <span class="prijs">{prijs} <small>{pakketten.perMaand}</small></span>}
+                  <p class="desc">{k.beschrijving}</p>
+                  {k.punten && k.punten.length > 0 && (
+                    <ul>
+                      {k.punten.map((punt) => <li>{punt}</li>)}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

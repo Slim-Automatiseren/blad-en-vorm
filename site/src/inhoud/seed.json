@@ -71,11 +71,42 @@
     "railLabel": "Pakketten",
     "railNote": "Vier startpunten, ingevuld op uw ruimte.",
     "kop": "Een passende oplossing voor iedere ruimte.",
+    "vanafWoord": "vanaf",
+    "euroWoord": "euro",
+    "perMaand": "per maand",
     "kaarten": [
-      { "code": "S", "naam": "Impact", "beschrijving": "Een stijlvolle groene basis." },
-      { "code": "M", "naam": "Corporate", "beschrijving": "Meer groen voor een representatieve werkomgeving." },
-      { "code": "L", "naam": "Signature", "beschrijving": "Waar interieurbeplanting onderdeel wordt van het interieur." },
-      { "code": "XL", "naam": "Prestige", "beschrijving": "Een compleet verzorgd groenconcept." }
+      {
+        "code": "S",
+        "naam": "Impact",
+        "beschrijving": "Een stijlvolle groene basis.",
+        "prijsBedrag": 95,
+        "vanaf": false,
+        "punten": ["3 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
+      },
+      {
+        "code": "M",
+        "naam": "Corporate",
+        "beschrijving": "Meer groen voor een representatieve werkomgeving.",
+        "prijsBedrag": 195,
+        "vanaf": false,
+        "punten": ["5 tot 7 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
+      },
+      {
+        "code": "L",
+        "naam": "Signature",
+        "beschrijving": "Waar interieurbeplanting onderdeel wordt van het interieur.",
+        "prijsBedrag": 395,
+        "vanaf": false,
+        "punten": ["10 tot 15 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 2 keer per maand"]
+      },
+      {
+        "code": "XL",
+        "naam": "Prestige",
+        "beschrijving": "Een compleet verzorgd groenconcept.",
+        "prijsBedrag": 695,
+        "vanaf": true,
+        "punten": ["20 tot 30 planten of meer", "Hoogte 1,20 tot 2,00 m", "Onderhoud 2 keer per maand", "In overleg samengesteld"]
+      }
     ]
   },
   "over": {

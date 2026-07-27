@@ -23,7 +23,10 @@ export type Inhoud = Basis & {
   };
   filosofie: Basis['filosofie'] & { foto?: SanityBeeld };
   inspiratieboek: Basis['inspiratieboek'] & { foto?: SanityBeeld };
-  pakketten: Basis['pakketten'] & { achtergrondFoto?: SanityBeeld };
+  pakketten: Basis['pakketten'] & {
+    achtergrondFoto?: SanityBeeld;
+    kaarten: Array<Basis['pakketten']['kaarten'][number] & { foto?: SanityBeeld }>;
+  };
   over: Basis['over'] & { foto?: SanityBeeld };
 };
 
@@ -98,11 +101,8 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
     werkwijze: p?.werkwijze ?? basis.werkwijze,
     inspiratieboek: p?.inspiratieboek ?? basis.inspiratieboek,
     pakketten: {
-      ...(p?.pakkettenSectie ?? {
-        railLabel: basis.pakketten.railLabel,
-        railNote: basis.pakketten.railNote,
-        kop: basis.pakketten.kop,
-      }),
+      ...basis.pakketten,
+      ...(p?.pakkettenSectie ?? {}),
       kaarten: pakketten.length ? pakketten : basis.pakketten.kaarten,
     },
     over: p?.over ?? basis.over,

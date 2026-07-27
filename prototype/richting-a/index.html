@@ -23,7 +23,7 @@
   section.cream { background: var(--cream); }
 
   /* Warme waas over alle fotografie, één regel, overal gelijk */
-  .hero-bg img, .plate img, .m-kaart img, .foto-band > img { filter: sepia(0.06) saturate(1.04); }
+  .hero-bg img, .plate img, .m-kaart img, .card .kaart-foto img, .foto-band > img { filter: sepia(0.06) saturate(1.04); }
 
   /* Rail-raster: smalle linkerkolom met label, content rechts */
   .grid2 { display: grid; gap: 2.2rem; }
@@ -181,20 +181,27 @@
   .boek-grid .plate { aspect-ratio: 4 / 3; }
   .boek-grid .actions { margin-top: 1.6rem; }
 
-  /* ---------- Pakketten ---------- */
+  /* ---------- Pakketten ----------
+     Op verzoek van Marco (26 juli) heeft elke kaart een foto met per stap iets
+     meer groen, plus prijs en specificaties. De foto's zijn sfeerbeelden zonder
+     bijschrift, zodat ze niet als projectfoto's lezen. */
   .cards { display: grid; gap: 1.25rem; margin-top: 2rem; }
   @media (min-width: 620px) { .cards { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 980px) { .cards { grid-template-columns: repeat(4, 1fr); } }
-  .card {
-    border: 1px solid var(--line); background: var(--paper);
-    padding: 1.8rem 1.6rem; display: flex; flex-direction: column; gap: 0.85rem;
-  }
-  .card svg { color: var(--leaf); opacity: 0.75; }
-  .card h3 { font-size: 1.75rem; line-height: 1.1; }
-  .card .desc { color: var(--muted); font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 1.1rem; }
+  .card { border: 1px solid var(--line); background: var(--paper); display: flex; flex-direction: column; }
+  .card .kaart-foto { margin: 0; }
+  .card .kaart-foto img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-bottom: 1px solid var(--line); }
+  .card .kaart-inhoud { padding: 1.3rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .card h3 { font-size: 1.6rem; line-height: 1.1; }
+  .card .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.3rem; color: var(--green); }
+  .card .prijs small { font-family: "Inter", system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); }
+  .card .desc { color: var(--muted); font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 1.08rem; }
+  .card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .card ul li { display: flex; gap: 0.6rem; font-size: 0.9rem; align-items: baseline; color: var(--text); }
+  .card ul li::before { content: ""; width: 5px; height: 5px; flex: none; background: var(--gold); margin-top: 0.5rem; }
 
   /* Fotoachtergrond onder de pakketsectie: één sfeerbeeld met warme groene waas,
-     de lichte kaarten drijven erop. Geen foto's per kaart, dat leest als portfolio. */
+     de lichte kaarten drijven erop. */
   .foto-band { position: relative; overflow: hidden; }
   .foto-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .foto-band > .scrim { position: absolute; inset: 0; background: rgba(45, 50, 29, 0.82); }
@@ -249,9 +256,10 @@
   footer.site .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: flex-start; }
   footer.site .tagline { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; color: var(--green); font-size: 1.1rem; margin-top: 0.3rem; }
   footer.site .omschrijving { color: var(--muted); font-size: 0.9rem; max-width: 44ch; margin-top: 0.7rem; }
-  footer.site .meta-f { display: flex; flex-direction: column; gap: 0.35rem; text-align: right; max-width: 380px; }
+  footer.site .meta-f { display: flex; flex-direction: column; gap: 0.3rem; text-align: right; }
   footer.site .meta-f span { color: var(--muted); font-size: 0.85rem; }
   footer.site .meta-f .label { margin-bottom: 0.1rem; }
+  footer.site .meta-f .contact-regel { margin-top: 0.6rem; }
   @media (max-width: 600px) { footer.site .meta-f { text-align: left; } }
   footer.site .onder {
     margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
@@ -509,24 +517,57 @@
 
           <div class="cards">
             <div class="card">
-              <svg width="26" height="26" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/></svg>
-              <h3>Impact</h3>
-              <p class="desc">Een stijlvolle groene basis.</p>
+              <figure class="kaart-foto" aria-hidden="true"><img src="../shared/img/pakket-impact.jpg" alt=""></figure>
+              <div class="kaart-inhoud">
+                <h3>Impact</h3>
+                <span class="prijs">95 euro <small>per maand</small></span>
+                <p class="desc">Een stijlvolle groene basis.</p>
+                <ul>
+                  <li>3 planten</li>
+                  <li>Hoogte 1,20 tot 1,80 m</li>
+                  <li>Onderhoud 1 tot 2 keer per maand</li>
+                </ul>
+              </div>
             </div>
             <div class="card">
-              <svg width="32" height="32" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/><path d="M44 56 C44 46 44 40 44 32"/><path d="M44 44 C39 42 36 38 35 32 C41 32 44 36 44 44"/></svg>
-              <h3>Corporate</h3>
-              <p class="desc">Meer groen voor een representatieve werkomgeving.</p>
+              <figure class="kaart-foto" aria-hidden="true"><img src="../shared/img/pakket-corporate.jpg" alt=""></figure>
+              <div class="kaart-inhoud">
+                <h3>Corporate</h3>
+                <span class="prijs">195 euro <small>per maand</small></span>
+                <p class="desc">Meer groen voor een representatieve werkomgeving.</p>
+                <ul>
+                  <li>5 tot 7 planten</li>
+                  <li>Hoogte 1,20 tot 1,80 m</li>
+                  <li>Onderhoud 1 tot 2 keer per maand</li>
+                </ul>
+              </div>
             </div>
             <div class="card">
-              <svg width="38" height="38" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/><path d="M44 56 C44 46 44 40 44 32"/><path d="M44 44 C39 42 36 38 35 32 C41 32 44 36 44 44"/><path d="M16 56 C16 48 16 44 16 36"/><path d="M16 48 C11 46 8 42 7 36 C13 36 16 40 16 48"/><path d="M16 44 C21 42 24 38 25 32 C19 32 16 36 16 44"/></svg>
-              <h3>Signature</h3>
-              <p class="desc">Waar interieurbeplanting onderdeel wordt van het interieur.</p>
+              <figure class="kaart-foto" aria-hidden="true"><img src="../shared/img/pakket-signature.jpg" alt=""></figure>
+              <div class="kaart-inhoud">
+                <h3>Signature</h3>
+                <span class="prijs">395 euro <small>per maand</small></span>
+                <p class="desc">Waar interieurbeplanting onderdeel wordt van het interieur.</p>
+                <ul>
+                  <li>10 tot 15 planten</li>
+                  <li>Hoogte 1,20 tot 1,80 m</li>
+                  <li>Onderhoud 2 keer per maand</li>
+                </ul>
+              </div>
             </div>
             <div class="card">
-              <svg width="44" height="44" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/><path d="M44 56 C44 46 44 40 44 32"/><path d="M44 44 C39 42 36 38 35 32 C41 32 44 36 44 44"/><path d="M16 56 C16 48 16 44 16 36"/><path d="M16 48 C11 46 8 42 7 36 C13 36 16 40 16 48"/><path d="M16 44 C21 42 24 38 25 32 C19 32 16 36 16 44"/><path d="M53 56 C53 50 53 46 53 41"/><path d="M53 49 C49.5 47.5 47.5 44.5 47 41 C51 41 53 44 53 49"/></svg>
-              <h3>Prestige</h3>
-              <p class="desc">Een compleet verzorgd groenconcept.</p>
+              <figure class="kaart-foto" aria-hidden="true"><img src="../shared/img/pakket-prestige.jpg" alt=""></figure>
+              <div class="kaart-inhoud">
+                <h3>Prestige</h3>
+                <span class="prijs">vanaf 695 euro <small>per maand</small></span>
+                <p class="desc">Een compleet verzorgd groenconcept.</p>
+                <ul>
+                  <li>20 tot 30 planten of meer</li>
+                  <li>Hoogte 1,20 tot 2,00 m</li>
+                  <li>Onderhoud 2 keer per maand</li>
+                  <li>In overleg samengesteld</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -638,8 +679,10 @@
       </div>
       <div class="meta-f">
         <span class="label">Werkgebied</span>
-        <span>Wassenaar · Den Haag · Voorburg · Leidschendam · Voorschoten · Leiden · Oegstgeest · Warmond · Katwijk · Noordwijk</span>
-        <span>info@bladvorm.nl · 06 15 12 96 85</span>
+        <span>Wassenaar · Den Haag · Voorburg · Leidschendam</span>
+        <span>Voorschoten · Leiden · Oegstgeest · Warmond</span>
+        <span>Katwijk · Noordwijk</span>
+        <span class="contact-regel">info@bladvorm.nl · 06 15 12 96 85</span>
       </div>
     </div>
     <div class="onder">

@@ -136,6 +136,9 @@ pagina = {
         "railLabel": L(pk["railLabel"], pk_en["railLabel"]),
         "railNote": L(pk["railNote"], pk_en["railNote"]),
         "kop": L(pk["kop"], pk_en["kop"]),
+        "vanafWoord": L(pk["vanafWoord"], pk_en["vanafWoord"]),
+        "euroWoord": L(pk["euroWoord"], pk_en["euroWoord"]),
+        "perMaand": L(pk["perMaand"], pk_en["perMaand"]),
         "achtergrondFoto": beeld("pakketten-achtergrond.jpg"),
     },
     "over": {
@@ -177,14 +180,29 @@ if inst.get("instagramUrl"):
 
 documenten = [pagina, instellingen]
 
+PAKKET_FOTO = {
+    "S": "pakket-impact.jpg",
+    "M": "pakket-corporate.jpg",
+    "L": "pakket-signature.jpg",
+    "XL": "pakket-prestige.jpg",
+}
+
 for i, kaart in enumerate(pk["kaarten"]):
+    kaart_en = pk_en["kaarten"][i]
     documenten.append(
         {
             "_id": f"pakket-{kaart['code'].lower()}",
             "_type": "pakket",
             "code": kaart["code"],
             "naam": kaart["naam"],
-            "beschrijving": L(kaart["beschrijving"], pk_en["kaarten"][i]["beschrijving"]),
+            "beschrijving": L(kaart["beschrijving"], kaart_en["beschrijving"]),
+            "prijsBedrag": kaart["prijsBedrag"],
+            "vanaf": kaart["vanaf"],
+            "punten": [
+                {"_type": "taalString", "_key": f"punt{j}", **L(punt, kaart_en["punten"][j])}
+                for j, punt in enumerate(kaart["punten"])
+            ],
+            "foto": beeld(PAKKET_FOTO[kaart["code"]]),
             "volgorde": i + 1,
         }
     )

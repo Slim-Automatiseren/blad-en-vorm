@@ -71,11 +71,42 @@
     "railLabel": "Solutions",
     "railNote": "Four starting points, tailored to your space.",
     "kop": "A planting solution for every space.",
+    "vanafWoord": "from",
+    "euroWoord": "euros",
+    "perMaand": "per month",
     "kaarten": [
-      { "code": "S", "naam": "Impact", "beschrijving": "A stylish green foundation." },
-      { "code": "M", "naam": "Corporate", "beschrijving": "More greenery for welcoming and professional working environments." },
-      { "code": "L", "naam": "Signature", "beschrijving": "Where planting becomes an integral part of the interior." },
-      { "code": "XL", "naam": "Prestige", "beschrijving": "A fully managed planting solution with complete peace of mind." }
+      {
+        "code": "S",
+        "naam": "Impact",
+        "beschrijving": "A stylish green foundation.",
+        "prijsBedrag": 95,
+        "vanaf": false,
+        "punten": ["3 plants", "Height 1.20 to 1.80 m", "Care visits 1 to 2 times a month"]
+      },
+      {
+        "code": "M",
+        "naam": "Corporate",
+        "beschrijving": "More greenery for welcoming and professional working environments.",
+        "prijsBedrag": 195,
+        "vanaf": false,
+        "punten": ["5 to 7 plants", "Height 1.20 to 1.80 m", "Care visits 1 to 2 times a month"]
+      },
+      {
+        "code": "L",
+        "naam": "Signature",
+        "beschrijving": "Where planting becomes an integral part of the interior.",
+        "prijsBedrag": 395,
+        "vanaf": false,
+        "punten": ["10 to 15 plants", "Height 1.20 to 1.80 m", "Care visits twice a month"]
+      },
+      {
+        "code": "XL",
+        "naam": "Prestige",
+        "beschrijving": "A fully managed planting solution with complete peace of mind.",
+        "prijsBedrag": 695,
+        "vanaf": true,
+        "punten": ["20 to 30 plants or more", "Height 1.20 to 2.00 m", "Care visits twice a month", "Composed in consultation"]
+      }
     ]
   },
   "over": {

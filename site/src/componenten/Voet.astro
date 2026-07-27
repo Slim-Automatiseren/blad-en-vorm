@@ -7,6 +7,15 @@ interface Props {
   taal: 'nl' | 'en';
 }
 const { instellingen, labelWerkgebied, taal } = Astro.props;
+
+/* Werkgebied in drie rustige regels in plaats van één lange omslaande regel.
+   De plaatsen blijven in het CMS één veld met puntjes ertussen. */
+const plaatsen = instellingen.werkgebied.split('·').map((p) => p.trim()).filter(Boolean);
+const perRij = Math.ceil(plaatsen.length / 3);
+const rijen = [0, 1, 2]
+  .map((r) => plaatsen.slice(r * perRij, (r + 1) * perRij))
+  .filter((rij) => rij.length > 0)
+  .map((rij) => rij.join(' · '));
 ---
 <footer class="site">
   <div class="wrap">
@@ -21,8 +30,8 @@ const { instellingen, labelWerkgebied, taal } = Astro.props;
       </div>
       <div class="meta-f">
         <span class="label">{labelWerkgebied}</span>
-        <span>{instellingen.werkgebied}</span>
-        <span>{instellingen.email} · {instellingen.telefoonWeergave}</span>
+        {rijen.map((rij) => <span>{rij}</span>)}
+        <span class="contact-regel">{instellingen.email} · {instellingen.telefoonWeergave}</span>
       </div>
     </div>
     <div class="onder">

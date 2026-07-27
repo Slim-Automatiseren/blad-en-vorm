@@ -211,6 +211,9 @@ export const pagina = defineType({
         s('railLabel', 'Label in de linkerkolom'),
         s('railNote', 'Notitie in de linkerkolom'),
         s('kop', 'Kop'),
+        s('vanafWoord', 'Woord voor "vanaf" bij een vanaf-prijs'),
+        s('euroWoord', 'Woord voor de munteenheid (euro)'),
+        s('perMaand', 'Toevoeging achter de prijs (per maand)'),
         foto(
           'achtergrondFoto',
           'Achtergrondfoto',
