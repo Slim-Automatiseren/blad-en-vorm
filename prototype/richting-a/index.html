@@ -149,62 +149,6 @@
     .marquee .groep[aria-hidden] { display: none; }
   }
 
-  /* ---------- Filosofie: voor/na-vergelijking ----------
-     Idee Jordy 27 juli: dezelfde ruimte, één keer zonder en één keer met de
-     beplanting van Blad & Vorm, zodat "precies het juiste" letterlijk te zien
-     is. Sleepbaar met een input[type=range] die de volledige plaat beslaat;
-     de zichtbare lijn en greep zijn decoratief (pointer-events: none) en
-     volgen dezelfde waarde via --vn-pos. Zonder JS valt de sectie terug op
-     twee gelabelde platen naast elkaar (.vn-fallback), dan is de vergelijking
-     nog steeds te zien, alleen niet interactief. */
-  .voor-na { margin-top: 2.4rem; }
-  .vn-frame.plate { aspect-ratio: 21 / 9; --vn-pos: 50%; }
-  @media (max-width: 700px) { .vn-frame.plate { aspect-ratio: 16 / 10; } }
-  .vn-voor-laag {
-    position: absolute; inset: 0; width: var(--vn-pos); overflow: hidden;
-    container-type: inline-size; transition: width 0.15s var(--ease);
-  }
-  .vn-voor-laag img { position: absolute; top: 0; left: 0; width: 100cqi; max-width: none; }
-  .vn-schuif {
-    position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; z-index: 2;
-    appearance: none; -webkit-appearance: none; background: transparent; cursor: ew-resize;
-  }
-  .vn-schuif::-webkit-slider-thumb { -webkit-appearance: none; width: 1px; height: 1px; opacity: 0; }
-  .vn-schuif::-moz-range-thumb { width: 1px; height: 1px; opacity: 0; border: none; }
-  .vn-schuif::-moz-range-track { background: transparent; }
-  .vn-lijn {
-    position: absolute; top: 0; bottom: 0; left: var(--vn-pos); z-index: 3;
-    width: 2px; background: var(--paper); transform: translateX(-1px);
-    pointer-events: none; transition: left 0.15s var(--ease);
-  }
-  .vn-greep {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 38px; height: 38px; border-radius: 50%; color: var(--green);
-    background: var(--paper); border: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .vn-schuif:focus-visible + .vn-lijn .vn-greep { outline: 2px solid var(--green); outline-offset: 2px; }
-  .vn-label {
-    position: absolute; bottom: 12px; z-index: 3; pointer-events: none;
-    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--paper); background: rgba(37, 53, 42, 0.55); padding: 0.35rem 0.7rem;
-  }
-  .vn-label-voor { left: 12px; }
-  .vn-label-na { right: 12px; }
-  .vn-hint { margin-top: 0.7rem; color: var(--muted); font-size: 0.85rem; }
-  .vn-fallback-grid { display: grid; gap: 1rem; }
-  @media (min-width: 620px) { .vn-fallback-grid { grid-template-columns: 1fr 1fr; } }
-  .vn-fallback-grid .plate { aspect-ratio: 4 / 3; }
-  .vn-fallback-grid figcaption {
-    margin-top: 0.6rem; text-align: center; font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-  }
-  /* Vóór JS geladen is: interactieve versie verborgen, fallback zichtbaar. Zodra
-     de vroege inline-script .js op <html> zet, draait dat om. */
-  .vn-interactief { display: none; }
-  .js .vn-interactief { display: block; }
-  .js .vn-fallback { display: none; }
-
   /* ---------- Diensten: vier rustige kaarten ---------- */
   .diensten-grid { display: grid; gap: 1.25rem; margin-top: 2.2rem; }
   @media (min-width: 620px) { .diensten-grid { grid-template-columns: 1fr 1fr; } }
@@ -469,41 +413,11 @@
         <div class="reveal">
           <h2 class="section-h">Niet ieder interieur vraagt om meer.<br>Soms vraagt het om <em>precies het juiste</em>.</h2>
           <p class="lede">Iedere ruimte vraagt om een andere vorm van interieurbeplanting. Daarom kiezen wij planten, potten en materialen die perfect aansluiten bij uw interieur, werkomgeving en uitstraling. Zo ontstaat een ruimte die prettig aanvoelt én een verzorgde indruk achterlaat.</p>
-          <div class="voor-na">
-            <div class="vn-interactief">
-              <div class="vn-frame plate">
-                <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
-                <img class="vn-na" src="../shared/img/band-breed.jpg" alt="Dezelfde ruimte met de beplanting van Blad & Vorm: kentiapalm, ficus, monstera en varens in keramische potten">
-                <div class="vn-voor-laag">
-                  <img src="../shared/img/band-breed-voor.jpg" alt="">
-                </div>
-                <input type="range" class="vn-schuif" min="0" max="100" value="50" aria-label="Sleep om de ruimte voor en na Blad & Vorm te vergelijken">
-                <div class="vn-lijn" aria-hidden="true"><span class="vn-greep">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
-                </span></div>
-                <span class="vn-label vn-label-voor" aria-hidden="true">Voor</span>
-                <span class="vn-label vn-label-na" aria-hidden="true">Na</span>
-              </div>
-              <p class="vn-hint">Sleep om de ruimte voor en na Blad &amp; Vorm te vergelijken.</p>
-            </div>
-            <div class="vn-fallback">
-              <div class="vn-fallback-grid">
-                <figure>
-                  <div class="plate">
-                    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
-                    <img src="../shared/img/band-breed-voor.jpg" alt="Lichte zaal met kalkverf-wanden en travertin vloer, zonder beplanting">
-                  </div>
-                  <figcaption>Voor</figcaption>
-                </figure>
-                <figure>
-                  <div class="plate">
-                    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
-                    <img src="../shared/img/band-breed.jpg" alt="Dezelfde ruimte met de beplanting van Blad & Vorm: kentiapalm, ficus, monstera en varens in keramische potten">
-                  </div>
-                  <figcaption>Na</figcaption>
-                </figure>
-              </div>
-            </div>
+          <div class="filosofie-plate">
+            <figure class="plate">
+              <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+              <img src="../shared/img/band-breed.jpg" alt="Rustige gang in een kantoor met kalkverf-wanden en een betonvloer, met één verzorgde groep planten in keramische potten bij de ramen">
+            </figure>
           </div>
         </div>
       </div>
@@ -527,7 +441,7 @@
               <p>Samen bekijken we welke interieurbeplanting het beste past bij uw ruimte, wensen en uitstraling.</p>
             </div>
             <div class="d-kaart">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="12" height="10"/><path d="M15 11h4l2 3v4h-6"/><circle cx="7" cy="18" r="0.5"/><circle cx="18" cy="18" r="0.5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 16V6a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v10"/><path d="M14 8h3.6a1 1 0 0 1 .8.4l3.4 4.5a1 1 0 0 1 .2.6V16"/><path d="M2 16h4.6"/><path d="M11.4 16h5.2"/><path d="M20.4 16H22"/><circle cx="9" cy="16" r="2.6"/><circle cx="18.4" cy="16" r="2.6"/></svg>
               <h3>Levering &amp; Plaatsing</h3>
               <p>Professioneel geleverd en zorgvuldig geplaatst, met oog voor ieder detail.</p>
             </div>
@@ -780,15 +694,6 @@
 <script src="../shared/reveal.js"></script>
 <script>
   (function () {
-    // Voor/na-slider: de zichtbare lijn en greep volgen de schuifwaarde via --vn-pos
-    document.querySelectorAll('.vn-frame').forEach(function (frame) {
-      var schuif = frame.querySelector('.vn-schuif');
-      if (!schuif) return;
-      schuif.addEventListener('input', function () {
-        frame.style.setProperty('--vn-pos', schuif.value + '%');
-      });
-    });
-
     // Pakket-CTA: vult het interesseveld zichtbaar voor, zodat "er gebeurde niets" niet kan
     var select = document.getElementById('f-pakket');
     document.querySelectorAll('.pakket-cta').forEach(function (a) {
