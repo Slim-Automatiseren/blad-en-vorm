@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import hotel from '../beelden/inspiratie-hotel.jpg';
+import makelaar from '../beelden/inspiratie-makelaar.jpg';
+import directie from '../beelden/scenario-directie.jpg';
+import praktijk from '../beelden/scenario-praktijk.jpg';
+import ontvangst from '../beelden/scenario-ontvangst.jpg';
+import villa from '../beelden/inspiratie-villa.jpg';
+import tandarts from '../beelden/inspiratie-tandarts.jpg';
+import lobby from '../beelden/inspiratie-lobby.jpg';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  inspiratie: Inhoud['inspiratie'];
+}
+const { inspiratie } = Astro.props;
+
+/* Standaardfoto per beeldslot; een eigen foto uit Sanity gaat voor */
+const slots: Record<string, ImageMetadata> = {
+  hotel,
+  makelaar,
+  directie,
+  praktijk,
+  ontvangst,
+  villa,
+  tandarts,
+  lobby,
+};
+
+function verrijk(items: typeof inspiratie.items) {
+  return items.map((item) => ({
+    ...item,
+    eigenFoto: beeldBron(item.foto, [480, 768], 3 / 4),
+    beeld: slots[item.beeldSlot],
+  }));
+}
+
+const rij1 = verrijk(inspiratie.items.filter((i) => i.rij === 1));
+const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
+---
+<section id="inspiratie" class="cream">
+  <div class="wrap">
+    <div class="grid2">
+      <div class="rail reveal">
+        <span class="label">{inspiratie.railLabel}</span>
+        <p class="rail-note">{inspiratie.railNote}</p>
+      </div>
+      <div class="reveal">
+        <h2 class="section-h">{inspiratie.kop}</h2>
+        <p class="lede">{inspiratie.lede}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee rechts reveal">
+    <div class="track">
+      <div class="groep">
+        {rij1.map((item) => (
+          <figure class="m-kaart">
+            {item.eigenFoto ? (
+              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
+            ) : (
+              <Image src={item.beeld} widths={[480, 768]} sizes="(min-width: 880px) 30vw, 60vw" alt={item.alt} />
+            )}
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="groep" aria-hidden="true">
+        {rij1.map((item) => (
+          <figure class="m-kaart">
+            {item.eigenFoto ? (
+              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} alt="" />
+            ) : (
+              <Image src={item.beeld} widths={[480, 768]} alt="" />
+            )}
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee links reveal">
+    <div class="track">
+      <div class="groep">
+        {rij2.map((item) => (
+          <figure class="m-kaart">
+            {item.eigenFoto ? (
+              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
+            ) : (
+              <Image src={item.beeld} widths={[480, 768]} sizes="(min-width: 880px) 30vw, 60vw" alt={item.alt} />
+            )}
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="groep" aria-hidden="true">
+        {rij2.map((item) => (
+          <figure class="m-kaart">
+            {item.eigenFoto ? (
+              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} alt="" />
+            ) : (
+              <Image src={item.beeld} widths={[480, 768]} alt="" />
+            )}
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,31 +1,41 @@
 ---
-import logoHexagon from '../beelden/logo-hexagon.png';
 import type { Inhoud } from '../lib/inhoud';
 
 interface Props {
   instellingen: Inhoud['instellingen'];
+  labelWerkgebied: string;
+  taal: 'nl' | 'en';
 }
-const { instellingen } = Astro.props;
+const { instellingen, labelWerkgebied, taal } = Astro.props;
 ---
 <footer class="site">
   <div class="wrap">
     <div class="top">
       <div>
         <a class="brand" href="#hoofd">
-          <img class="mark" src={logoHexagon.src} width="29" height="34" alt="" aria-hidden="true" />
+          <span class="mark" aria-hidden="true"></span>
           <span class="name">Blad &amp; Vorm</span>
         </a>
         <p class="tagline">{instellingen.voetTagline}</p>
+        <p class="omschrijving">{instellingen.branche}</p>
       </div>
       <div class="meta-f">
-        <span>{instellingen.branche}</span>
+        <span class="label">{labelWerkgebied}</span>
         <span>{instellingen.werkgebied}</span>
         <span>{instellingen.email} · {instellingen.telefoonWeergave}</span>
       </div>
     </div>
     <div class="onder">
       <span>{instellingen.kvkRegel}</span>
-      <span><a href="#">Algemene voorwaarden</a> · <a href="#">Privacyverklaring</a> · NL / EN</span>
+      <span>
+        <a href="#">{instellingen.privacyLabel}</a>
+        {instellingen.linkedinUrl && <> · <a href={instellingen.linkedinUrl} rel="noopener">LinkedIn</a></>}
+        {instellingen.instagramUrl && <> · <a href={instellingen.instagramUrl} rel="noopener">Instagram</a></>}
+        {' · '}
+        {taal === 'nl' ? <span aria-current="page">NL</span> : <a href="/">NL</a>}
+        {' / '}
+        {taal === 'en' ? <span aria-current="page">EN</span> : <a href="/en/">EN</a>}
+      </span>
     </div>
   </div>
 </footer>

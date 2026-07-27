@@ -1,0 +1,31 @@
+---
+import { pijlerIconen } from '../lib/iconen';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  diensten: Inhoud['diensten'];
+}
+const { diensten } = Astro.props;
+---
+<section id="diensten" class="band">
+  <div class="wrap">
+    <div class="grid2">
+      <div class="rail reveal">
+        <span class="label">{diensten.railLabel}</span>
+        <p class="rail-note">{diensten.railNote}</p>
+      </div>
+      <div class="reveal">
+        <h2 class="section-h">{diensten.kop}</h2>
+        <div class="diensten-grid">
+          {diensten.kaarten.map((k) => (
+            <div class="d-kaart">
+              <Fragment set:html={pijlerIconen[k.icoon] ?? pijlerIconen.advies} />
+              <h3>{k.titel}</h3>
+              <p>{k.tekst}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

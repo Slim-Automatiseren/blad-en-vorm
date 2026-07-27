@@ -21,10 +21,11 @@ export const pijlerIconen: Record<string, string> = {
 export const vinkje =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
 
-/* Plantladder op de pakketkaarten: één, twee of drie halmen, oplopend met het pakket */
+/* Plantladder op de pakketkaarten: één tot vier halmen, oplopend met het pakket */
 const halm1 = '<path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/>';
 const halm2 = halm1 + '<path d="M44 56 C44 46 44 40 44 32"/><path d="M44 44 C39 42 36 38 35 32 C41 32 44 36 44 44"/>';
 const halm3 = halm2 + '<path d="M16 56 C16 48 16 44 16 36"/><path d="M16 48 C11 46 8 42 7 36 C13 36 16 40 16 48"/><path d="M16 44 C21 42 24 38 25 32 C19 32 16 36 16 44"/>';
+const halm4 = halm3 + '<path d="M53 56 C53 50 53 46 53 41"/><path d="M53 49 C49.5 47.5 47.5 44.5 47 41 C51 41 53 44 53 49"/>';
 
 function ladder(maat: number, paden: string): string {
   return `<svg width="${maat}" height="${maat}" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">${paden}</svg>`;
@@ -34,6 +35,7 @@ export const plantladders: Record<string, string> = {
   S: ladder(26, halm1),
   M: ladder(32, halm2),
   L: ladder(38, halm3),
+  XL: ladder(44, halm4),
 };
 
 export const whatsappIcoon =

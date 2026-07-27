@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import heroBreed from '../beelden/hero-breed.jpg';
 import heroMobiel from '../beelden/hero-mobiel.jpg';
+import logoHexagon from '../beelden/logo-hexagon.png';
 import { beeldBron } from '../lib/beeld';
 import type { Inhoud } from '../lib/inhoud';
 
@@ -17,20 +18,36 @@ const eigenFoto = beeldBron(hero.foto, [640, 960, 1440, 1920]);
 <section class="hero">
   <div class="wrap">
     <div class="hero-inhoud reveal">
-      <span class="label">{hero.label}</span>
-      <h1>{hero.kop} <em>{hero.kopAccent}</em>.</h1>
-      <div class="rule"><span class="pip" aria-hidden="true"></span></div>
+      <div class="hero-merk">
+        <svg class="mark-groot" viewBox="0 0 237 278" aria-hidden="true" focusable="false">
+          <defs>
+            <mask id="bv-mark-draw" maskUnits="userSpaceOnUse" x="0" y="0" width="237" height="278">
+              <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+                <path class="dw leaf-stalk" pathLength="100" stroke-width="22" d="M73.5,218.0 C76.8,214.8 89.5,202.3 93.0,199.0 C96.5,195.7 93.1,199.5 94.5,198.0 C95.9,196.5 99.4,192.7 101.5,190.0 C103.6,187.3 105.3,184.7 106.9,182.0 C108.5,179.3 109.7,176.7 111.0,174.0 C112.3,171.3 113.5,168.7 114.5,166.0 C115.5,163.3 116.3,160.7 117.2,158.0 C118.1,155.3 118.9,152.7 119.7,150.0 C120.5,147.3 121.3,144.7 122.3,142.0 C123.2,139.3 124.3,136.7 125.4,134.0 C126.5,131.3 127.6,128.7 129.1,126.0 C130.6,123.3 132.2,120.7 134.2,118.0 C136.1,115.3 138.2,112.7 140.8,110.0 C143.5,107.3 146.7,104.5 150.1,102.0 C153.5,99.5 157.3,100.3 161.5,95.0 C165.7,89.7 172.8,74.2 175.0,70.0"/>
+                <path class="dw leaf-a" pathLength="100" stroke-width="22" d="M175.0,70.0 C174.0,70.7 170.1,73.2 169.0,74.0 C167.9,74.8 173.5,73.5 168.5,75.0 C163.5,76.5 146.8,80.3 139.2,83.0 C131.6,85.7 127.5,88.3 122.9,91.0 C118.3,93.7 114.8,96.3 111.4,99.0 C108.0,101.7 105.3,104.3 102.7,107.0 C100.1,109.7 98.0,112.3 95.9,115.0 C93.8,117.7 92.0,120.3 90.3,123.0 C88.6,125.7 87.2,128.3 85.9,131.0 C84.6,133.7 83.4,136.3 82.4,139.0 C81.4,141.7 80.5,144.3 79.7,147.0 C78.9,149.7 78.3,152.3 77.8,155.0 C77.3,157.7 76.9,160.3 76.6,163.0 C76.3,165.7 76.1,168.3 76.1,171.0 C76.0,173.7 76.1,176.3 76.3,179.0 C76.5,181.7 76.7,184.3 77.1,187.0 C77.5,189.7 74.0,192.3 78.5,195.0 C83.0,197.7 104.0,200.3 104.3,203.0 C104.6,205.7 85.2,209.0 80.2,211.0 C75.2,213.0 75.1,213.8 74.0,215.0 C72.9,216.2 73.6,217.5 73.5,218.0"/>
+                <path class="dw leaf-b" pathLength="100" stroke-width="22" d="M175.0,70.0 C174.0,70.7 170.1,73.2 169.0,74.0 C167.9,74.8 164.9,73.5 168.5,75.0 C172.1,76.5 187.5,80.3 190.3,83.0 C193.1,85.7 186.6,88.3 185.2,91.0 C183.8,93.7 182.7,96.3 181.6,99.0 C180.5,101.7 179.5,104.3 178.7,107.0 C177.9,109.7 177.1,112.3 176.6,115.0 C176.1,117.7 175.9,120.3 175.5,123.0 C175.1,125.7 174.8,128.3 174.3,131.0 C173.9,133.7 173.4,136.3 172.8,139.0 C172.2,141.7 171.4,144.3 170.6,147.0 C169.8,149.7 168.9,152.3 167.9,155.0 C166.9,157.7 166.0,160.3 164.8,163.0 C163.6,165.7 162.2,168.3 160.5,171.0 C158.8,173.7 157.0,176.3 154.8,179.0 C152.6,181.7 150.4,184.3 147.4,187.0 C144.4,189.7 144.3,192.3 137.1,195.0 C129.9,197.7 113.8,200.3 104.3,203.0 C94.8,205.7 85.2,209.0 80.2,211.0 C75.2,213.0 75.1,213.8 74.0,215.0 C72.9,216.2 73.6,217.5 73.5,218.0"/>
+                <path class="dw hex-inner" pathLength="100" stroke-width="15" d="M117,27 L212,75 L212,203 L117,251 L23,203 L23,75 Z"/>
+                <path class="dw hex-outer" pathLength="100" stroke-width="15" d="M117,1 L233,65 L233,210 L117,276 L3,210 L3,65 Z"/>
+              </g>
+            </mask>
+          </defs>
+          <image class="mk-final" href={logoHexagon.src} x="0" y="0" width="237" height="278" />
+          <image class="mk-draw" href={logoHexagon.src} x="0" y="0" width="237" height="278" mask="url(#bv-mark-draw)" />
+        </svg>
+        <span class="naam">Blad &amp; Vorm</span>
+      </div>
+      <h1>{hero.kop}</h1>
       <p class="sub">{hero.sub}</p>
+      <div class="rule"><span class="pip" aria-hidden="true"></span></div>
+      <p class="intro">{hero.intro}</p>
       <div class="actions">
         <a href="#contact" class="btn">{hero.ctaPrimair}</a>
-        <a href="#pakketten" class="btn ghost">{hero.ctaSecundair}</a>
+        <a href="#inspiratie" class="btn ghost">{hero.ctaSecundair}</a>
       </div>
-      <p class="fineprint">{hero.fineprint}</p>
-      <dl class="meta">
-        {hero.meta.map((m) => (
-          <div><dt class="label">{m.label}</dt><dd>{m.waarde}</dd></div>
-        ))}
-      </dl>
+      <a class="cue" href="#inspiratie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg>
+        {hero.cueTekst}
+      </a>
     </div>
   </div>
   <div class="hero-bg">

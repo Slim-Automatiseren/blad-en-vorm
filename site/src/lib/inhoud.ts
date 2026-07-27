@@ -1,27 +1,31 @@
 /* Inhoudslaag. Bouwtijd-only: de site is statisch, dit draait nooit in de browser.
 
-   Zonder SANITY_PROJECT_ID bouwt de site volledig uit src/inhoud/seed.json.
-   Met project-ID komt de inhoud uit Sanity; ontbreekt daar een onderdeel
-   (bijvoorbeeld vóór de eerste seed-import), dan vult de seed dat stuk aan,
-   zodat de build nooit een halve pagina oplevert. */
+   Zonder SANITY_PROJECT_ID bouwt de site volledig uit src/inhoud/seed.json (nl)
+   of src/inhoud/seed-en.json (en). Met project-ID komt de inhoud uit Sanity;
+   ontbreekt daar een onderdeel (bijvoorbeeld vóór de eerste seed-import), dan
+   vult de bijbehorende seed dat stuk aan, zodat de build nooit een halve
+   pagina oplevert. */
 
 import { createClient } from '@sanity/client';
 import seed from '../inhoud/seed.json';
+import seedEn from '../inhoud/seed-en.json';
 import type { SanityBeeld } from './beeld';
 
 type Basis = typeof seed;
+type Taal = 'nl' | 'en';
 
 /* De seed kent geen fotovelden (die bestaan alleen in Sanity), dus die worden
    hier als optioneel bijgetypt. Leeg veld betekent: standaardfoto uit de repo. */
 export type Inhoud = Basis & {
-  hero: { foto?: SanityBeeld };
-  marco: { foto?: SanityBeeld };
-  pakketten: { achtergrondFoto?: SanityBeeld };
-  scenarios: { items: Array<Basis['scenarios']['items'][number] & { foto?: SanityBeeld }> };
-  taglineFoto?: SanityBeeld;
+  hero: Basis['hero'] & { foto?: SanityBeeld };
+  inspiratie: Basis['inspiratie'] & {
+    items: Array<Basis['inspiratie']['items'][number] & { foto?: SanityBeeld }>;
+  };
+  filosofie: Basis['filosofie'] & { foto?: SanityBeeld };
+  inspiratieboek: Basis['inspiratieboek'] & { foto?: SanityBeeld };
+  pakketten: Basis['pakketten'] & { achtergrondFoto?: SanityBeeld };
+  over: Basis['over'] & { foto?: SanityBeeld };
 };
-
-type Taal = 'nl' | 'en';
 
 /* Sanity slaat elk tekstveld op als { nl, en }. Dit vouwt zo'n boom plat naar
    één taal, met nl als vangnet zolang de Engelse velden nog leeg zijn. */
@@ -49,13 +53,13 @@ const QUERY = `{
   "pagina": *[_id == "pagina"][0],
   "instellingen": *[_id == "instellingen"][0],
   "pakketten": *[_type == "pakket"] | order(volgorde asc),
-  "scenarios": *[_type == "scenario"] | order(volgorde asc),
-  "vragen": *[_type == "vraag"] | order(volgorde asc)
+  "inspiratiebeelden": *[_type == "inspiratiebeeld"] | order(volgorde asc)
 }`;
 
 export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
+  const basis: Basis = taal === 'en' ? (seedEn as Basis) : seed;
   const projectId = import.meta.env.SANITY_PROJECT_ID;
-  if (!projectId) return seed as Inhoud;
+  if (!projectId) return basis as Inhoud;
 
   const client = createClient({
     projectId,
@@ -65,55 +69,56 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
   });
 
   const ruw = (await client.fetch(QUERY)) as Record<string, unknown>;
-  const p = lokaliseer(ruw.pagina, taal) as Record<string, any> | null;
+  const ruwePagina = lokaliseer(ruw.pagina, taal) as Record<string, any> | null;
   const inst = lokaliseer(ruw.instellingen, taal) as Record<string, any> | null;
-  const pakketten = (lokaliseer(ruw.pakketten, taal) as any[]) ?? [];
-  const scenarios = (lokaliseer(ruw.scenarios, taal) as any[]) ?? [];
-  const vragen = (lokaliseer(ruw.vragen, taal) as any[]) ?? [];
+  const ruwePakketten = (lokaliseer(ruw.pakketten, taal) as any[]) ?? [];
+  const inspiratiebeelden = (lokaliseer(ruw.inspiratiebeelden, taal) as any[]) ?? [];
 
-  const xl = pakketten.find((k) => k.code === 'XL');
-  const kaarten = pakketten.filter((k) => k.code !== 'XL');
+  /* Overgangsslot: zolang de dataset nog de oude paginastructuur heeft (van vóór
+     de tekstaanlevering van 26 juli, herkenbaar aan het ontbreken van de
+     filosofie-groep) bouwen we volledig uit de seed. Zo kan de nieuwe code live
+     zonder dat de volgorde push/herimport uitmaakt. */
+  const p = ruwePagina?.filosofie ? ruwePagina : null;
+  const pakketten = p ? ruwePakketten : [];
 
   return {
-    hero: p?.hero ?? seed.hero,
-    zekerheden: p?.zekerheden ?? seed.zekerheden,
-    maandbedrag: p?.maandbedrag ?? seed.maandbedrag,
+    nav: p?.nav ?? basis.nav,
+    hero: p?.hero ?? basis.hero,
+    inspiratie: {
+      ...(p?.inspiratieSectie ?? {
+        railLabel: basis.inspiratie.railLabel,
+        railNote: basis.inspiratie.railNote,
+        kop: basis.inspiratie.kop,
+        lede: basis.inspiratie.lede,
+      }),
+      items: inspiratiebeelden.length ? inspiratiebeelden : basis.inspiratie.items,
+    },
+    filosofie: p?.filosofie ?? basis.filosofie,
+    diensten: p?.dienstenSectie ?? basis.diensten,
+    werkwijze: p?.werkwijze ?? basis.werkwijze,
+    inspiratieboek: p?.inspiratieboek ?? basis.inspiratieboek,
     pakketten: {
       ...(p?.pakkettenSectie ?? {
-        railLabel: seed.pakketten.railLabel,
-        railNote: seed.pakketten.railNote,
-        kop: seed.pakketten.kop,
-        lede: seed.pakketten.lede,
-        ctaTekst: seed.pakketten.ctaTekst,
+        railLabel: basis.pakketten.railLabel,
+        railNote: basis.pakketten.railNote,
+        kop: basis.pakketten.kop,
       }),
-      kaarten: kaarten.length ? kaarten : seed.pakketten.kaarten,
-      xl: xl ?? seed.pakketten.xl,
+      kaarten: pakketten.length ? pakketten : basis.pakketten.kaarten,
     },
-    werkwijze: p?.werkwijze ?? seed.werkwijze,
-    scenarios: {
-      ...(p?.scenariosSectie ?? {
-        railLabel: seed.scenarios.railLabel,
-        railNote: seed.scenarios.railNote,
-        kop: seed.scenarios.kop,
-      }),
-      items: scenarios.length ? scenarios : seed.scenarios.items,
-    },
-    marco: p?.marco ?? seed.marco,
-    tagline: p?.tagline ?? seed.tagline,
-    taglineFoto: p?.taglineFoto ?? undefined,
-    vragen: vragen.length ? vragen : seed.vragen,
+    over: p?.over ?? basis.over,
     contact: {
-      label: p?.contactSectie?.label ?? seed.contact.label,
-      kop: p?.contactSectie?.kop ?? seed.contact.kop,
-      lede: p?.contactSectie?.lede ?? seed.contact.lede,
-      formulier: p?.formulier ?? seed.contact.formulier,
+      label: p?.contactSectie?.label ?? basis.contact.label,
+      kop: p?.contactSectie?.kop ?? basis.contact.kop,
+      lede: p?.contactSectie?.lede ?? basis.contact.lede,
+      labelEmail: p?.contactSectie?.labelEmail ?? basis.contact.labelEmail,
+      labelTelefoon: p?.contactSectie?.labelTelefoon ?? basis.contact.labelTelefoon,
+      labelWerkgebied: p?.contactSectie?.labelWerkgebied ?? basis.contact.labelWerkgebied,
+      werkgebiedTekst: p?.contactSectie?.werkgebiedTekst ?? basis.contact.werkgebiedTekst,
+      formulier: p?.formulier ?? basis.contact.formulier,
     },
-    instellingen: inst ?? seed.instellingen,
+    /* Samengevoegd in plaats van alles-of-niets: een nieuw veld dat Marco nog
+       niet heeft ingevuld (bijvoorbeeld privacyLabel) valt per veld terug op de
+       seed. Vóór de herimport geldt ook hier het overgangsslot. */
+    instellingen: p && inst ? { ...basis.instellingen, ...inst } : basis.instellingen,
   } as Inhoud;
-}
-
-/* Prijsweergave: "95 euro" of "vanaf 695 euro". Bedrag als getal in het CMS,
-   zodat Marco alleen een getal hoeft aan te passen. */
-export function prijsTekst(p: { prijsBedrag: number; vanaf: boolean }): string {
-  return `${p.vanaf ? 'vanaf ' : ''}${p.prijsBedrag} euro`;
 }

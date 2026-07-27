@@ -2,41 +2,37 @@
 import Basis from '../layouts/Basis.astro';
 import Nav from '../componenten/Nav.astro';
 import Hero from '../componenten/Hero.astro';
-import Zekerheden from '../componenten/Zekerheden.astro';
-import Maandbedrag from '../componenten/Maandbedrag.astro';
-import Pakketten from '../componenten/Pakketten.astro';
+import Inspiratie from '../componenten/Inspiratie.astro';
+import Filosofie from '../componenten/Filosofie.astro';
+import Diensten from '../componenten/Diensten.astro';
 import Werkwijze from '../componenten/Werkwijze.astro';
-import Scenarios from '../componenten/Scenarios.astro';
-import Marco from '../componenten/Marco.astro';
-import TaglineBand from '../componenten/TaglineBand.astro';
-import Vragen from '../componenten/Vragen.astro';
+import InspiratieBoek from '../componenten/InspiratieBoek.astro';
+import Pakketten from '../componenten/Pakketten.astro';
+import Over from '../componenten/Over.astro';
 import Contact from '../componenten/Contact.astro';
 import Voet from '../componenten/Voet.astro';
 import { haalInhoud } from '../lib/inhoud';
 
 const inhoud = await haalInhoud('nl');
-const pakketOpties = [...inhoud.pakketten.kaarten, inhoud.pakketten.xl].map(
-  (p) => `${p.code} ${p.naam}`,
-);
+const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
 ---
 <Basis
-  titel="Blad & Vorm · Interieurbeplanting voor kantoren"
-  beschrijving="Interieurbeplanting voor de zakelijke markt in Wassenaar en omstreken. Advies, levering, plaatsing en doorlopend onderhoud voor één vast bedrag per maand."
+  titel="Blad & Vorm · Interieurbeplanting voor bedrijven en stijlvolle woonomgevingen"
+  beschrijving="Blad & Vorm ontwerpt, levert en onderhoudt interieurbeplanting voor bedrijven en stijlvolle woonomgevingen, vanuit Wassenaar voor de regio Den Haag tot Noordwijk."
 >
-  <Nav ctaLang={inhoud.hero.ctaPrimair} ctaKort="Kennismaken" />
+  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} />
 
   <main id="hoofd">
     <Hero hero={inhoud.hero} />
-    <Zekerheden zekerheden={inhoud.zekerheden} />
-    <Maandbedrag maandbedrag={inhoud.maandbedrag} />
-    <Pakketten pakketten={inhoud.pakketten} />
+    <Inspiratie inspiratie={inhoud.inspiratie} />
+    <Filosofie filosofie={inhoud.filosofie} />
+    <Diensten diensten={inhoud.diensten} />
     <Werkwijze werkwijze={inhoud.werkwijze} />
-    <Scenarios scenarios={inhoud.scenarios} />
-    <Marco marco={inhoud.marco} />
-    <TaglineBand tagline={inhoud.tagline} foto={inhoud.taglineFoto} />
-    <Vragen vragen={inhoud.vragen} />
+    <InspiratieBoek inspiratieboek={inhoud.inspiratieboek} />
+    <Pakketten pakketten={inhoud.pakketten} />
+    <Over over={inhoud.over} />
     <Contact contact={inhoud.contact} instellingen={inhoud.instellingen} pakketOpties={pakketOpties} />
   </main>
 
-  <Voet instellingen={inhoud.instellingen} />
+  <Voet instellingen={inhoud.instellingen} labelWerkgebied={inhoud.contact.labelWerkgebied} taal="nl" />
 </Basis>

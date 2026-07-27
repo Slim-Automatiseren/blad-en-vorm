@@ -15,15 +15,16 @@ interface Props {
   beschrijving: string;
   /* De bedankt-pagina blijft altijd noindex, ook na livegang */
   nooitIndexeren?: boolean;
+  taal?: 'nl' | 'en';
 }
 
-const { titel, beschrijving, nooitIndexeren = false } = Astro.props;
+const { titel, beschrijving, nooitIndexeren = false, taal = 'nl' } = Astro.props;
 
 /* Tot de livegang krijgt alles noindex; omzetten via PUBLIC_INDEXEERBAAR=ja */
 const indexeerbaar = import.meta.env.PUBLIC_INDEXEERBAAR === 'ja' && !nooitIndexeren;
 ---
 <!doctype html>
-<html lang="nl">
+<html lang={taal}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />

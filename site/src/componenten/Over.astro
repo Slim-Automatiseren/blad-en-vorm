@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import overVignet from '../beelden/over-vignet.jpg';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  over: Inhoud['over'];
+}
+const { over } = Astro.props;
+const eigenFoto = beeldBron(over.foto, [340, 520, 760], 4 / 3);
+---
+<section id="over">
+  <div class="wrap">
+    <div class="over-grid">
+      <div class="reveal">
+        <span class="label">{over.railLabel}</span>
+        <h2 class="section-h kop-na-label">{over.kop}</h2>
+        <p class="lede">{over.tekst1}</p>
+        <p class="lede">{over.tekst2}</p>
+      </div>
+      <figure class="plate reveal">
+        <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+        {eigenFoto ? (
+          <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 800px) 300px, 92vw" loading="lazy" alt={eigenFoto.alt ?? over.fotoAlt} />
+        ) : (
+          <Image src={overVignet} widths={[340, 520, 760]} sizes="(min-width: 800px) 300px, 92vw" alt={over.fotoAlt} />
+        )}
+      </figure>
+    </div>
+  </div>
+</section>

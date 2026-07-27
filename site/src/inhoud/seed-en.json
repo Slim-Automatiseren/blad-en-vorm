@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "inspiratie": "Inspiration",
+    "diensten": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "kop": "Green that feels right.",
+    "sub": "Interior planting for businesses and beautifully designed living spaces.",
+    "intro": "Blad & Vorm designs, installs and maintains interior planting that brings balance, atmosphere and a lasting sense of wellbeing to every space.",
+    "ctaPrimair": "Schedule a Site Consultation",
+    "ctaPrimairKort": "Consultation",
+    "ctaSecundair": "Explore inspiration",
+    "cueTekst": "Inspiration"
+  },
+  "inspiratie": {
+    "railLabel": "Inspiration",
+    "railNote": "Atmosphere images for inspiration.",
+    "kop": "Every great space starts with inspiration.",
+    "lede": "No two interiors are the same. Discover how thoughtfully designed interior planting brings warmth, character and a welcoming atmosphere to offices, reception areas, professional practices and stylish homes.",
+    "items": [
+      { "label": "Boutique hotel", "beeldSlot": "hotel", "rij": 1, "alt": "Boutique hotel lounge corner: two linen armchairs around a walnut table, a kentia palm and a group of plants on an oak sideboard" },
+      { "label": "Estate agency", "beeldSlot": "makelaar", "rij": 1, "alt": "Estate agency office: oak desk with two light chairs, a fiddle-leaf fig by the window and plants on a walnut sideboard" },
+      { "label": "Executive office", "beeldSlot": "directie", "rij": 1, "alt": "Meeting corner with a walnut table, wool chairs and a large ficus in a ceramic pot" },
+      { "label": "Wellness", "beeldSlot": "praktijk", "rij": 1, "alt": "Two linen armchairs with a side table and kentia palm in a calm waiting area" },
+      { "label": "Reception area", "beeldSlot": "ontvangst", "rij": 2, "alt": "Oak waiting bench with linen cushions, next to a kentia palm and a zamioculcas" },
+      { "label": "Villa", "beeldSlot": "villa", "rij": 2, "alt": "Villa living room: light sofa, walnut coffee table and kentia palms by a window with garden view" },
+      { "label": "Dental practice", "beeldSlot": "tandarts", "rij": 2, "alt": "Practice waiting area with an oak bench, frosted window and plants in ceramic pots" },
+      { "label": "Lobby", "beeldSlot": "lobby", "rij": 2, "alt": "Double-height lobby with an oak desk, travertine floor and a group of kentia palms in large ceramic pots" }
+    ]
+  },
+  "filosofie": {
+    "railLabel": "Philosophy",
+    "railNote": "Not more, just right.",
+    "kop": "Not every interior needs more.",
+    "kopVervolg": "Sometimes it simply needs",
+    "kopAccent": "the right touch",
+    "tekst": "Every space deserves its own planting concept. That's why we carefully select plants, planters and materials that complement your interior, reflect your organisation and enhance the way people experience the space.",
+    "fotoAlt": "Bright hall with limewash walls and a travertine floor, with one group of plants in ceramic pots by the windows"
+  },
+  "diensten": {
+    "railLabel": "Services",
+    "railNote": "From consultation to replacement.",
+    "kop": "Everything you need for a beautifully maintained interior.",
+    "kaarten": [
+      { "icoon": "advies", "titel": "Consultation", "tekst": "We take the time to understand your space, your requirements and the atmosphere you want to create." },
+      { "icoon": "levering", "titel": "Delivery & Installation", "tekst": "Professionally delivered and carefully installed with attention to every detail." },
+      { "icoon": "onderhoud", "titel": "Plant Care", "tekst": "Regular maintenance keeps your interior planting healthy, vibrant and looking its very best." },
+      { "icoon": "vervanging", "titel": "Replacement", "tekst": "Whenever required, we replace plants promptly to ensure your interior always looks fresh and welcoming." }
+    ]
+  },
+  "werkwijze": {
+    "railLabel": "Our approach",
+    "railNote": "Four steps, one point of contact.",
+    "kop": "From first conversation to long-term care.",
+    "stappen": [
+      { "titel": "Introduction", "tekst": "We get to know your business, your space and your ideas." },
+      { "titel": "Site Consultation", "tekst": "We assess the layout, natural light and opportunities within your interior." },
+      { "titel": "Installation", "tekst": "We deliver and install your complete planting concept with care and precision." },
+      { "titel": "Ongoing Care", "tekst": "Regular professional maintenance keeps your planting looking beautiful throughout the year." }
+    ]
+  },
+  "inspiratieboek": {
+    "label": "Inspiration Book",
+    "kop": "Every project begins with inspiration.",
+    "tekst": "During your personal Site Consultation, we bring along our Inspiration Book. Together we'll explore different planting styles, planters, materials and design ideas to create a planting concept that perfectly complements your interior and reflects your organisation.",
+    "ctaTekst": "Schedule a Site Consultation",
+    "fotoAlt": "Open inspiration book with plant photography on an oak table, next to glaze samples, wood swatches and a fern in a terracotta pot"
+  },
+  "pakketten": {
+    "railLabel": "Solutions",
+    "railNote": "Four starting points, tailored to your space.",
+    "kop": "A planting solution for every space.",
+    "kaarten": [
+      { "code": "S", "naam": "Impact", "beschrijving": "A stylish green foundation." },
+      { "code": "M", "naam": "Corporate", "beschrijving": "More greenery for welcoming and professional working environments." },
+      { "code": "L", "naam": "Signature", "beschrijving": "Where planting becomes an integral part of the interior." },
+      { "code": "XL", "naam": "Prestige", "beschrijving": "A fully managed planting solution with complete peace of mind." }
+    ]
+  },
+  "over": {
+    "railLabel": "About Blad & Vorm",
+    "kop": "Green that lasts.",
+    "tekst1": "We believe interior planting creates real value when every detail feels right. That's why we combine personal advice, quality plants, carefully selected planters and professional maintenance to create interiors that remain welcoming and beautifully presented for years to come.",
+    "tekst2": "From offices and reception areas to professional practices and private residences, we create planting solutions that feel perfectly at home in every environment.",
+    "fotoAlt": "Kentia palm in a light ceramic pot next to an oak desk, against a limewash wall"
+  },
+  "contact": {
+    "label": "Contact",
+    "kop": "Let's start the conversation.",
+    "lede": "Curious what interior planting could do for your business or home? We'd be delighted to visit you for a personal Site Consultation and bring along our Inspiration Book to explore the possibilities together.",
+    "labelEmail": "Email",
+    "labelTelefoon": "Phone",
+    "labelWerkgebied": "Service area",
+    "werkgebiedTekst": "Based in Wassenaar, Blad & Vorm provides interior planting services for businesses and stylish homes throughout The Hague, Voorburg, Leidschendam, Voorschoten, Leiden, Oegstgeest, Warmond, Katwijk and Noordwijk.",
+    "formulier": {
+      "veldNaam": "Name",
+      "veldBedrijf": "Company",
+      "veldBedrijfToevoeging": "(optional)",
+      "veldEmail": "Email",
+      "veldTelefoon": "Phone",
+      "veldTelefoonToevoeging": "(optional)",
+      "veldPakket": "What is it about?",
+      "keuzePlaceholder": "Make your choice",
+      "optieWeetNiet": "I'm not sure yet",
+      "veldBericht": "Message",
+      "berichtPlaceholder": "Tell us briefly about your space and wishes",
+      "knop": "Schedule a Site Consultation",
+      "privacy": "We only use your details to get in touch with you.",
+      "foutmelding": "Sending failed. Feel free to email us directly and we'll get back to you quickly.",
+      "succesKop": "Thank you for your message.",
+      "succesTekst": "We'll be in touch soon."
+    }
+  },
+  "instellingen": {
+    "email": "info@bladvorm.nl",
+    "telefoonWeergave": "06 15 12 96 85",
+    "telefoonInternationaal": "+31615129685",
+    "whatsappNummer": "31615129685",
+    "branche": "Interior planting specialists for businesses, offices, professional practices and beautifully designed living spaces.",
+    "werkgebied": "Wassenaar · The Hague · Voorburg · Leidschendam · Voorschoten · Leiden · Oegstgeest · Warmond · Katwijk · Noordwijk",
+    "kvkRegel": "Blad & Vorm is a trade name of Hilforce · Chamber of Commerce 42033993",
+    "voetTagline": "Green that feels right.",
+    "privacyLabel": "Privacy policy",
+    "linkedinUrl": "",
+    "instagramUrl": ""
+  }
+}

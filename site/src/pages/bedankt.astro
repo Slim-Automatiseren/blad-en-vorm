@@ -10,7 +10,7 @@ const inhoud = await haalInhoud('nl');
 const f = inhoud.contact.formulier;
 ---
 <Basis titel="Dank voor uw bericht · Blad & Vorm" beschrijving={f.succesTekst} nooitIndexeren>
-  <Nav ctaLang={inhoud.hero.ctaPrimair} ctaKort="Kennismaken" />
+  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} />
 
   <main id="hoofd">
     <section class="bedankt">
@@ -25,5 +25,5 @@ const f = inhoud.contact.formulier;
     </section>
   </main>
 
-  <Voet instellingen={inhoud.instellingen} />
+  <Voet instellingen={inhoud.instellingen} labelWerkgebied={inhoud.contact.labelWerkgebied} taal="nl" />
 </Basis>

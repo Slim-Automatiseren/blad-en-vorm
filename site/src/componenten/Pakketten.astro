@@ -3,13 +3,12 @@ import { Image } from 'astro:assets';
 import achtergrond from '../beelden/pakketten-achtergrond.jpg';
 import { beeldBron } from '../lib/beeld';
 import { plantladders } from '../lib/iconen';
-import { prijsTekst, type Inhoud } from '../lib/inhoud';
+import type { Inhoud } from '../lib/inhoud';
 
 interface Props {
   pakketten: Inhoud['pakketten'];
 }
 const { pakketten } = Astro.props;
-const xl = pakketten.xl;
 const eigenFoto = beeldBron(pakketten.achtergrondFoto, [960, 1440]);
 ---
 <section id="pakketten" class="foto-band">
@@ -27,36 +26,15 @@ const eigenFoto = beeldBron(pakketten.achtergrondFoto, [960, 1440]);
       </div>
       <div class="reveal">
         <h2 class="section-h">{pakketten.kop}</h2>
-        <p class="lede">{pakketten.lede}</p>
 
         <div class="cards">
           {pakketten.kaarten.map((k) => (
             <div class="card">
-              <div class="card-top">
-                <span class="kicker">{k.code}</span>
-                <Fragment set:html={plantladders[k.code] ?? plantladders.S} />
-              </div>
+              <Fragment set:html={plantladders[k.code] ?? plantladders.S} />
               <h3>{k.naam}</h3>
-              <span class="prijs">{prijsTekst(k)} <small>per maand</small></span>
               <p class="desc">{k.beschrijving}</p>
-              <ul>
-                {k.punten.map((punt) => <li>{punt}</li>)}
-              </ul>
-              <div class="foot">
-                <a href="#contact" class="btn ghost pakket-cta" data-pakket={`${k.code} ${k.naam}`}>{pakketten.ctaTekst}</a>
-              </div>
             </div>
           ))}
-        </div>
-
-        <div class="xl-band">
-          <div>
-            <span class="kicker">{xl.code}</span>
-            <h3>{xl.naam}</h3>
-            <span class="prijs">{prijsTekst(xl)} <small>per maand</small></span>
-            <p class="x-desc">{xl.beschrijving}</p>
-          </div>
-          <a href="#contact" class="btn pakket-cta" data-pakket={`${xl.code} ${xl.naam}`}>{pakketten.ctaTekst}</a>
         </div>
       </div>
     </div>
