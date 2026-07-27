@@ -23,12 +23,14 @@ export const pakket = defineType({
       name: 'prijsBedrag',
       title: 'Prijs per maand (alleen het getal, in euro)',
       type: 'number',
-      validation: (regel) => regel.required().positive(),
+      description: 'Wordt momenteel niet op de site getoond; prijzen gaan via het persoonlijke voorstel.',
+      validation: (regel) => regel.positive(),
     }),
     defineField({
       name: 'vanaf',
       title: 'Toon als "vanaf"-prijs',
       type: 'boolean',
+      description: 'Wordt momenteel niet op de site getoond; prijzen gaan via het persoonlijke voorstel.',
       initialValue: false,
     }),
     defineField({
@@ -42,6 +44,7 @@ export const pakket = defineType({
       title: 'Opsommingspunten (alleen S, M en L)',
       type: 'array',
       of: [defineArrayMember({ type: 'taalString' })],
+      description: 'Wordt momenteel niet op de site getoond; prijzen gaan via het persoonlijke voorstel.',
     }),
     defineField({
       name: 'volgorde',
