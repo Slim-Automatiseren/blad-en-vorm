@@ -89,6 +89,16 @@ const f = contact.formulier;
 </section>
 
 <script>
+  // Pakket-CTA: vult het interesseveld zichtbaar voor, zodat "er gebeurde niets" niet kan
+  const select = document.getElementById('f-pakket') as HTMLSelectElement;
+  document.querySelectorAll('.pakket-cta').forEach((a) => {
+    a.addEventListener('click', () => {
+      select.value = a.getAttribute('data-pakket') ?? '';
+      select.classList.add('flash');
+      setTimeout(() => select.classList.remove('flash'), 1800);
+    });
+  });
+
   // Verzenden zonder paginawissel (Netlify Forms accepteert de POST op elk
   // pad); zonder JS post het formulier gewoon en landt de bezoeker op /bedankt/
   const form = document.getElementById('contactForm') as HTMLFormElement;

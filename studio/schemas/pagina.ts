@@ -214,6 +214,7 @@ export const pagina = defineType({
         s('vanafWoord', 'Woord voor "vanaf" bij een vanaf-prijs'),
         s('euroWoord', 'Woord voor de munteenheid (euro)'),
         s('perMaand', 'Toevoeging achter de prijs (per maand)'),
+        s('ctaTekst', 'Knoptekst op elke pakketkaart, springt naar het formulier'),
         foto(
           'achtergrondFoto',
           'Achtergrondfoto',

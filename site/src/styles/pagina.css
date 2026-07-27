@@ -195,12 +195,11 @@ h2.section-h em {
    meer groen, plus prijs en specificaties. De foto's zijn sfeerbeelden zonder
    bijschrift, zodat ze niet als projectfoto's lezen. */
 .cards { display: grid; gap: 1.25rem; margin-top: 2rem; }
-@media (min-width: 620px) { .cards { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 980px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 560px) { .cards { grid-template-columns: 1fr 1fr; } }
 .card { border: 1px solid var(--line); background: var(--paper); display: flex; flex-direction: column; }
 .card .kaart-foto { margin: 0; }
-.card .kaart-foto img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-bottom: 1px solid var(--line); }
-.card .kaart-inhoud { padding: 1.3rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.8rem; }
+.card .kaart-foto img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-bottom: 1px solid var(--line); }
+.card .kaart-inhoud { padding: 1.4rem 1.5rem 1.7rem; display: flex; flex-direction: column; gap: 0.8rem; flex: 1; }
 .card h3 { font-size: 1.6rem; line-height: 1.1; }
 .card .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.3rem; color: var(--green); }
 .card .prijs small { font-family: "Inter", system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); }
@@ -208,6 +207,8 @@ h2.section-h em {
 .card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .card ul li { display: flex; gap: 0.6rem; font-size: 0.9rem; align-items: baseline; color: var(--text); }
 .card ul li::before { content: ""; width: 5px; height: 5px; flex: none; background: var(--gold); margin-top: 0.5rem; }
+.card .foot { margin-top: auto; padding-top: 0.4rem; }
+.card .foot .btn { width: 100%; justify-content: center; }
 
 /* Fotoachtergrond onder de pakketsectie: één sfeerbeeld met warme groene waas,
    de lichte kaarten drijven erop. */

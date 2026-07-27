@@ -139,6 +139,7 @@ pagina = {
         "vanafWoord": L(pk["vanafWoord"], pk_en["vanafWoord"]),
         "euroWoord": L(pk["euroWoord"], pk_en["euroWoord"]),
         "perMaand": L(pk["perMaand"], pk_en["perMaand"]),
+        "ctaTekst": L(pk["ctaTekst"], pk_en["ctaTekst"]),
         "achtergrondFoto": beeld("pakketten-achtergrond.jpg"),
     },
     "over": {

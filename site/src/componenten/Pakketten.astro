@@ -48,16 +48,16 @@ function prijsRegel(k: { prijsBedrag?: number; vanaf?: boolean }): string | null
 
         <div class="cards">
           {pakketten.kaarten.map((k) => {
-            const eigenFoto = beeldBron(k.foto, [480, 768], 2 / 3);
+            const eigenFoto = beeldBron(k.foto, [480, 860], 9 / 16);
             const standaard = kaartFotos[k.code] ?? fotoImpact;
             const prijs = prijsRegel(k);
             return (
               <div class="card">
                 <figure class="kaart-foto" aria-hidden="true">
                   {eigenFoto ? (
-                    <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 980px) 22vw, (min-width: 620px) 45vw, 92vw" loading="lazy" alt="" />
+                    <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 560px) 45vw, 92vw" loading="lazy" alt="" />
                   ) : (
-                    <Image src={standaard} widths={[480, 768]} sizes="(min-width: 980px) 22vw, (min-width: 620px) 45vw, 92vw" alt="" />
+                    <Image src={standaard} widths={[480, 860]} sizes="(min-width: 560px) 45vw, 92vw" alt="" />
                   )}
                 </figure>
                 <div class="kaart-inhoud">
@@ -69,6 +69,9 @@ function prijsRegel(k: { prijsBedrag?: number; vanaf?: boolean }): string | null
                       {k.punten.map((punt) => <li>{punt}</li>)}
                     </ul>
                   )}
+                  <div class="foot">
+                    <a href="#contact" class="btn ghost pakket-cta" data-pakket={k.naam}>{pakketten.ctaTekst}</a>
+                  </div>
                 </div>
               </div>
             );
