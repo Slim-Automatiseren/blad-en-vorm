@@ -6,8 +6,8 @@ const lijn = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 export const pijlerIconen: Record<string, string> = {
   // Blad met nerf: het ontwerp en de beplanting
   advies: `<svg ${lijn}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></svg>`,
-  // Bestelbus met grote, duidelijk zichtbare wielen (r 3 op een viewbox van 24)
-  levering: `<svg ${lijn}><path d="M13 15V5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v10"/><path d="M13 8h4.3a1 1 0 0 1 .8.4l3.1 4.1a1 1 0 0 1 .2.6V15"/><path d="M2 15h1.2"/><path d="M10.8 15h5.4"/><circle cx="7" cy="15" r="3"/><circle cx="18" cy="15" r="3"/></svg>`,
+  // Bestelbus: Lucide "truck" (MIT), met de wielen iets vergroot naar r 2,5
+  levering: `<svg ${lijn}><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h1.5"/><path d="M14 18H10"/><path d="M19.5 18h1.5a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="18" r="2.5"/></svg>`,
   // Waterdruppel: verzorging (symmetrische druppel)
   onderhoud: `<svg ${lijn}><path d="M12 2.5C10.5 5.5 6 10 6 14.5a6 6 0 0 0 12 0C18 10 13.5 5.5 12 2.5Z"/></svg>`,
   // Twee pijlen rond: vervanging

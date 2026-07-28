@@ -34,10 +34,23 @@
   .rail .rail-note { margin-top: 0.8rem; color: var(--muted); font-size: 0.9rem; max-width: 22ch; }
 
   h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-spacing: -0.01em; }
+  /* Gouden onderstreping als achtergrondlijn, tekent zichzelf bij eerste vertoning.
+     Zonder JS en bij reduced-motion staat hij gewoon volledig. */
   h2.section-h em {
     font-style: italic; color: inherit;
-    text-decoration: underline; text-decoration-color: var(--gold);
-    text-decoration-thickness: 2px; text-underline-offset: 0.14em;
+    background-image: linear-gradient(var(--gold), var(--gold));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 2px;
+    padding-bottom: 0.14em;
+  }
+  .js h2.section-h em {
+    background-size: 0% 2px;
+    transition: background-size 0.9s var(--ease) 0.35s;
+  }
+  .js .reveal.in h2.section-h em { background-size: 100% 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    .js h2.section-h em { background-size: 100% 2px; transition: none; }
   }
   .lede { color: var(--muted); font-size: clamp(1rem, 1.9vw, 1.14rem); line-height: 1.6; max-width: 58ch; margin-top: 1.2rem; }
 
@@ -441,7 +454,7 @@
               <p>Samen bekijken we welke interieurbeplanting het beste past bij uw ruimte, wensen en uitstraling.</p>
             </div>
             <div class="d-kaart">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 15V5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v10"/><path d="M13 8h4.3a1 1 0 0 1 .8.4l3.1 4.1a1 1 0 0 1 .2.6V15"/><path d="M2 15h1.2"/><path d="M10.8 15h5.4"/><circle cx="7" cy="15" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h1.5"/><path d="M14 18H10"/><path d="M19.5 18h1.5a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="18" r="2.5"/></svg>
               <h3>Levering &amp; Plaatsing</h3>
               <p>Professioneel geleverd en zorgvuldig geplaatst, met oog voor ieder detail.</p>
             </div>
