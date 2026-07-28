@@ -21,12 +21,12 @@
     "items": [
       { "label": "Boutique hotel", "beeldSlot": "hotel", "rij": 1, "alt": "Boutique hotel lounge corner: two linen armchairs around a walnut table, a kentia palm and a group of plants on an oak sideboard" },
       { "label": "Estate agency", "beeldSlot": "makelaar", "rij": 1, "alt": "Estate agency office: oak desk with two light chairs, a fiddle-leaf fig by the window and plants on a walnut sideboard" },
-      { "label": "Executive office", "beeldSlot": "directie", "rij": 1, "alt": "Meeting corner with a walnut table, wool chairs and a large ficus in a ceramic pot" },
-      { "label": "Wellness", "beeldSlot": "praktijk", "rij": 1, "alt": "Two linen armchairs with a side table and kentia palm in a calm waiting area" },
-      { "label": "Reception area", "beeldSlot": "ontvangst", "rij": 2, "alt": "Oak waiting bench with linen cushions, next to a kentia palm and a zamioculcas" },
+      { "label": "Executive office", "beeldSlot": "directie", "rij": 1, "alt": "Director's office with a large oak desk, a bookcase and a large ficus by the window with a harbour view" },
+      { "label": "Wellness", "beeldSlot": "praktijk", "rij": 1, "alt": "Wellness area with wooden loungers and towels, a sauna, a plunge pool and lush greenery" },
+      { "label": "Reception area", "beeldSlot": "ontvangst", "rij": 2, "alt": "Reception area with an oak desk, a coat rack, armchairs and plants in pots" },
       { "label": "Villa", "beeldSlot": "villa", "rij": 2, "alt": "Villa living room: light sofa, walnut coffee table and kentia palms by a window with garden view" },
-      { "label": "Dental practice", "beeldSlot": "tandarts", "rij": 2, "alt": "Practice waiting area with an oak bench, frosted window and plants in ceramic pots" },
-      { "label": "Lobby", "beeldSlot": "lobby", "rij": 2, "alt": "Double-height lobby with an oak desk, travertine floor and a group of kentia palms in large ceramic pots" }
+      { "label": "Dental practice", "beeldSlot": "tandarts", "rij": 2, "alt": "Dental practice waiting room with a row of chairs, a reception counter in the background and plants in pots" },
+      { "label": "Lobby", "beeldSlot": "lobby", "rij": 2, "alt": "Double-height office lobby with a terrazzo floor, a walnut desk and a group of kentia palms in large pots" }
     ]
   },
   "filosofie": {

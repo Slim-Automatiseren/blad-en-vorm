@@ -21,12 +21,12 @@
     "items": [
       { "label": "Boutique hotel", "beeldSlot": "hotel", "rij": 1, "alt": "Loungehoek van een boutique hotel: twee linnen fauteuils rond een walnoten tafel, een kentiapalm en een groep planten op een eiken dressoir" },
       { "label": "Makelaarskantoor", "beeldSlot": "makelaar", "rij": 1, "alt": "Kantoor van een makelaar: eiken bureau met twee lichte stoelen, een vioolbladplant bij het raam en planten op een walnoten dressoir" },
-      { "label": "Directiekantoor", "beeldSlot": "directie", "rij": 1, "alt": "Vergaderhoek met walnoten tafel, wollen stoelen en een grote ficus in een keramische pot" },
-      { "label": "Wellness", "beeldSlot": "praktijk", "rij": 1, "alt": "Twee linnen fauteuils met bijzettafel en kentiapalm in een rustige wachtruimte" },
-      { "label": "Ontvangstruimte", "beeldSlot": "ontvangst", "rij": 2, "alt": "Wachtbank van eikenhout met linnen kussens, ernaast een kentiapalm en een zamioculcas" },
+      { "label": "Directiekantoor", "beeldSlot": "directie", "rij": 1, "alt": "Directiekantoor met een groot eiken bureau, een boekenkast en een grote ficus bij het raam met havenzicht" },
+      { "label": "Wellness", "beeldSlot": "praktijk", "rij": 1, "alt": "Wellnessruimte met houten ligbedden met handdoeken, een sauna, een dompelbad en veel groen" },
+      { "label": "Ontvangstruimte", "beeldSlot": "ontvangst", "rij": 2, "alt": "Ontvangstruimte met een eiken balie, een jassenrek, fauteuils en planten in potten" },
       { "label": "Villa", "beeldSlot": "villa", "rij": 2, "alt": "Woonkamer van een villa: lichte bank, walnoten salontafel en kentiapalmen bij een raam met tuinzicht" },
-      { "label": "Tandartspraktijk", "beeldSlot": "tandarts", "rij": 2, "alt": "Wachtruimte van een praktijk met eiken bank, matglazen raam en planten in keramische potten" },
-      { "label": "Lobby", "beeldSlot": "lobby", "rij": 2, "alt": "Dubbelhoge lobby met eiken balie, travertin vloer en een groep kentiapalmen in grote keramische potten" }
+      { "label": "Tandartspraktijk", "beeldSlot": "tandarts", "rij": 2, "alt": "Wachtkamer van een tandartspraktijk met een rij stoelen, een balie op de achtergrond en planten in potten" },
+      { "label": "Lobby", "beeldSlot": "lobby", "rij": 2, "alt": "Dubbelhoge kantoorlobby met een terrazzovloer, een walnoten balie en een groep kentiapalmen in grote potten" }
     ]
   },
   "filosofie": {
