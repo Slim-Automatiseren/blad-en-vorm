@@ -26,11 +26,12 @@ h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-sp
    naar 100% zodra de sectie voor het eerst in beeld komt (.reveal.in). */
 h2.section-h em {
   font-style: italic; color: inherit;
+  /* Lijn zit iets boven de onderkant, zodat de staarten van p en j eroverheen
+     vallen. De achtergrondlijn schildert achter de tekst, dus dat gebeurt vanzelf. */
   background-image: linear-gradient(var(--gold), var(--gold));
   background-repeat: no-repeat;
-  background-position: 0 100%;
+  background-position: 0 84%;
   background-size: 100% 2px;
-  padding-bottom: 0.14em;
 }
 .js h2.section-h em {
   background-size: 0% 2px;
