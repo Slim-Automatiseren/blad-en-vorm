@@ -236,14 +236,16 @@ dialog.lightbox[data-open]::backdrop { opacity: 1; }
 }
 .lb-sluit svg, .lb-vorige svg, .lb-volgende svg { width: 18px; height: 18px; }
 .lb-sluit { top: 0.6rem; right: 0.6rem; }
-/* Op smalle schermen liggen de pijlen op de onderrand van de foto, zodat ze
-   binnen beeld blijven; vanaf 700px schuiven ze naar buiten de foto. */
+/* De pijlen liggen altijd óp de foto, nooit erbuiten: buiten de fotorand
+   vallen ze op gewone laptopbreedtes buiten het venster (90vw foto plus
+   tweemaal een knop past niet). Smal: op de onderrand; vanaf 700px verticaal
+   gecentreerd op de zijranden. */
 .lb-vorige { left: 0.6rem; bottom: 0.6rem; }
 .lb-volgende { right: 0.6rem; bottom: 0.6rem; }
 @media (min-width: 700px) {
   .lb-vorige, .lb-volgende { top: 50%; bottom: auto; transform: translateY(-50%); }
-  .lb-vorige { left: -58px; }
-  .lb-volgende { right: -58px; }
+  .lb-vorige { left: 0.8rem; }
+  .lb-volgende { right: 0.8rem; }
 }
 
 /* Zichtbare focus in de bestaande stijl van de site, maar in goud-licht:
