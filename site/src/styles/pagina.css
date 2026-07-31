@@ -55,10 +55,15 @@ h2.section-h em {
 .hero-inhoud { max-width: 620px; }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; }
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 62%; display: block; }
-/* Tekstzone: dekkend papier tot voorbij de tekstkolom, daarna uitlopend over het beeld. */
+/* Tekstzone: dekkend papier tot voorbij de tekstkolom (vaste 640px), daarna
+   uitlopend over het beeld. De vervolgstappen hebben een pixel-ondergrens via
+   max(): puur procentuele stops komen op schermen onder circa 1240px vóór de
+   640px te liggen en dan klapt de gradient in elkaar tot een harde rand. De
+   regel erboven is de terugval voor browsers zonder max() in kleurstops. */
 .hero-bg::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.6) 52%, rgba(247, 244, 239, 0) 74%);
+  background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.85) 760px, rgba(247, 244, 239, 0.5) 900px, rgba(247, 244, 239, 0) 1100px);
+  background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.85) max(44%, 760px), rgba(247, 244, 239, 0.5) max(52%, 900px), rgba(247, 244, 239, 0) max(74%, 1100px));
 }
 @media (min-width: 960px) { .hero { min-height: clamp(560px, 80vh, 820px); } }
 @media (max-width: 959px) {
