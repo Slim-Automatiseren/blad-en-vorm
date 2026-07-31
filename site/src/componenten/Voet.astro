@@ -6,8 +6,12 @@ interface Props {
   instellingen: Inhoud['instellingen'];
   labelWerkgebied: string;
   taal: 'nl' | 'en';
+  /* Doelen van de taalwissel; op een subpagina wijzen ze naar de tegenhanger
+     van die pagina in plaats van naar de home */
+  linkNl?: string;
+  linkEn?: string;
 }
-const { instellingen, labelWerkgebied, taal } = Astro.props;
+const { instellingen, labelWerkgebied, taal, linkNl = '/', linkEn = '/en/' } = Astro.props;
 
 /* Werkgebied in drie rustige regels in plaats van één lange omslaande regel.
    De plaatsen blijven in het CMS één veld met puntjes ertussen. */
@@ -38,7 +42,7 @@ const rijen = [0, 1, 2]
     <div class="onder">
       <span>{instellingen.kvkRegel}</span>
       <span>
-        <a href="#">{instellingen.privacyLabel}</a>
+        <a href={taal === 'nl' ? '/privacy/' : '/en/privacy/'}>{instellingen.privacyLabel}</a>
         {instellingen.linkedinUrl && (
           <>
             {' · '}
@@ -56,9 +60,9 @@ const rijen = [0, 1, 2]
           </>
         )}
         {' · '}
-        {taal === 'nl' ? <span aria-current="page">NL</span> : <a href="/">NL</a>}
+        {taal === 'nl' ? <span aria-current="page">NL</span> : <a href={linkNl}>NL</a>}
         {' / '}
-        {taal === 'en' ? <span aria-current="page">EN</span> : <a href="/en/">EN</a>}
+        {taal === 'en' ? <span aria-current="page">EN</span> : <a href={linkEn}>EN</a>}
       </span>
     </div>
   </div>

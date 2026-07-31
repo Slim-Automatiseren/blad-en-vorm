@@ -6,8 +6,12 @@ interface Props {
   ctaLang: string;
   ctaKort: string;
   taal: 'nl' | 'en';
+  /* Doelen van de taalwissel; op een subpagina wijzen ze naar de tegenhanger
+     van die pagina in plaats van naar de home */
+  linkNl?: string;
+  linkEn?: string;
 }
-const { nav, ctaLang, ctaKort, taal } = Astro.props;
+const { nav, ctaLang, ctaKort, taal, linkNl = '/', linkEn = '/en/' } = Astro.props;
 ---
 <a class="skip" href="#hoofd">Naar de inhoud</a>
 
@@ -22,9 +26,9 @@ const { nav, ctaLang, ctaKort, taal } = Astro.props;
       <a href="#diensten" class="only-wide">{nav.diensten}</a>
       <a href="#contact" class="only-wide">{nav.contact}</a>
       <span class="taalwissel" aria-label="Taalkeuze">
-        {taal === 'nl' ? <span aria-current="page">NL</span> : <a href="/">NL</a>}
+        {taal === 'nl' ? <span aria-current="page">NL</span> : <a href={linkNl}>NL</a>}
         <span aria-hidden="true">/</span>
-        {taal === 'en' ? <span aria-current="page">EN</span> : <a href="/en/">EN</a>}
+        {taal === 'en' ? <span aria-current="page">EN</span> : <a href={linkEn}>EN</a>}
       </span>
       <a href="#contact" class="btn"><span class="lang">{ctaLang}</span><span class="kort">{ctaKort}</span></a>
     </nav>

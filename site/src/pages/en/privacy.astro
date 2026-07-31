@@ -1,0 +1,109 @@
+---
+import Basis from '../../layouts/Basis.astro';
+import Nav from '../../componenten/Nav.astro';
+import Voet from '../../componenten/Voet.astro';
+import { haalInhoud } from '../../lib/inhoud';
+
+/* Engelse tegenhanger van privacy.astro; inhoudelijk gelijk houden.
+   Juridische pagina, bewust statisch in de code en niet in het CMS. */
+const inhoud = await haalInhoud('en');
+---
+<Basis
+  titel="Privacy statement · Blad & Vorm"
+  beschrijving="How Blad & Vorm handles your data: what we process, why, how long we keep it and which rights you have."
+>
+  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} taal="en" linkNl="/privacy/" />
+
+  <main id="hoofd">
+    <section class="cream">
+      <div class="wrap prose">
+        <span class="label">Privacy</span>
+        <h1 class="section-h kop-na-label">Privacy statement</h1>
+        <p class="lede">
+          Blad &amp; Vorm handles your data with care. This page explains which data we process,
+          why we do so, how long we keep it and which rights you have. Last updated on
+          31 July 2026.
+        </p>
+
+        <h2>Who we are</h2>
+        <p>
+          Blad &amp; Vorm is a trade name of Hilforce, located at Anemonenweg 30, 2241 XL
+          Wassenaar, the Netherlands, registered with the Dutch Chamber of Commerce under number
+          42033993, VAT ID NL005445661B23. Hilforce is the controller for the processing described
+          in this statement. For privacy questions, email
+          <a href="mailto:info@bladvorm.nl">info@bladvorm.nl</a>.
+        </p>
+
+        <h2>Which data we process</h2>
+        <p>
+          When you complete the contact form, we process your name, email address and message,
+          and, if you provide them, your company name, phone number and package of interest. When
+          you contact us by email, phone or WhatsApp, we process the details you share with us.
+          In addition, our hosting provider records technical data in security logs when you
+          visit the website, such as your IP address and browser type.
+        </p>
+
+        <h2>What we use your data for</h2>
+        <p>
+          We use your data to respond to your enquiry, schedule a Site Consultation and prepare a
+          proposal. The legal basis is the performance of a contract or taking steps at your
+          request prior to entering into one (Article 6(1)(b) GDPR). The technical logs serve the
+          security and proper functioning of the website (legitimate interest, Article 6(1)(f)
+          GDPR). We do not use your data for automated decision-making and we never sell it.
+        </p>
+
+        <h2>How long we keep your data</h2>
+        <p>
+          We delete contact form submissions no later than twelve months after they have been
+          handled. If you become a client, we keep the data belonging to the agreement for as
+          long as the law requires; for administrative records that is seven years.
+        </p>
+
+        <h2>Who else has access</h2>
+        <p>
+          We only share your data with parties needed to run the website and our communication:
+          Netlify (website hosting and contact form processing), Sanity (management of the texts
+          and photos on the website) and our email provider. Netlify and Sanity are American
+          companies; transfers to the United States take place under the EU-US Data Privacy
+          Framework or the European standard contractual clauses. We do not share your data with
+          advertising parties.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          This website does not place cookies and does not use tracking software. Should that
+          change in the future, for example through visitor statistics, we will update this
+          statement and, where required, ask for your consent first.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          You have the right to access your data, have it corrected or deleted, restrict
+          processing, object, and receive your data in a portable format. Email
+          <a href="mailto:info@bladvorm.nl">info@bladvorm.nl</a> and you will receive a response
+          within one month. If you are not satisfied with how we handle your data, you can file a
+          complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          If anything changes in how the website works or in the services we use, we will update
+          this statement. The current version is always available on this page.
+        </p>
+
+        <a class="btn ghost terug" href="/en/">Back to the page</a>
+      </div>
+    </section>
+  </main>
+
+  <Voet instellingen={inhoud.instellingen} labelWerkgebied={inhoud.contact.labelWerkgebied} taal="en" linkNl="/privacy/" />
+</Basis>
+
+<style>
+  /* Rustige leesbreedte voor een tekstpagina; koppen volgen de globale stijl */
+  .prose { max-width: 46rem; }
+  .prose h2 { font-size: 1.45rem; margin: 2.2rem 0 0.6rem; }
+  .prose p { color: var(--text); line-height: 1.65; }
+  .prose p a { color: var(--green); }
+  .prose .terug { display: inline-flex; margin-top: 2.6rem; }
+</style>
