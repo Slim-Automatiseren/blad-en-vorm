@@ -57,9 +57,9 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
   <div class="marquee rechts reveal">
     <div class="track">
       <div class="groep">
-        {rij1.map((item) => (
+        {rij1.map((item, i) => (
           <figure class="m-kaart">
-            <button type="button" class="m-zoom" aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
+            <button type="button" class="m-zoom" data-index={i} aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
               {item.eigenFoto ? (
                 <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
               ) : (
@@ -70,14 +70,21 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
           </figure>
         ))}
       </div>
+      <!-- De duplicaatgroep loopt gewoon mee in beeld, dus voor de bezoeker is
+           niet te zien welke kaart echt is en welke de kopie. Daarom zijn ook
+           de kopieën klikbaar (zelfde data-index als het origineel), maar met
+           tabindex -1 en binnen aria-hidden, zodat toetsenbord en screenreader
+           alleen de echte set tegenkomen. -->
       <div class="groep" aria-hidden="true">
-        {rij1.map((item) => (
+        {rij1.map((item, i) => (
           <figure class="m-kaart">
-            {item.eigenFoto ? (
-              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} alt="" />
-            ) : (
-              <Image src={item.beeld} widths={[480, 768]} alt="" />
-            )}
+            <button type="button" class="m-zoom" data-index={i} tabindex="-1">
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} alt="" />
+              ) : (
+                <Image src={item.beeld} widths={[480, 768]} alt="" />
+              )}
+            </button>
             <figcaption>{item.label}</figcaption>
           </figure>
         ))}
@@ -88,9 +95,9 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
   <div class="marquee links reveal">
     <div class="track">
       <div class="groep">
-        {rij2.map((item) => (
+        {rij2.map((item, i) => (
           <figure class="m-kaart">
-            <button type="button" class="m-zoom" aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
+            <button type="button" class="m-zoom" data-index={rij1.length + i} aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
               {item.eigenFoto ? (
                 <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
               ) : (
@@ -102,13 +109,15 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
         ))}
       </div>
       <div class="groep" aria-hidden="true">
-        {rij2.map((item) => (
+        {rij2.map((item, i) => (
           <figure class="m-kaart">
-            {item.eigenFoto ? (
-              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} alt="" />
-            ) : (
-              <Image src={item.beeld} widths={[480, 768]} alt="" />
-            )}
+            <button type="button" class="m-zoom" data-index={rij1.length + i} tabindex="-1">
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} alt="" />
+              ) : (
+                <Image src={item.beeld} widths={[480, 768]} alt="" />
+              )}
+            </button>
             <figcaption>{item.label}</figcaption>
           </figure>
         ))}
@@ -147,7 +156,11 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
   if (sectie && dialoog instanceof HTMLDialogElement) {
     sectie.classList.add('js');
 
-    const fotos = Array.from(sectie.querySelectorAll<HTMLButtonElement>('.m-zoom'));
+    /* Alleen de echte set (buiten aria-hidden) vormt de fotolijst; de kopieën
+       in de duplicaatgroepen verwijzen via data-index naar deze lijst. */
+    const fotos = Array.from(
+      sectie.querySelectorAll<HTMLButtonElement>('.groep:not([aria-hidden]) .m-zoom'),
+    );
     const lbFoto = document.getElementById('lbFoto');
     const bijschrift = document.getElementById('lbBijschrift');
     const stilstaan = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -211,7 +224,13 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
       }, 320);
     }
 
-    fotos.forEach((knop, i) => knop.addEventListener('click', () => openFoto(i)));
+    /* Alle kaarten klikbaar, ook de kopieën in de duplicaatgroepen: in een
+       lopende strook is voor de bezoeker niet te zien welke kaart de echte is.
+       Een klik op een kopie opent via data-index de echte foto, zodat ook de
+       focus daar terugkeert en niet in een aria-hidden groep belandt. */
+    sectie.querySelectorAll<HTMLButtonElement>('.m-zoom').forEach((knop) => {
+      knop.addEventListener('click', () => openFoto(Number(knop.dataset.index)));
+    });
 
     dialoog.querySelector('.lb-sluit')?.addEventListener('click', sluit);
     dialoog.querySelector('.lb-vorige')?.addEventListener('click', () => toon(huidige - 1));
