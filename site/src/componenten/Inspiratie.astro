@@ -59,11 +59,13 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
       <div class="groep">
         {rij1.map((item) => (
           <figure class="m-kaart">
-            {item.eigenFoto ? (
-              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
-            ) : (
-              <Image src={item.beeld} widths={[480, 768]} sizes="(min-width: 880px) 30vw, 60vw" alt={item.alt} />
-            )}
+            <button type="button" class="m-zoom" aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
+              ) : (
+                <Image src={item.beeld} widths={[480, 768]} sizes="(min-width: 880px) 30vw, 60vw" alt={item.alt} />
+              )}
+            </button>
             <figcaption>{item.label}</figcaption>
           </figure>
         ))}
@@ -88,11 +90,13 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
       <div class="groep">
         {rij2.map((item) => (
           <figure class="m-kaart">
-            {item.eigenFoto ? (
-              <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
-            ) : (
-              <Image src={item.beeld} widths={[480, 768]} sizes="(min-width: 880px) 30vw, 60vw" alt={item.alt} />
-            )}
+            <button type="button" class="m-zoom" aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
+              ) : (
+                <Image src={item.beeld} widths={[480, 768]} sizes="(min-width: 880px) 30vw, 60vw" alt={item.alt} />
+              )}
+            </button>
             <figcaption>{item.label}</figcaption>
           </figure>
         ))}
@@ -111,4 +115,127 @@ const rij2 = verrijk(inspiratie.items.filter((i) => i.rij === 2));
       </div>
     </div>
   </div>
+
+  <!-- Eén lightbox-dialoog voor alle foto's van beide stroken. Bij openen wordt
+       de aangeklikte afbeelding hierin gekloond, zie het script hieronder. -->
+  <dialog id="inspLightbox" class="lightbox" aria-label="Vergrote foto">
+    <div class="lb-inhoud">
+      <button type="button" class="lb-sluit" aria-label="Sluiten">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+      </button>
+      <button type="button" class="lb-vorige" aria-label="Vorige foto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+      </button>
+      <button type="button" class="lb-volgende" aria-label="Volgende foto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+      </button>
+      <div class="lb-foto" id="lbFoto"></div>
+    </div>
+    <p class="lb-bijschrift" id="lbBijschrift"></p>
+  </dialog>
 </section>
+
+<script>
+  /* Lightbox voor de inspiratiefoto's. Eén dialoog voor alle foto's van beide
+     stroken; bij openen wordt de aangeklikte <img> gekloond (srcset en alt
+     gaan zo vanzelf mee). Zonder JS blijven het gewoon knoppen zonder gevolg:
+     de sectie krijgt pas de klasse "js" zodra dit script echt draait, en pas
+     dan krijgen de kaarten de zoom-cursor en de klikbaarheids-styling. */
+  const sectie = document.getElementById('inspiratie');
+  const dialoog = document.getElementById('inspLightbox');
+
+  if (sectie && dialoog instanceof HTMLDialogElement) {
+    sectie.classList.add('js');
+
+    const fotos = Array.from(sectie.querySelectorAll<HTMLButtonElement>('.m-zoom'));
+    const lbFoto = document.getElementById('lbFoto');
+    const bijschrift = document.getElementById('lbBijschrift');
+    const stilstaan = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let huidige = 0;
+    let sluitTimer: ReturnType<typeof setTimeout> | undefined;
+    let sluitKlaar: ((e: TransitionEvent) => void) | undefined;
+
+    function toon(i: number) {
+      huidige = (i + fotos.length) % fotos.length;
+      const bron = fotos[huidige].querySelector('img');
+      if (!bron || !lbFoto) return;
+      const kloon = bron.cloneNode(true) as HTMLImageElement;
+      kloon.loading = 'eager';
+      kloon.sizes = '90vw';
+      lbFoto.replaceChildren(kloon);
+      if (bijschrift) bijschrift.textContent = fotos[huidige].dataset.label ?? '';
+    }
+
+    function openFoto(i: number) {
+      /* Een nog lopende sluit-overgang afbreken, anders sluit die de zojuist
+         geopende dialoog alsnog (transitionend van de fade-in, of de timer) */
+      if (sluitKlaar) {
+        dialoog.removeEventListener('transitionend', sluitKlaar);
+        sluitKlaar = undefined;
+      }
+      clearTimeout(sluitTimer);
+      toon(i);
+      fotos[huidige].focus({ preventScroll: true });
+      if (!dialoog.open) dialoog.showModal();
+      if (stilstaan()) {
+        dialoog.dataset.open = 'true';
+      } else {
+        /* Dubbele rAF, zodat de begintoestand (opacity 0) eerst echt getekend
+           is voordat de overgang naar 1 in gang wordt gezet. */
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            dialoog.dataset.open = 'true';
+          });
+        });
+      }
+    }
+
+    function sluit() {
+      delete dialoog.dataset.open;
+      if (stilstaan()) {
+        dialoog.close();
+        return;
+      }
+      sluitKlaar = (e: TransitionEvent) => {
+        if (e.target !== dialoog || e.propertyName !== 'opacity') return;
+        if (sluitKlaar) dialoog.removeEventListener('transitionend', sluitKlaar);
+        sluitKlaar = undefined;
+        if (dialoog.open) dialoog.close();
+      };
+      dialoog.addEventListener('transitionend', sluitKlaar);
+      /* Veiligheidsnet: mocht transitionend om wat voor reden niet vuren,
+         dan sluit de dialoog alsnog. */
+      sluitTimer = setTimeout(() => {
+        if (dialoog.open) dialoog.close();
+      }, 320);
+    }
+
+    fotos.forEach((knop, i) => knop.addEventListener('click', () => openFoto(i)));
+
+    dialoog.querySelector('.lb-sluit')?.addEventListener('click', sluit);
+    dialoog.querySelector('.lb-vorige')?.addEventListener('click', () => toon(huidige - 1));
+    dialoog.querySelector('.lb-volgende')?.addEventListener('click', () => toon(huidige + 1));
+
+    /* Klik op de foto zelf sluit ook: tweede klik sluit, wens van de klant */
+    lbFoto?.addEventListener('click', sluit);
+
+    /* Klik buiten de foto, dus ook de echte backdrop, sluit. Die klikken
+       hebben de dialoog zelf als target, nooit een kind-element. */
+    dialoog.addEventListener('click', (e) => {
+      if (e.target === dialoog) sluit();
+    });
+
+    dialoog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') toon(huidige + 1);
+      if (e.key === 'ArrowLeft') toon(huidige - 1);
+    });
+
+    /* Escape sluit al native; onderscheppen zodat ook dat via de nette
+       fade-out verloopt in plaats van abrupt te verdwijnen. */
+    dialoog.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      sluit();
+    });
+  }
+</script>

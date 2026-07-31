@@ -28,18 +28,6 @@ export const pakket = defineType({
         'Sfeerbeeld bovenin de kaart; de reeks toont per pakket iets meer groen. Leeg veld betekent: standaardfoto uit de site.',
     }),
     defineField({
-      name: 'prijsBedrag',
-      title: 'Prijs per maand (alleen het getal, in euro)',
-      type: 'number',
-      validation: (regel) => regel.positive(),
-    }),
-    defineField({
-      name: 'vanaf',
-      title: 'Toon als "vanaf"-prijs',
-      type: 'boolean',
-      initialValue: false,
-    }),
-    defineField({
       name: 'beschrijving',
       title: 'Beschrijving',
       type: 'taalTekst',
@@ -63,10 +51,9 @@ export const pakket = defineType({
     { name: 'volgorde', title: 'Volgorde', by: [{ field: 'volgorde', direction: 'asc' }] },
   ],
   preview: {
-    select: { code: 'code', naam: 'naam', prijs: 'prijsBedrag' },
-    prepare: ({ code, naam, prijs }) => ({
+    select: { code: 'code', naam: 'naam' },
+    prepare: ({ code, naam }) => ({
       title: `${code ?? ''} ${naam ?? ''}`.trim(),
-      subtitle: prijs ? `${prijs} euro per maand` : undefined,
     }),
   },
 });

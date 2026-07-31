@@ -9,8 +9,8 @@ import { haalInhoud } from '../lib/inhoud';
 const inhoud = await haalInhoud('nl');
 const f = inhoud.contact.formulier;
 ---
-<Basis titel="Dank voor uw bericht · Blad & Vorm" beschrijving={f.succesTekst} nooitIndexeren>
-  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} />
+<Basis titel="Bedankt voor uw aanvraag · Blad & Vorm" beschrijving={f.succesTekst} nooitIndexeren>
+  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} taal="nl" />
 
   <main id="hoofd">
     <section class="bedankt">

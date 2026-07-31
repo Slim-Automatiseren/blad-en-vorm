@@ -1,4 +1,5 @@
 ---
+import { linkedinIcoon, instagramIcoon } from '../lib/iconen';
 import type { Inhoud } from '../lib/inhoud';
 
 interface Props {
@@ -38,8 +39,22 @@ const rijen = [0, 1, 2]
       <span>{instellingen.kvkRegel}</span>
       <span>
         <a href="#">{instellingen.privacyLabel}</a>
-        {instellingen.linkedinUrl && <> · <a href={instellingen.linkedinUrl} rel="noopener">LinkedIn</a></>}
-        {instellingen.instagramUrl && <> · <a href={instellingen.instagramUrl} rel="noopener">Instagram</a></>}
+        {instellingen.linkedinUrl && (
+          <>
+            {' · '}
+            <a href={instellingen.linkedinUrl} rel="noopener" class="sociaal" aria-label="LinkedIn">
+              <Fragment set:html={linkedinIcoon} />
+            </a>
+          </>
+        )}
+        {instellingen.instagramUrl && (
+          <>
+            {' · '}
+            <a href={instellingen.instagramUrl} rel="noopener" class="sociaal" aria-label="Instagram">
+              <Fragment set:html={instagramIcoon} />
+            </a>
+          </>
+        )}
         {' · '}
         {taal === 'nl' ? <span aria-current="page">NL</span> : <a href="/">NL</a>}
         {' / '}
@@ -48,3 +63,17 @@ const rijen = [0, 1, 2]
     </div>
   </div>
 </footer>
+
+<style>
+  /* Sociale iconen op de hoogte van de omliggende tekst in de onderregel */
+  footer.site .onder a.sociaal {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+  /* :global omdat de svg via set:html binnenkomt en Astro die niet scopet */
+  footer.site .onder a.sociaal :global(svg) {
+    width: 15px;
+    height: 15px;
+  }
+</style>

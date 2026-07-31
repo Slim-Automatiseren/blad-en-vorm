@@ -23,12 +23,6 @@ const kaartFotos: Record<string, ImageMetadata> = {
   L: fotoSignature,
   XL: fotoPrestige,
 };
-
-function prijsRegel(k: { prijsBedrag?: number; vanaf?: boolean }): string | null {
-  if (!k.prijsBedrag) return null;
-  const vanaf = k.vanaf ? `${pakketten.vanafWoord} ` : '';
-  return `${vanaf}${k.prijsBedrag} ${pakketten.euroWoord}`;
-}
 ---
 <section id="pakketten" class="foto-band">
   {eigenAchtergrond ? (
@@ -47,7 +41,6 @@ function prijsRegel(k: { prijsBedrag?: number; vanaf?: boolean }): string | null
       {pakketten.kaarten.map((k) => {
         const eigenFoto = beeldBron(k.foto, [400, 640], 2 / 3);
         const standaard = kaartFotos[k.code] ?? fotoImpact;
-        const prijs = prijsRegel(k);
         return (
           <div class="card">
             <figure class="kaart-foto" aria-hidden="true">
@@ -59,7 +52,6 @@ function prijsRegel(k: { prijsBedrag?: number; vanaf?: boolean }): string | null
             </figure>
             <div class="kaart-inhoud">
               <h3>{k.naam}</h3>
-              {prijs && <span class="prijs">{prijs} <small>{pakketten.perMaand}</small></span>}
               <p class="desc">{k.beschrijving}</p>
               {k.punten && k.punten.length > 0 && (
                 <ul>
@@ -74,5 +66,32 @@ function prijsRegel(k: { prijsBedrag?: number; vanaf?: boolean }): string | null
         );
       })}
     </div>
+
+    <div class="prijs-blok reveal">
+      <p class="prijs-vanaf">{pakketten.prijsVanaf}</p>
+      <p class="prijs-toelichting">{pakketten.prijsToelichting}</p>
+    </div>
   </div>
 </section>
+
+<style>
+  /* Eén gecentreerde prijsindicatie onder de kaarten in plaats van een prijs per
+     kaart (besluit Jordy 31 juli). Kleuren volgen dezelfde crème-op-scrim-regel
+     als de kop en lede van deze sectie in pagina.css (.foto-band). */
+  .prijs-blok {
+    margin-top: 2.6rem;
+    text-align: center;
+  }
+  .prijs-blok .prijs-vanaf {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+    color: var(--paper);
+  }
+  .prijs-blok .prijs-toelichting {
+    margin-top: 0.4rem;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.92rem;
+    color: rgba(247, 244, 239, 0.78);
+  }
+</style>

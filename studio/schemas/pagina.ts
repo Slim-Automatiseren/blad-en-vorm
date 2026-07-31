@@ -37,7 +37,6 @@ export const pagina = defineType({
     { name: 'inspiratie', title: 'Inspiratie' },
     { name: 'filosofie', title: 'Filosofie' },
     { name: 'diensten', title: 'Diensten' },
-    { name: 'werkwijze', title: 'Werkwijze' },
     { name: 'inspiratieboek', title: 'Inspiration Book' },
     { name: 'pakketten', title: 'Pakketten' },
     { name: 'over', title: 'Over' },
@@ -161,31 +160,6 @@ export const pagina = defineType({
       ],
     }),
     defineField({
-      name: 'werkwijze',
-      title: 'Werkwijze',
-      type: 'object',
-      group: 'werkwijze',
-      fields: [
-        s('railLabel', 'Label in de linkerkolom'),
-        s('railNote', 'Notitie in de linkerkolom'),
-        s('kop', 'Kop'),
-        defineField({
-          name: 'stappen',
-          title: 'De vier stappen (nummering gaat vanzelf)',
-          type: 'array',
-          of: [
-            defineArrayMember({
-              name: 'stap',
-              title: 'Stap',
-              type: 'object',
-              fields: [s('titel', 'Titel'), s('tekst', 'Tekst')],
-              preview: { select: { title: 'titel.nl' } },
-            }),
-          ],
-        }),
-      ],
-    }),
-    defineField({
       name: 'inspiratieboek',
       title: 'Inspiration Book',
       type: 'object',
@@ -211,9 +185,8 @@ export const pagina = defineType({
         s('railLabel', 'Label in de linkerkolom'),
         s('railNote', 'Notitie in de linkerkolom'),
         s('kop', 'Kop'),
-        s('vanafWoord', 'Woord voor "vanaf" bij een vanaf-prijs'),
-        s('euroWoord', 'Woord voor de munteenheid (euro)'),
-        s('perMaand', 'Toevoeging achter de prijs (per maand)'),
+        s('prijsVanaf', 'Prijsindicatie onder de pakketkaarten'),
+        s('prijsToelichting', 'Toelichting achter de prijsindicatie'),
         s('ctaTekst', 'Knoptekst op elke pakketkaart, springt naar het formulier'),
         foto(
           'achtergrondFoto',

@@ -45,8 +45,6 @@ fil = seed["filosofie"]
 fil_en = seed_en["filosofie"]
 dst = seed["diensten"]
 dst_en = seed_en["diensten"]
-ww = seed["werkwijze"]
-ww_en = seed_en["werkwijze"]
 ib = seed["inspiratieboek"]
 ib_en = seed_en["inspiratieboek"]
 pk = seed["pakketten"]
@@ -111,20 +109,6 @@ pagina = {
             for i, kaart in enumerate(dst["kaarten"])
         ],
     },
-    "werkwijze": {
-        "railLabel": L(ww["railLabel"], ww_en["railLabel"]),
-        "railNote": L(ww["railNote"], ww_en["railNote"]),
-        "kop": L(ww["kop"], ww_en["kop"]),
-        "stappen": [
-            {
-                "_type": "stap",
-                "_key": f"stap{i}",
-                "titel": L(stap["titel"], ww_en["stappen"][i]["titel"]),
-                "tekst": L(stap["tekst"], ww_en["stappen"][i]["tekst"]),
-            }
-            for i, stap in enumerate(ww["stappen"])
-        ],
-    },
     "inspiratieboek": {
         "label": L(ib["label"], ib_en["label"]),
         "kop": L(ib["kop"], ib_en["kop"]),
@@ -136,9 +120,8 @@ pagina = {
         "railLabel": L(pk["railLabel"], pk_en["railLabel"]),
         "railNote": L(pk["railNote"], pk_en["railNote"]),
         "kop": L(pk["kop"], pk_en["kop"]),
-        "vanafWoord": L(pk["vanafWoord"], pk_en["vanafWoord"]),
-        "euroWoord": L(pk["euroWoord"], pk_en["euroWoord"]),
-        "perMaand": L(pk["perMaand"], pk_en["perMaand"]),
+        "prijsVanaf": L(pk["prijsVanaf"], pk_en["prijsVanaf"]),
+        "prijsToelichting": L(pk["prijsToelichting"], pk_en["prijsToelichting"]),
         "ctaTekst": L(pk["ctaTekst"], pk_en["ctaTekst"]),
         "achtergrondFoto": beeld("pakketten-achtergrond.jpg"),
     },
@@ -168,6 +151,7 @@ instellingen = {
     "telefoonWeergave": inst["telefoonWeergave"],
     "telefoonInternationaal": inst["telefoonInternationaal"],
     "whatsappNummer": inst["whatsappNummer"],
+    "whatsappBericht": L(inst["whatsappBericht"], inst_en["whatsappBericht"]),
     "branche": L(inst["branche"], inst_en["branche"]),
     "werkgebied": L(inst["werkgebied"], inst_en["werkgebied"]),
     "kvkRegel": L(inst["kvkRegel"], inst_en["kvkRegel"]),
@@ -197,8 +181,6 @@ for i, kaart in enumerate(pk["kaarten"]):
             "code": kaart["code"],
             "naam": kaart["naam"],
             "beschrijving": L(kaart["beschrijving"], kaart_en["beschrijving"]),
-            "prijsBedrag": kaart["prijsBedrag"],
-            "vanaf": kaart["vanaf"],
             "punten": [
                 {"_type": "taalString", "_key": f"punt{j}", **L(punt, kaart_en["punten"][j])}
                 for j, punt in enumerate(kaart["punten"])

@@ -5,8 +5,9 @@ interface Props {
   nav: Inhoud['nav'];
   ctaLang: string;
   ctaKort: string;
+  taal: 'nl' | 'en';
 }
-const { nav, ctaLang, ctaKort } = Astro.props;
+const { nav, ctaLang, ctaKort, taal } = Astro.props;
 ---
 <a class="skip" href="#hoofd">Naar de inhoud</a>
 
@@ -20,7 +21,39 @@ const { nav, ctaLang, ctaKort } = Astro.props;
       <a href="#inspiratie" class="only-wide">{nav.inspiratie}</a>
       <a href="#diensten" class="only-wide">{nav.diensten}</a>
       <a href="#contact" class="only-wide">{nav.contact}</a>
+      <span class="taalwissel" aria-label="Taalkeuze">
+        {taal === 'nl' ? <span aria-current="page">NL</span> : <a href="/">NL</a>}
+        <span aria-hidden="true">/</span>
+        {taal === 'en' ? <span aria-current="page">EN</span> : <a href="/en/">EN</a>}
+      </span>
       <a href="#contact" class="btn"><span class="lang">{ctaLang}</span><span class="kort">{ctaKort}</span></a>
     </nav>
   </div>
 </header>
+
+<style>
+  /* Taalwissel in de balk, zelfde typografie als .links maar iets gedempt
+     (kleiner en niet vetter dan de actieve taal); zichtbaar op alle
+     schermbreedtes, dus geen .only-wide. */
+  .taalwissel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+  .taalwissel a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--dur) var(--ease);
+  }
+  .taalwissel a:hover { color: var(--green); }
+  .taalwissel span[aria-current] {
+    color: var(--green);
+    font-weight: 500;
+  }
+  @media (max-width: 620px) {
+    .taalwissel { font-size: 0.72rem; gap: 0.22rem; }
+  }
+</style>

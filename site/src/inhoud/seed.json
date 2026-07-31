@@ -49,17 +49,6 @@
       { "icoon": "vervanging", "titel": "Vervanging", "tekst": "Wanneer nodig vervangen wij planten tijdig, zodat uw interieur altijd verzorgd oogt." }
     ]
   },
-  "werkwijze": {
-    "railLabel": "Werkwijze",
-    "railNote": "Vier stappen, één aanspreekpunt.",
-    "kop": "Van kennismaking tot jarenlang verzorgd.",
-    "stappen": [
-      { "titel": "Kennismaking", "tekst": "We luisteren naar uw wensen en bekijken de mogelijkheden." },
-      { "titel": "Ruimtescan", "tekst": "We beoordelen de ruimte, lichtinval en inrichting." },
-      { "titel": "Realisatie", "tekst": "We leveren en plaatsen het complete groenconcept." },
-      { "titel": "Onderhoud", "tekst": "Met periodieke verzorging blijft uw interieurbeplanting jarenlang in topconditie." }
-    ]
-  },
   "inspiratieboek": {
     "label": "Inspiration Book",
     "kop": "Iedere ruimte begint met inspiratie.",
@@ -71,41 +60,32 @@
     "railLabel": "Pakketten",
     "railNote": "Vier startpunten, ingevuld op uw ruimte.",
     "kop": "Een passende oplossing voor iedere ruimte.",
-    "vanafWoord": "vanaf",
-    "euroWoord": "euro",
-    "perMaand": "per maand",
+    "prijsVanaf": "Vanaf €149 per maand.",
+    "prijsToelichting": "Groen dat klopt, afgestemd op uw organisatie.",
     "ctaTekst": "Vraag dit pakket aan",
     "kaarten": [
       {
         "code": "S",
         "naam": "Impact",
         "beschrijving": "Een stijlvolle groene basis.",
-        "prijsBedrag": 95,
-        "vanaf": false,
         "punten": ["3 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
       },
       {
         "code": "M",
         "naam": "Corporate",
         "beschrijving": "Meer groen voor een representatieve werkomgeving.",
-        "prijsBedrag": 195,
-        "vanaf": false,
         "punten": ["5 tot 7 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
       },
       {
         "code": "L",
         "naam": "Signature",
         "beschrijving": "Waar interieurbeplanting onderdeel wordt van het interieur.",
-        "prijsBedrag": 395,
-        "vanaf": false,
         "punten": ["10 tot 15 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 2 keer per maand"]
       },
       {
         "code": "XL",
         "naam": "Prestige",
         "beschrijving": "Een compleet verzorgd groenconcept.",
-        "prijsBedrag": 695,
-        "vanaf": true,
         "punten": ["20 tot 30 planten of meer", "Hoogte 1,20 tot 2,00 m", "Onderhoud 2 keer per maand", "In overleg samengesteld"]
       }
     ]
@@ -140,15 +120,16 @@
       "knop": "Plan een Ruimtescan",
       "privacy": "Uw gegevens gebruiken we alleen om contact met u op te nemen.",
       "foutmelding": "Versturen is niet gelukt. Mail ons gerust rechtstreeks, dan reageren we alsnog snel.",
-      "succesKop": "Dank voor uw bericht.",
-      "succesTekst": "U hoort snel van ons."
+      "succesKop": "Bedankt voor uw aanvraag.",
+      "succesTekst": "Wij hebben uw bericht goed ontvangen en nemen doorgaans binnen één werkdag persoonlijk contact met u op."
     }
   },
   "instellingen": {
     "email": "info@bladvorm.nl",
-    "telefoonWeergave": "06 15 12 96 85",
-    "telefoonInternationaal": "+31615129685",
-    "whatsappNummer": "31615129685",
+    "telefoonWeergave": "06 59 13 23 12",
+    "telefoonInternationaal": "+31659132312",
+    "whatsappNummer": "31659132312",
+    "whatsappBericht": "Goedendag, ik heb de website van Blad & Vorm bekeken en ontvang graag meer informatie over de mogelijkheden.",
     "branche": "Specialist in interieurbeplanting voor bedrijven, kantoren, praktijken en stijlvolle woonomgevingen.",
     "werkgebied": "Wassenaar · Den Haag · Voorburg · Leidschendam · Voorschoten · Leiden · Oegstgeest · Warmond · Katwijk · Noordwijk",
     "kvkRegel": "Blad & Vorm is een handelsnaam van Hilforce · KvK 42033993",

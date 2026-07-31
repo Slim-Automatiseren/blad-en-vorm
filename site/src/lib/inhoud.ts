@@ -98,7 +98,6 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
     },
     filosofie: p?.filosofie ?? basis.filosofie,
     diensten: p?.dienstenSectie ?? basis.diensten,
-    werkwijze: p?.werkwijze ?? basis.werkwijze,
     inspiratieboek: p?.inspiratieboek ?? basis.inspiratieboek,
     pakketten: {
       ...basis.pakketten,

@@ -5,7 +5,6 @@ import Hero from '../componenten/Hero.astro';
 import Inspiratie from '../componenten/Inspiratie.astro';
 import Filosofie from '../componenten/Filosofie.astro';
 import Diensten from '../componenten/Diensten.astro';
-import Werkwijze from '../componenten/Werkwijze.astro';
 import InspiratieBoek from '../componenten/InspiratieBoek.astro';
 import Pakketten from '../componenten/Pakketten.astro';
 import Over from '../componenten/Over.astro';
@@ -20,14 +19,13 @@ const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
   titel="Blad & Vorm · Interieurbeplanting voor bedrijven en stijlvolle woonomgevingen"
   beschrijving="Blad & Vorm ontwerpt, levert en onderhoudt interieurbeplanting voor bedrijven en stijlvolle woonomgevingen, vanuit Wassenaar voor de regio Den Haag tot Noordwijk."
 >
-  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} />
+  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} taal="nl" />
 
   <main id="hoofd">
     <Hero hero={inhoud.hero} />
     <Inspiratie inspiratie={inhoud.inspiratie} />
     <Filosofie filosofie={inhoud.filosofie} />
     <Diensten diensten={inhoud.diensten} />
-    <Werkwijze werkwijze={inhoud.werkwijze} />
     <InspiratieBoek inspiratieboek={inhoud.inspiratieboek} />
     <Pakketten pakketten={inhoud.pakketten} />
     <Over over={inhoud.over} />

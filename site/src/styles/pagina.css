@@ -174,6 +174,83 @@ h2.section-h em {
   .marquee .groep[aria-hidden] { display: none; }
 }
 
+/* Foto's aanklikbaar: alleen de echte (niet-duplicaat) kaarten krijgen de
+   button. Reset van de standaard button-stijl, zodat hij oogt als de foto
+   zelf. Zonder JS blijft dit een gewone, niet-actieve knop: de zoom-cursor en
+   de hover-aanwijzing komen pas met de klasse "js" die het script bij
+   initialisatie op de sectie zet (progressive enhancement). */
+.m-zoom {
+  display: block; width: 100%; padding: 0; margin: 0; border: none; background: none;
+  font: inherit; color: inherit; text-align: inherit; cursor: default;
+}
+#inspiratie.js .m-zoom { cursor: zoom-in; }
+#inspiratie.js .m-zoom img { transition: opacity var(--dur) var(--ease); }
+#inspiratie.js .m-zoom:hover img, #inspiratie.js .m-zoom:focus-visible img { opacity: 0.88; }
+
+/* ---------- Lightbox ----------
+   Eén dialoog voor alle inspiratiefoto's. Fade-in en fade-out lopen op
+   opacity, gestuurd door het attribuut data-open dat het script zet; zo
+   blijft de dialoog tijdens het sluiten nog even zichtbaar voor de overgang
+   afloopt.
+   Bij prefers-reduced-motion staat de overgang uit en verschijnt/verdwijnt de
+   foto direct, zie ook de globale regel in basis.css. */
+dialog.lightbox {
+  border: none; padding: 0; background: transparent; color: var(--paper);
+  max-width: min(92vw, 1200px); max-height: 92vh;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+dialog.lightbox[data-open] { opacity: 1; }
+dialog.lightbox::backdrop {
+  background: rgba(45, 50, 29, 0.82);
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+dialog.lightbox[data-open]::backdrop { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  dialog.lightbox, dialog.lightbox::backdrop { transition: none; }
+}
+
+.lb-inhoud { position: relative; display: inline-block; }
+.lb-foto img {
+  display: block; max-width: 90vw; max-height: 78vh; width: auto; height: auto;
+  object-fit: contain; border: 1px solid rgba(247, 244, 239, 0.25); cursor: zoom-out;
+}
+.lb-bijschrift {
+  margin: 0.8rem 0 0; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(247, 244, 239, 0.75); text-align: center;
+}
+
+/* Bladerknoppen: rustige ghost-stijl, crème op donker */
+.lb-sluit, .lb-vorige, .lb-volgende {
+  position: absolute;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(247, 244, 239, 0.4); border-radius: 2px;
+  background: rgba(45, 50, 29, 0.55); color: var(--paper);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.lb-sluit:hover, .lb-vorige:hover, .lb-volgende:hover {
+  background: rgba(45, 50, 29, 0.8); border-color: var(--gold-light);
+}
+.lb-sluit svg, .lb-vorige svg, .lb-volgende svg { width: 18px; height: 18px; }
+.lb-sluit { top: 0.6rem; right: 0.6rem; }
+/* Op smalle schermen liggen de pijlen op de onderrand van de foto, zodat ze
+   binnen beeld blijven; vanaf 700px schuiven ze naar buiten de foto. */
+.lb-vorige { left: 0.6rem; bottom: 0.6rem; }
+.lb-volgende { right: 0.6rem; bottom: 0.6rem; }
+@media (min-width: 700px) {
+  .lb-vorige, .lb-volgende { top: 50%; bottom: auto; transform: translateY(-50%); }
+  .lb-vorige { left: -58px; }
+  .lb-volgende { right: -58px; }
+}
+
+/* Zichtbare focus in de bestaande stijl van de site, maar in goud-licht:
+   het gewone groene :focus-visible-contrast valt weg tegen de donkere
+   overlay (zie huisstijl.md, goud-licht is wel AA op het groene vlak). */
+dialog.lightbox :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
 /* ---------- Filosofie ---------- */
 .filosofie-plate { margin-top: 2.4rem; }
 .filosofie-plate .plate { aspect-ratio: 21 / 9; }
@@ -187,18 +264,6 @@ h2.section-h em {
 .d-kaart svg { width: 30px; height: 30px; color: var(--green); }
 .d-kaart h3 { font-size: 1.45rem; margin: 0.8rem 0 0.4rem; }
 .d-kaart p { color: var(--muted); font-size: 0.94rem; }
-
-/* ---------- Werkwijze ---------- */
-.steps { display: grid; gap: 0; border-top: 1px solid var(--line); margin-top: 2rem; }
-@media (min-width: 780px) { .steps { grid-template-columns: repeat(4, 1fr); border-top: none; } }
-.step { padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
-@media (min-width: 780px) {
-  .step { padding: 0 1.5rem; border-bottom: none; border-left: 1px solid var(--line); }
-  .step:first-child { padding-left: 0; border-left: none; }
-}
-.step .num { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); }
-.step h3 { font-size: 1.45rem; margin-top: 0.5rem; margin-bottom: 0.45rem; }
-.step p { color: var(--muted); font-size: 0.94rem; }
 
 /* ---------- Inspiration Book ---------- */
 .boek-grid { display: grid; gap: 2.5rem; align-items: center; }
@@ -221,8 +286,6 @@ h2.section-h em {
 .card .kaart-foto img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-bottom: 1px solid var(--line); }
 .card .kaart-inhoud { padding: 1.3rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.75rem; flex: 1; }
 .card h3 { font-size: 1.5rem; line-height: 1.1; }
-.card .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.2rem; color: var(--green); }
-.card .prijs small { font-family: "Inter", system-ui, sans-serif; font-size: 0.76rem; color: var(--muted); }
 .card .desc { color: var(--muted); font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 1.04rem; }
 .card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
 .card ul li { display: flex; gap: 0.6rem; font-size: 0.87rem; align-items: baseline; color: var(--text); }

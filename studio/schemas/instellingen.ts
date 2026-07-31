@@ -19,8 +19,14 @@ export const instellingen = defineType({
     }),
     defineField({
       name: 'whatsappNummer',
-      title: 'WhatsApp-nummer (zonder + of streepjes, bijvoorbeeld 31615129685)',
+      title: 'WhatsApp-nummer (zonder + of streepjes, bijvoorbeeld 31659132312)',
       type: 'string',
+    }),
+    defineField({
+      name: 'whatsappBericht',
+      title: 'Vooringevuld WhatsApp-bericht',
+      type: 'taalString',
+      description: 'Staat al ingevuld klaar zodra een bezoeker op de WhatsApp-knop klikt.',
     }),
     defineField({
       name: 'branche',

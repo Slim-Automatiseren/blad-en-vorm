@@ -20,7 +20,7 @@ const f = contact.formulier;
         <div class="methods">
           <div class="method"><span class="label">{contact.labelEmail}</span><span class="val"><a href={`mailto:${instellingen.email}`}>{instellingen.email}</a></span></div>
           <div class="method"><span class="label">{contact.labelTelefoon}</span><span class="val"><a href={`tel:${instellingen.telefoonInternationaal}`}>{instellingen.telefoonWeergave}</a></span></div>
-          <a href={`https://wa.me/${instellingen.whatsappNummer}`} class="wa" rel="noopener">
+          <a href={`https://wa.me/${instellingen.whatsappNummer}?text=${encodeURIComponent(instellingen.whatsappBericht)}`} class="wa" rel="noopener">
             <Fragment set:html={whatsappIcoon} />
             WhatsApp
           </a>
