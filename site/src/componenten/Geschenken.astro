@@ -40,7 +40,7 @@ const kaarten = [
 
     <div class="geschenken-grid reveal">
       {kaarten.map((item) => {
-        const eigenFoto = beeldBron(item.foto, [480, 768], 3 / 2);
+        const eigenFoto = beeldBron(item.foto, [480, 768], 5 / 6);
         const standaard = kaartFotos[item.beeldSlot] ?? fotoRelatie;
         return (
           <div class="g-kaart">
