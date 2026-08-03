@@ -11,6 +11,7 @@ import Over from '../../componenten/Over.astro';
 import Contact from '../../componenten/Contact.astro';
 import Voet from '../../componenten/Voet.astro';
 import { haalInhoud } from '../../lib/inhoud';
+import { bedrijfsSchema } from '../../lib/schema';
 
 const inhoud = await haalInhoud('en');
 const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
@@ -19,6 +20,8 @@ const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
   titel="Blad & Vorm · Interior planting for businesses and beautifully designed living spaces"
   beschrijving="Blad & Vorm designs, installs and maintains interior planting for businesses and stylish homes, based in Wassenaar and serving The Hague to Noordwijk."
   taal="en"
+  vertaling={{ nl: '/', en: '/en/' }}
+  schema={bedrijfsSchema(inhoud.instellingen, 'en', Astro.site!)}
 >
   <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} taal="en" />
 
