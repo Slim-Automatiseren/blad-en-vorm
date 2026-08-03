@@ -7,6 +7,7 @@ import Filosofie from '../componenten/Filosofie.astro';
 import Diensten from '../componenten/Diensten.astro';
 import InspiratieBoek from '../componenten/InspiratieBoek.astro';
 import Pakketten from '../componenten/Pakketten.astro';
+import Geschenken from '../componenten/Geschenken.astro';
 import Over from '../componenten/Over.astro';
 import Contact from '../componenten/Contact.astro';
 import Voet from '../componenten/Voet.astro';
@@ -31,6 +32,7 @@ const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
     <Diensten diensten={inhoud.diensten} />
     <InspiratieBoek inspiratieboek={inhoud.inspiratieboek} />
     <Pakketten pakketten={inhoud.pakketten} />
+    <Geschenken geschenken={inhoud.geschenken} />
     <Over over={inhoud.over} />
     <Contact contact={inhoud.contact} instellingen={inhoud.instellingen} pakketOpties={pakketOpties} />
   </main>

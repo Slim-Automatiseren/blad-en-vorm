@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import { geschenkIconen } from '../lib/iconen';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+import fotoOnboarding from '../beelden/geschenk-onboarding.jpg';
+import fotoRelatie from '../beelden/geschenk-relatie.jpg';
+import fotoKerst from '../beelden/geschenk-kerst.jpg';
+import fotoSeizoen from '../beelden/geschenk-seizoen.jpg';
+
+interface Props {
+  geschenken: Inhoud['geschenken'];
+}
+const { geschenken } = Astro.props;
+
+const kaartFotos: Record<string, ImageMetadata> = {
+  onboarding: fotoOnboarding,
+  relatie: fotoRelatie,
+  kerst: fotoKerst,
+};
+const seizoenEigen = beeldBron(geschenken.seizoen.foto, [640, 960, 1376], 16 / 9);
+---
+<section id="geschenken" class="cream">
+  <div class="wrap">
+    <div class="kop-midden reveal">
+      <span class="label">{geschenken.railLabel}</span>
+      <h2 class="section-h">{geschenken.kop}</h2>
+      <p class="lede">{geschenken.lede}</p>
+    </div>
+
+    <div class="geschenken-grid reveal">
+      {geschenken.items.map((item) => {
+        const eigenFoto = beeldBron(item.foto, [480, 768], 4 / 3);
+        const standaard = kaartFotos[item.beeldSlot] ?? fotoRelatie;
+        return (
+          <div class="g-kaart">
+            <figure>
+              {eigenFoto ? (
+                <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 620px) 30vw, 92vw" loading="lazy" alt={eigenFoto.alt ?? item.alt} />
+              ) : (
+                <Image src={standaard} widths={[480, 768]} sizes="(min-width: 620px) 30vw, 92vw" alt={item.alt} />
+              )}
+            </figure>
+            <div class="g-inhoud">
+              <Fragment set:html={geschenkIconen[item.icoon] ?? geschenkIconen.relatie} />
+              <h3>{item.titel}</h3>
+              <p class="g-sub">{item.sub}</p>
+              <p class="g-tekst">{item.tekst}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <div class="g-seizoen reveal">
+      <figure>
+        {seizoenEigen ? (
+          <img src={seizoenEigen.src} srcset={seizoenEigen.srcset} sizes="(min-width: 800px) 50vw, 92vw" loading="lazy" alt={seizoenEigen.alt ?? geschenken.seizoen.alt} />
+        ) : (
+          <Image src={fotoSeizoen} widths={[640, 960, 1376]} sizes="(min-width: 800px) 50vw, 92vw" alt={geschenken.seizoen.alt} />
+        )}
+      </figure>
+      <div class="g-inhoud">
+        <Fragment set:html={geschenkIconen[geschenken.seizoen.icoon] ?? geschenkIconen.seizoen} />
+        <h3>{geschenken.seizoen.titel}</h3>
+        <p class="g-sub">{geschenken.seizoen.sub}</p>
+        <p class="g-tekst">{geschenken.seizoen.tekst}</p>
+        <p class="g-afsluiter">{geschenken.seizoen.afsluiter}</p>
+      </div>
+    </div>
+  </div>
+</section>

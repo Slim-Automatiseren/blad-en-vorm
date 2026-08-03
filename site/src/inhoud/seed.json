@@ -90,6 +90,45 @@
       }
     ]
   },
+  "geschenken": {
+    "railLabel": "Meer dan interieurbeplanting",
+    "kop": "Groene aandacht voor bijzondere momenten.",
+    "lede": "Naast onze interieurbeplanting verzorgen wij op aanvraag ook een aantal aanvullende mogelijkheden.",
+    "items": [
+      {
+        "icoon": "onboarding",
+        "titel": "Onboarding",
+        "sub": "Een groen welkom voor nieuwe medewerkers.",
+        "tekst": "Geef nieuwe collega's een warm welkom met een stijlvol groen cadeau.",
+        "beeldSlot": "onboarding",
+        "alt": "Klein welkomstcadeau op een eiken bureau: een zamioculcas in een keramische pot met een donkergroen lint, naast een dichtgeklapte laptop"
+      },
+      {
+        "icoon": "relatie",
+        "titel": "Relatiegeschenken",
+        "sub": "Duurzame geschenken voor klanten en zakelijke relaties.",
+        "tekst": "Van een luxe orchideeënarrangement tot een stijlvol terrarium: een groen geschenk dat blijvend indruk maakt.",
+        "beeldSlot": "relatie",
+        "alt": "Geopende donkergroene geschenkdoos op een walnoten tafel, met witte orchideeën in een bed van mos en een lint naast de doos"
+      },
+      {
+        "icoon": "kerst",
+        "titel": "Kerstgeschenken",
+        "sub": "Stijlvolle groene cadeaus voor de feestdagen.",
+        "tekst": "Exclusieve groene kerstgeschenken die nog lang worden gewaardeerd.",
+        "beeldSlot": "kerst",
+        "alt": "Feestelijk arrangement in een stenen schaal op een walnoten dressoir: dennentakken, dennenappels, eucalyptus en witte orchideeën, met warme lichtjes op de achtergrond"
+      }
+    ],
+    "seizoen": {
+      "icoon": "seizoen",
+      "titel": "Seizoensstyling",
+      "sub": "Vier keer per jaar een vernieuwde uitstraling.",
+      "tekst": "Stijlvolle seizoensarrangementen voor recepties, balies en ontvangstruimtes. Zo blijft uw interieur het hele jaar door representatief.",
+      "afsluiter": "Groen dat klopt.",
+      "alt": "Weelderig seizoensarrangement in een travertin schaal op een eiken receptiebalie: witte orchideeën, kronkeltakken, varens en vetplanten, met planten op de achtergrond"
+    }
+  },
   "over": {
     "railLabel": "Over Blad & Vorm",
     "kop": "Groen dat blijft.",
@@ -135,6 +174,7 @@
     "kvkRegel": "Blad & Vorm is een handelsnaam van Hilforce · Anemonenweg 30, 2241 XL Wassenaar · KvK 42033993 · Btw-id NL005445661B23",
     "voetTagline": "Groen dat klopt.",
     "privacyLabel": "Privacyverklaring",
+    "voorwaardenLabel": "Algemene voorwaarden",
     "linkedinUrl": "",
     "instagramUrl": ""
   }

@@ -90,6 +90,45 @@
       }
     ]
   },
+  "geschenken": {
+    "railLabel": "More than interior planting",
+    "kop": "Thoughtful greenery for life's special moments.",
+    "lede": "Alongside our interior planting service, we offer a selection of bespoke additions, available on request.",
+    "items": [
+      {
+        "icoon": "onboarding",
+        "titel": "Onboarding",
+        "sub": "A warm welcome for new team members.",
+        "tekst": "Help new colleagues feel at home from day one with a beautifully presented green gift.",
+        "beeldSlot": "onboarding",
+        "alt": "Small welcome gift on an oak desk: a zamioculcas in a ceramic pot with a dark green ribbon, next to a closed laptop"
+      },
+      {
+        "icoon": "relatie",
+        "titel": "Corporate Gifting",
+        "sub": "Sustainable gifts for clients and business relationships.",
+        "tekst": "From elegant orchid arrangements to beautifully crafted terrariums, every gift is designed to leave a lasting impression.",
+        "beeldSlot": "relatie",
+        "alt": "Open dark green gift box on a walnut table, holding white orchids bedded in moss, with a ribbon beside the box"
+      },
+      {
+        "icoon": "kerst",
+        "titel": "Christmas Gifting",
+        "sub": "Stylish green gifts for the festive season.",
+        "tekst": "Exclusive Christmas arrangements that will be appreciated long after the festive season has passed.",
+        "beeldSlot": "kerst",
+        "alt": "Festive arrangement in a stone bowl on a walnut sideboard: pine sprigs, pine cones, eucalyptus and white orchids, with warm lights in the background"
+      }
+    ],
+    "seizoen": {
+      "icoon": "seizoen",
+      "titel": "Seasonal Styling",
+      "sub": "A refreshed look, four times a year.",
+      "tekst": "Elegant seasonal arrangements for receptions, welcome areas and meeting spaces, ensuring your interior remains welcoming, refined and beautifully presented throughout the year.",
+      "afsluiter": "Green that feels right.",
+      "alt": "Lush seasonal arrangement in a travertine bowl on an oak reception desk: white orchids, curved branches, ferns and succulents, with plants in the background"
+    }
+  },
   "over": {
     "railLabel": "About Blad & Vorm",
     "kop": "Green that lasts.",
@@ -135,6 +174,7 @@
     "kvkRegel": "Blad & Vorm is a trade name of Hilforce · Anemonenweg 30, 2241 XL Wassenaar, the Netherlands · Chamber of Commerce 42033993 · VAT NL005445661B23",
     "voetTagline": "Green that feels right.",
     "privacyLabel": "Privacy policy",
+    "voorwaardenLabel": "Terms and conditions",
     "linkedinUrl": "",
     "instagramUrl": ""
   }

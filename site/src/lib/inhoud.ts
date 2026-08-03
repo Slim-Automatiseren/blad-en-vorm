@@ -27,6 +27,10 @@ export type Inhoud = Basis & {
     achtergrondFoto?: SanityBeeld;
     kaarten: Array<Basis['pakketten']['kaarten'][number] & { foto?: SanityBeeld }>;
   };
+  geschenken: Basis['geschenken'] & {
+    items: Array<Basis['geschenken']['items'][number] & { foto?: SanityBeeld }>;
+    seizoen: Basis['geschenken']['seizoen'] & { foto?: SanityBeeld };
+  };
   over: Basis['over'] & { foto?: SanityBeeld };
 };
 
@@ -104,6 +108,7 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
       ...(p?.pakkettenSectie ?? {}),
       kaarten: pakketten.length ? pakketten : basis.pakketten.kaarten,
     },
+    geschenken: p?.geschenken ?? basis.geschenken,
     over: p?.over ?? basis.over,
     contact: {
       label: p?.contactSectie?.label ?? basis.contact.label,

@@ -13,6 +13,15 @@ interface Props {
 }
 const { instellingen, labelWerkgebied, taal, linkNl = '/', linkEn = '/en/' } = Astro.props;
 
+/* Auteursrechtregel, toegezegd aan Marco (mail 31 juli). Statisch, niet in het
+   CMS: juridische regel die synchroon hoort te blijven met beide talen. Het
+   jaartal is het bouwjaar; elke Sanity-publicatie bouwt de site opnieuw. */
+const jaar = new Date().getFullYear();
+const auteursrecht =
+  taal === 'nl'
+    ? `© ${jaar} Blad & Vorm · Beeld en teksten: alle rechten voorbehouden`
+    : `© ${jaar} Blad & Vorm · Images and texts: all rights reserved`;
+
 /* Werkgebied in drie rustige regels in plaats van één lange omslaande regel.
    De plaatsen blijven in het CMS één veld met puntjes ertussen. */
 const plaatsen = instellingen.werkgebied.split('·').map((p) => p.trim()).filter(Boolean);
@@ -41,8 +50,11 @@ const rijen = [0, 1, 2]
     </div>
     <div class="onder">
       <span>{instellingen.kvkRegel}</span>
+      <span class="auteursrecht">{auteursrecht}</span>
       <span>
         <a href={taal === 'nl' ? '/privacy/' : '/en/privacy/'}>{instellingen.privacyLabel}</a>
+        {' · '}
+        <a href="/algemene-voorwaarden.pdf">{instellingen.voorwaardenLabel}</a>
         {instellingen.linkedinUrl && (
           <>
             {' · '}

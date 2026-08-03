@@ -49,6 +49,8 @@ ib = seed["inspiratieboek"]
 ib_en = seed_en["inspiratieboek"]
 pk = seed["pakketten"]
 pk_en = seed_en["pakketten"]
+gs = seed["geschenken"]
+gs_en = seed_en["geschenken"]
 ov = seed["over"]
 ov_en = seed_en["over"]
 ct = seed["contact"]
@@ -57,6 +59,12 @@ f = ct["formulier"]
 f_en = ct_en["formulier"]
 inst = seed["instellingen"]
 inst_en = seed_en["instellingen"]
+
+GESCHENK_FOTO = {
+    "onboarding": "geschenk-onboarding.jpg",
+    "relatie": "geschenk-relatie.jpg",
+    "kerst": "geschenk-kerst.jpg",
+}
 
 pagina = {
     "_id": "pagina",
@@ -125,6 +133,32 @@ pagina = {
         "ctaTekst": L(pk["ctaTekst"], pk_en["ctaTekst"]),
         "achtergrondFoto": beeld("pakketten-achtergrond.jpg"),
     },
+    "geschenken": {
+        "railLabel": L(gs["railLabel"], gs_en["railLabel"]),
+        "kop": L(gs["kop"], gs_en["kop"]),
+        "lede": L(gs["lede"], gs_en["lede"]),
+        "items": [
+            {
+                "_type": "geschenk",
+                "_key": f"geschenk{i}",
+                "icoon": item["icoon"],
+                "titel": L(item["titel"], gs_en["items"][i]["titel"]),
+                "sub": L(item["sub"], gs_en["items"][i]["sub"]),
+                "tekst": L(item["tekst"], gs_en["items"][i]["tekst"]),
+                "beeldSlot": item["beeldSlot"],
+                "foto": beeld(GESCHENK_FOTO[item["beeldSlot"]], item["alt"]),
+            }
+            for i, item in enumerate(gs["items"])
+        ],
+        "seizoen": {
+            "icoon": gs["seizoen"]["icoon"],
+            "titel": L(gs["seizoen"]["titel"], gs_en["seizoen"]["titel"]),
+            "sub": L(gs["seizoen"]["sub"], gs_en["seizoen"]["sub"]),
+            "tekst": L(gs["seizoen"]["tekst"], gs_en["seizoen"]["tekst"]),
+            "afsluiter": L(gs["seizoen"]["afsluiter"], gs_en["seizoen"]["afsluiter"]),
+            "foto": beeld("geschenk-seizoen.jpg", gs["seizoen"]["alt"]),
+        },
+    },
     "over": {
         "railLabel": L(ov["railLabel"], ov_en["railLabel"]),
         "kop": L(ov["kop"], ov_en["kop"]),
@@ -157,6 +191,7 @@ instellingen = {
     "kvkRegel": L(inst["kvkRegel"], inst_en["kvkRegel"]),
     "voetTagline": L(inst["voetTagline"], inst_en["voetTagline"]),
     "privacyLabel": L(inst["privacyLabel"], inst_en["privacyLabel"]),
+    "voorwaardenLabel": L(inst["voorwaardenLabel"], inst_en["voorwaardenLabel"]),
 }
 if inst.get("linkedinUrl"):
     instellingen["linkedinUrl"] = inst["linkedinUrl"]

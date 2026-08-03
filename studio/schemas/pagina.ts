@@ -39,6 +39,7 @@ export const pagina = defineType({
     { name: 'diensten', title: 'Diensten' },
     { name: 'inspiratieboek', title: 'Inspiration Book' },
     { name: 'pakketten', title: 'Pakketten' },
+    { name: 'geschenken', title: 'Geschenken' },
     { name: 'over', title: 'Over' },
     { name: 'contact', title: 'Contact en formulier' },
   ],
@@ -194,6 +195,86 @@ export const pagina = defineType({
           'Decoratief. Krijgt een donkergroene waas over zich heen, details vallen weg en structuur blijft. Een foto met rustige vormen werkt het best.',
           false,
         ),
+      ],
+    }),
+    defineField({
+      name: 'geschenken',
+      title: 'Geschenken (na de pakketten)',
+      type: 'object',
+      group: 'geschenken',
+      fields: [
+        s('railLabel', 'Label boven de kop'),
+        s('kop', 'Kop'),
+        t('lede', 'Introductietekst onder de kop'),
+        defineField({
+          name: 'items',
+          title: 'De drie geschenkkaarten',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              name: 'geschenk',
+              title: 'Geschenk',
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'icoon',
+                  title: 'Icoon',
+                  type: 'string',
+                  options: {
+                    list: [
+                      { title: 'Persoon met plus (onboarding)', value: 'onboarding' },
+                      { title: 'Cadeau (relatiegeschenken)', value: 'relatie' },
+                      { title: 'Dennenboom (kerst)', value: 'kerst' },
+                      { title: 'Ontkiemende plant (seizoen)', value: 'seizoen' },
+                    ],
+                  },
+                }),
+                s('titel', 'Titel'),
+                s('sub', 'Vetgedrukte regel onder de titel'),
+                t('tekst', 'Tekst'),
+                defineField({
+                  name: 'beeldSlot',
+                  title: 'Standaardfoto (als het fotoveld leeg is)',
+                  type: 'string',
+                  options: {
+                    list: [
+                      { title: 'Onboarding', value: 'onboarding' },
+                      { title: 'Relatiegeschenk', value: 'relatie' },
+                      { title: 'Kerst', value: 'kerst' },
+                    ],
+                  },
+                }),
+                foto('foto', 'Foto', 'Liggende foto (4:3) boven de kaart.'),
+              ],
+              preview: { select: { title: 'titel.nl' } },
+            }),
+          ],
+        }),
+        defineField({
+          name: 'seizoen',
+          title: 'Seizoensstyling (de brede kaart onderaan)',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'icoon',
+              title: 'Icoon',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Ontkiemende plant (seizoen)', value: 'seizoen' },
+                  { title: 'Persoon met plus (onboarding)', value: 'onboarding' },
+                  { title: 'Cadeau (relatiegeschenken)', value: 'relatie' },
+                  { title: 'Dennenboom (kerst)', value: 'kerst' },
+                ],
+              },
+            }),
+            s('titel', 'Titel'),
+            s('sub', 'Vetgedrukte regel onder de titel'),
+            t('tekst', 'Tekst'),
+            s('afsluiter', 'Cursieve slotregel (bijvoorbeeld de tagline)'),
+            foto('foto', 'Foto', 'Brede foto (16:9) links naast de tekst.'),
+          ],
+        }),
       ],
     }),
     defineField({

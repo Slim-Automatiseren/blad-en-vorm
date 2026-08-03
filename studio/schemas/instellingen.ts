@@ -39,6 +39,11 @@ export const instellingen = defineType({
     defineField({ name: 'voetTagline', title: 'Tagline in de footer', type: 'taalString' }),
     defineField({ name: 'privacyLabel', title: 'Label: privacyverklaring', type: 'taalString' }),
     defineField({
+      name: 'voorwaardenLabel',
+      title: 'Label: algemene voorwaarden (link naar de PDF in de voet)',
+      type: 'taalString',
+    }),
+    defineField({
       name: 'linkedinUrl',
       title: 'LinkedIn-URL',
       type: 'url',

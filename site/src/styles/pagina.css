@@ -319,6 +319,35 @@ dialog.lightbox :focus-visible { outline: 2px solid var(--gold-light); outline-o
 .foto-band h2.section-h { color: var(--paper); }
 .foto-band .lede { color: rgba(247, 244, 239, 0.78); }
 
+/* ---------- Geschenken ----------
+   Drie kaarten plus één brede kaart voor seizoensstyling, naar de indeling die
+   Marco aanleverde (2 augustus). De lede centreert mee onder de kop. */
+.kop-midden .lede { margin-left: auto; margin-right: auto; }
+.geschenken-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 620px) { .geschenken-grid { grid-template-columns: repeat(3, 1fr); } }
+.g-kaart { border: 1px solid var(--line); background: var(--paper); }
+.g-kaart figure { margin: 0; }
+.g-kaart figure img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  border-bottom: 1px solid var(--line);
+}
+.g-inhoud { padding: 1.4rem 1.4rem 1.6rem; }
+.g-inhoud svg { width: 30px; height: 30px; color: var(--green); }
+.g-inhoud h3 { font-size: 1.5rem; line-height: 1.1; margin: 0.8rem 0 0.4rem; }
+.g-sub { font-weight: 500; font-size: 0.95rem; color: var(--text); }
+.g-tekst { color: var(--muted); font-size: 0.94rem; margin-top: 0.35rem; }
+.g-seizoen { margin-top: 1.25rem; border: 1px solid var(--line); background: var(--paper); display: grid; }
+@media (min-width: 800px) { .g-seizoen { grid-template-columns: 1.1fr 1fr; align-items: stretch; } }
+.g-seizoen figure { margin: 0; }
+.g-seizoen figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 799px) { .g-seizoen figure img { aspect-ratio: 16 / 9; border-bottom: 1px solid var(--line); } }
+@media (min-width: 800px) { .g-seizoen figure { border-right: 1px solid var(--line); } }
+.g-seizoen .g-inhoud { padding: 2rem 2.2rem; align-self: center; }
+.g-afsluiter {
+  margin-top: 1rem; font-family: "Cormorant Garamond", Georgia, serif; font-style: italic;
+  color: var(--green); font-size: 1.2rem;
+}
+
 /* ---------- Over ---------- */
 .over-grid { display: grid; gap: 2.5rem; align-items: center; }
 @media (min-width: 800px) { .over-grid { grid-template-columns: 1fr 300px; gap: 3.5rem; } }
@@ -380,3 +409,5 @@ footer.site .onder {
   color: var(--muted); font-size: 0.82rem;
 }
 footer.site .onder a { color: var(--muted); }
+/* De auteursrechtregel op een eigen regel onder de rest */
+footer.site .onder .auteursrecht { flex-basis: 100%; order: 3; }
