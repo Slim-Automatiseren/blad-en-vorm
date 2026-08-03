@@ -244,7 +244,7 @@ export const pagina = defineType({
                     ],
                   },
                 }),
-                foto('foto', 'Foto', 'Liggende foto (4:3) boven de kaart.'),
+                foto('foto', 'Foto', 'Liggende foto boven de kaart; wordt laag bijgesneden (2:1).'),
               ],
               preview: { select: { title: 'titel.nl' } },
             }),
@@ -252,7 +252,7 @@ export const pagina = defineType({
         }),
         defineField({
           name: 'seizoen',
-          title: 'Seizoensstyling (de brede kaart onderaan)',
+          title: 'Seizoensstyling (de vierde kaart, met de cursieve slotregel)',
           type: 'object',
           fields: [
             defineField({
@@ -272,7 +272,7 @@ export const pagina = defineType({
             s('sub', 'Vetgedrukte regel onder de titel'),
             t('tekst', 'Tekst'),
             s('afsluiter', 'Cursieve slotregel (bijvoorbeeld de tagline)'),
-            foto('foto', 'Foto', 'Brede foto (16:9) links naast de tekst.'),
+            foto('foto', 'Foto', 'Liggende foto boven de kaart; wordt laag bijgesneden (2:1).'),
           ],
         }),
       ],

@@ -320,31 +320,27 @@ dialog.lightbox :focus-visible { outline: 2px solid var(--gold-light); outline-o
 .foto-band .lede { color: rgba(247, 244, 239, 0.78); }
 
 /* ---------- Geschenken ----------
-   Drie kaarten plus één brede kaart voor seizoensstyling, naar de indeling die
-   Marco aanleverde (2 augustus). De lede centreert mee onder de kop. */
+   Bijdienst, dus bewust een maat kleiner dan de pakketten erboven: één rij van
+   vier compacte kaarten in het diensten-register, met een lage fotocrop.
+   De lede centreert mee onder de kop. */
 .kop-midden .lede { margin-left: auto; margin-right: auto; }
 .geschenken-grid { display: grid; gap: 1.25rem; }
-@media (min-width: 620px) { .geschenken-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 620px) { .geschenken-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 980px) { .geschenken-grid { grid-template-columns: repeat(4, 1fr); } }
 .g-kaart { border: 1px solid var(--line); background: var(--paper); }
 .g-kaart figure { margin: 0; }
 .g-kaart figure img {
-  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; display: block;
   border-bottom: 1px solid var(--line);
 }
-.g-inhoud { padding: 1.4rem 1.4rem 1.6rem; }
-.g-inhoud svg { width: 30px; height: 30px; color: var(--green); }
-.g-inhoud h3 { font-size: 1.5rem; line-height: 1.1; margin: 0.8rem 0 0.4rem; }
-.g-sub { font-weight: 500; font-size: 0.95rem; color: var(--text); }
-.g-tekst { color: var(--muted); font-size: 0.94rem; margin-top: 0.35rem; }
-.g-seizoen { margin-top: 1.25rem; border: 1px solid var(--line); background: var(--paper); display: grid; }
-@media (min-width: 800px) { .g-seizoen { grid-template-columns: 1.1fr 1fr; align-items: stretch; } }
-.g-seizoen figure { margin: 0; }
-.g-seizoen figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
-@media (max-width: 799px) { .g-seizoen figure img { aspect-ratio: 16 / 9; border-bottom: 1px solid var(--line); } }
-@media (min-width: 800px) { .g-seizoen figure { border-right: 1px solid var(--line); } }
-.g-seizoen .g-inhoud { padding: 2rem 2.2rem; align-self: center; }
+.g-inhoud { padding: 1.2rem 1.2rem 1.4rem; }
+.g-inhoud svg { width: 24px; height: 24px; color: var(--green); }
+.g-inhoud h3 { font-size: 1.3rem; line-height: 1.1; margin: 0.65rem 0 0.35rem; }
+.g-sub { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+.g-tekst { color: var(--muted); font-size: 0.88rem; margin-top: 0.35rem; }
 .g-afsluiter {
-  margin-top: 1rem; font-family: "Cormorant Garamond", Georgia, serif; font-style: italic;
+  margin-top: 1.8rem; text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif; font-style: italic;
   color: var(--green); font-size: 1.2rem;
 }
 

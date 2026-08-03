@@ -17,8 +17,17 @@ const kaartFotos: Record<string, ImageMetadata> = {
   onboarding: fotoOnboarding,
   relatie: fotoRelatie,
   kerst: fotoKerst,
+  seizoen: fotoSeizoen,
 };
-const seizoenEigen = beeldBron(geschenken.seizoen.foto, [640, 960, 1376], 16 / 9);
+
+/* Bewust compacter dan Marco's indicatie-visual: dit is een bijdienst en mag
+   de pakketten erboven niet overvleugelen. Seizoensstyling is de vierde
+   gelijke kaart in plaats van een brede kaart; lage fotocrop (2:1). */
+const s = geschenken.seizoen;
+const kaarten = [
+  ...geschenken.items,
+  { icoon: s.icoon, titel: s.titel, sub: s.sub, tekst: s.tekst, beeldSlot: 'seizoen', alt: s.alt, foto: s.foto },
+];
 ---
 <section id="geschenken" class="cream">
   <div class="wrap">
@@ -29,16 +38,16 @@ const seizoenEigen = beeldBron(geschenken.seizoen.foto, [640, 960, 1376], 16 / 9
     </div>
 
     <div class="geschenken-grid reveal">
-      {geschenken.items.map((item) => {
-        const eigenFoto = beeldBron(item.foto, [480, 768], 4 / 3);
+      {kaarten.map((item) => {
+        const eigenFoto = beeldBron(item.foto, [480, 768], 2 / 1);
         const standaard = kaartFotos[item.beeldSlot] ?? fotoRelatie;
         return (
           <div class="g-kaart">
             <figure>
               {eigenFoto ? (
-                <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 620px) 30vw, 92vw" loading="lazy" alt={eigenFoto.alt ?? item.alt} />
+                <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 980px) 23vw, (min-width: 620px) 45vw, 92vw" loading="lazy" alt={eigenFoto.alt ?? item.alt} />
               ) : (
-                <Image src={standaard} widths={[480, 768]} sizes="(min-width: 620px) 30vw, 92vw" alt={item.alt} />
+                <Image src={standaard} widths={[480, 768]} sizes="(min-width: 980px) 23vw, (min-width: 620px) 45vw, 92vw" alt={item.alt} />
               )}
             </figure>
             <div class="g-inhoud">
@@ -52,21 +61,6 @@ const seizoenEigen = beeldBron(geschenken.seizoen.foto, [640, 960, 1376], 16 / 9
       })}
     </div>
 
-    <div class="g-seizoen reveal">
-      <figure>
-        {seizoenEigen ? (
-          <img src={seizoenEigen.src} srcset={seizoenEigen.srcset} sizes="(min-width: 800px) 50vw, 92vw" loading="lazy" alt={seizoenEigen.alt ?? geschenken.seizoen.alt} />
-        ) : (
-          <Image src={fotoSeizoen} widths={[640, 960, 1376]} sizes="(min-width: 800px) 50vw, 92vw" alt={geschenken.seizoen.alt} />
-        )}
-      </figure>
-      <div class="g-inhoud">
-        <Fragment set:html={geschenkIconen[geschenken.seizoen.icoon] ?? geschenkIconen.seizoen} />
-        <h3>{geschenken.seizoen.titel}</h3>
-        <p class="g-sub">{geschenken.seizoen.sub}</p>
-        <p class="g-tekst">{geschenken.seizoen.tekst}</p>
-        <p class="g-afsluiter">{geschenken.seizoen.afsluiter}</p>
-      </div>
-    </div>
+    <p class="g-afsluiter reveal">{s.afsluiter}</p>
   </div>
 </section>
