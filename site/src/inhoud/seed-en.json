@@ -19,14 +19,54 @@
     "kop": "Every great space starts with inspiration.",
     "lede": "No two interiors are the same. Discover how thoughtfully designed interior planting brings warmth, character and a welcoming atmosphere to offices, reception areas, professional practices and stylish homes.",
     "items": [
-      { "label": "Boutique hotel", "beeldSlot": "hotel", "rij": 1, "alt": "Boutique hotel lounge corner: two linen armchairs around a walnut table, a kentia palm and a group of plants on an oak sideboard" },
-      { "label": "Estate agency", "beeldSlot": "makelaar", "rij": 1, "alt": "Estate agency office: oak desk with two light chairs, a fiddle-leaf fig by the window and plants on a walnut sideboard" },
-      { "label": "Executive office", "beeldSlot": "directie", "rij": 1, "alt": "Director's office with a large oak desk, a bookcase and a large ficus by the window with a harbour view" },
-      { "label": "Wellness", "beeldSlot": "praktijk", "rij": 1, "alt": "Wellness area with wooden loungers and towels, a sauna, a plunge pool and lush greenery" },
-      { "label": "Reception area", "beeldSlot": "ontvangst", "rij": 2, "alt": "Reception area with an oak desk, a coat rack, armchairs and plants in pots" },
-      { "label": "Villa", "beeldSlot": "villa", "rij": 2, "alt": "Villa living room: light sofa, walnut coffee table and kentia palms by a window with garden view" },
-      { "label": "Dental practice", "beeldSlot": "tandarts", "rij": 2, "alt": "Dental practice waiting room with a row of chairs, a reception counter in the background and plants in pots" },
-      { "label": "Lobby", "beeldSlot": "lobby", "rij": 2, "alt": "Double-height office lobby with a terrazzo floor, a walnut desk and a group of kentia palms in large pots" }
+      {
+        "label": "Boutique hotel",
+        "beeldSlot": "hotel",
+        "rij": 1,
+        "alt": "Boutique hotel lounge corner: two linen armchairs around a walnut table, a kentia palm and a group of plants on an oak sideboard"
+      },
+      {
+        "label": "Estate agency",
+        "beeldSlot": "makelaar",
+        "rij": 1,
+        "alt": "Estate agency office: oak desk with two light chairs, a fiddle-leaf fig by the window and plants on a walnut sideboard"
+      },
+      {
+        "label": "Executive office",
+        "beeldSlot": "directie",
+        "rij": 1,
+        "alt": "Director's office with a large oak desk, a bookcase and a large ficus by the window with a harbour view"
+      },
+      {
+        "label": "Wellness",
+        "beeldSlot": "praktijk",
+        "rij": 1,
+        "alt": "Wellness area with wooden loungers and towels, a sauna, a plunge pool and lush greenery"
+      },
+      {
+        "label": "Reception area",
+        "beeldSlot": "ontvangst",
+        "rij": 2,
+        "alt": "Reception area with an oak desk, a coat rack, armchairs and plants in pots"
+      },
+      {
+        "label": "Villa",
+        "beeldSlot": "villa",
+        "rij": 2,
+        "alt": "Villa living room: light sofa, walnut coffee table and kentia palms by a window with garden view"
+      },
+      {
+        "label": "Dental practice",
+        "beeldSlot": "tandarts",
+        "rij": 2,
+        "alt": "Dental practice waiting room with a row of chairs, a reception counter in the background and plants in pots"
+      },
+      {
+        "label": "Lobby",
+        "beeldSlot": "lobby",
+        "rij": 2,
+        "alt": "Double-height office lobby with a terrazzo floor, a walnut desk and a group of kentia palms in large pots"
+      }
     ]
   },
   "filosofie": {
@@ -43,10 +83,26 @@
     "railNote": "From consultation to replacement.",
     "kop": "Everything you need for a beautifully maintained interior.",
     "kaarten": [
-      { "icoon": "advies", "titel": "Consultation", "tekst": "We take the time to understand your space, your requirements and the atmosphere you want to create." },
-      { "icoon": "levering", "titel": "Delivery & Installation", "tekst": "Professionally delivered and carefully installed with attention to every detail." },
-      { "icoon": "onderhoud", "titel": "Plant Care", "tekst": "Regular maintenance keeps your interior planting healthy, vibrant and looking its very best." },
-      { "icoon": "vervanging", "titel": "Replacement", "tekst": "Whenever required, we replace plants promptly to ensure your interior always looks fresh and welcoming." }
+      {
+        "icoon": "advies",
+        "titel": "Consultation",
+        "tekst": "We take the time to understand your space, your requirements and the atmosphere you want to create."
+      },
+      {
+        "icoon": "levering",
+        "titel": "Delivery & Installation",
+        "tekst": "Professionally delivered and carefully installed with attention to every detail."
+      },
+      {
+        "icoon": "onderhoud",
+        "titel": "Plant Care",
+        "tekst": "Regular maintenance keeps your interior planting healthy, vibrant and looking its very best."
+      },
+      {
+        "icoon": "vervanging",
+        "titel": "Replacement",
+        "tekst": "Whenever required, we replace plants promptly to ensure your interior always looks fresh and welcoming."
+      }
     ]
   },
   "inspiratieboek": {
@@ -68,25 +124,42 @@
         "code": "S",
         "naam": "Impact",
         "beschrijving": "A stylish green foundation.",
-        "punten": ["3 plants", "Height 1.20 to 1.80 m", "Care visits 1 to 2 times a month"]
+        "punten": [
+          "3 plants",
+          "Height 1.20 to 1.80 m",
+          "Care visits 1 to 2 times a month"
+        ]
       },
       {
         "code": "M",
         "naam": "Corporate",
         "beschrijving": "More greenery for welcoming and professional working environments.",
-        "punten": ["5 to 7 plants", "Height 1.20 to 1.80 m", "Care visits 1 to 2 times a month"]
+        "punten": [
+          "5 to 7 plants",
+          "Height 1.20 to 1.80 m",
+          "Care visits 1 to 2 times a month"
+        ]
       },
       {
         "code": "L",
         "naam": "Signature",
         "beschrijving": "Where planting becomes an integral part of the interior.",
-        "punten": ["10 to 15 plants", "Height 1.20 to 1.80 m", "Care visits twice a month"]
+        "punten": [
+          "10 to 15 plants",
+          "Height 1.20 to 1.80 m",
+          "Care visits twice a month"
+        ]
       },
       {
         "code": "XL",
         "naam": "Prestige",
         "beschrijving": "A fully managed planting solution with complete peace of mind.",
-        "punten": ["20 to 30 plants or more", "Height 1.20 to 2.00 m", "Care visits twice a month", "Composed in consultation"]
+        "punten": [
+          "20 to 30 plants or more",
+          "Height 1.20 to 2.00 m",
+          "Care visits twice a month",
+          "Composed in consultation"
+        ]
       }
     ]
   },
@@ -101,7 +174,7 @@
         "sub": "A warm welcome for new team members.",
         "tekst": "Help new colleagues feel at home from day one with a beautifully presented green gift.",
         "beeldSlot": "onboarding",
-        "alt": "Small welcome gift on an oak desk: a zamioculcas in a ceramic pot with a dark green ribbon, next to a closed laptop"
+        "alt": "Welcome card next to a plant in a ceramic pot on a wooden desk"
       },
       {
         "icoon": "relatie",
@@ -109,7 +182,7 @@
         "sub": "Sustainable gifts for clients and business relationships.",
         "tekst": "From elegant orchid arrangements to beautifully crafted terrariums, every gift is designed to leave a lasting impression.",
         "beeldSlot": "relatie",
-        "alt": "Open dark green gift box on a walnut table, holding white orchids bedded in moss, with a ribbon beside the box"
+        "alt": "Open dark green gift box with white orchids, moss and a card, tied with a ribbon"
       },
       {
         "icoon": "kerst",
@@ -117,7 +190,7 @@
         "sub": "Stylish green gifts for the festive season.",
         "tekst": "Exclusive Christmas arrangements that will be appreciated long after the festive season has passed.",
         "beeldSlot": "kerst",
-        "alt": "Festive arrangement in a stone bowl on a walnut sideboard: pine sprigs, pine cones, eucalyptus and white orchids, with warm lights in the background"
+        "alt": "Christmas arrangement in a stone bowl with pine, pine cones, orchids and a greeting card"
       }
     ],
     "seizoen": {
@@ -125,8 +198,8 @@
       "titel": "Seasonal Styling",
       "sub": "A refreshed look, four times a year.",
       "tekst": "Elegant seasonal arrangements for receptions, welcome areas and meeting spaces, ensuring your interior remains welcoming, refined and beautifully presented throughout the year.",
-      "afsluiter": "Green that feels right.",
-      "alt": "Lush seasonal arrangement in a travertine bowl on an oak reception desk: white orchids, curved branches, ferns and succulents, with plants in the background"
+      "afsluiter": "",
+      "alt": "Lush arrangement of white orchids, greenery and branches in a stone bowl on a wooden reception desk"
     }
   },
   "over": {

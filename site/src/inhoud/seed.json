@@ -19,14 +19,54 @@
     "kop": "Inspiratie begint met kijken.",
     "lede": "Iedere ruimte heeft een eigen karakter. Ontdek hoe interieurbeplanting sfeer, rust en uitstraling toevoegt aan kantoren, ontvangstruimtes, praktijken en stijlvolle woonomgevingen.",
     "items": [
-      { "label": "Boutique hotel", "beeldSlot": "hotel", "rij": 1, "alt": "Loungehoek van een boutique hotel: twee linnen fauteuils rond een walnoten tafel, een kentiapalm en een groep planten op een eiken dressoir" },
-      { "label": "Makelaarskantoor", "beeldSlot": "makelaar", "rij": 1, "alt": "Kantoor van een makelaar: eiken bureau met twee lichte stoelen, een vioolbladplant bij het raam en planten op een walnoten dressoir" },
-      { "label": "Directiekantoor", "beeldSlot": "directie", "rij": 1, "alt": "Directiekantoor met een groot eiken bureau, een boekenkast en een grote ficus bij het raam met havenzicht" },
-      { "label": "Wellness", "beeldSlot": "praktijk", "rij": 1, "alt": "Wellnessruimte met houten ligbedden met handdoeken, een sauna, een dompelbad en veel groen" },
-      { "label": "Ontvangstruimte", "beeldSlot": "ontvangst", "rij": 2, "alt": "Ontvangstruimte met een eiken balie, een jassenrek, fauteuils en planten in potten" },
-      { "label": "Villa", "beeldSlot": "villa", "rij": 2, "alt": "Woonkamer van een villa: lichte bank, walnoten salontafel en kentiapalmen bij een raam met tuinzicht" },
-      { "label": "Tandartspraktijk", "beeldSlot": "tandarts", "rij": 2, "alt": "Wachtkamer van een tandartspraktijk met een rij stoelen, een balie op de achtergrond en planten in potten" },
-      { "label": "Lobby", "beeldSlot": "lobby", "rij": 2, "alt": "Dubbelhoge kantoorlobby met een terrazzovloer, een walnoten balie en een groep kentiapalmen in grote potten" }
+      {
+        "label": "Boutique hotel",
+        "beeldSlot": "hotel",
+        "rij": 1,
+        "alt": "Loungehoek van een boutique hotel: twee linnen fauteuils rond een walnoten tafel, een kentiapalm en een groep planten op een eiken dressoir"
+      },
+      {
+        "label": "Makelaarskantoor",
+        "beeldSlot": "makelaar",
+        "rij": 1,
+        "alt": "Kantoor van een makelaar: eiken bureau met twee lichte stoelen, een vioolbladplant bij het raam en planten op een walnoten dressoir"
+      },
+      {
+        "label": "Directiekantoor",
+        "beeldSlot": "directie",
+        "rij": 1,
+        "alt": "Directiekantoor met een groot eiken bureau, een boekenkast en een grote ficus bij het raam met havenzicht"
+      },
+      {
+        "label": "Wellness",
+        "beeldSlot": "praktijk",
+        "rij": 1,
+        "alt": "Wellnessruimte met houten ligbedden met handdoeken, een sauna, een dompelbad en veel groen"
+      },
+      {
+        "label": "Ontvangstruimte",
+        "beeldSlot": "ontvangst",
+        "rij": 2,
+        "alt": "Ontvangstruimte met een eiken balie, een jassenrek, fauteuils en planten in potten"
+      },
+      {
+        "label": "Villa",
+        "beeldSlot": "villa",
+        "rij": 2,
+        "alt": "Woonkamer van een villa: lichte bank, walnoten salontafel en kentiapalmen bij een raam met tuinzicht"
+      },
+      {
+        "label": "Tandartspraktijk",
+        "beeldSlot": "tandarts",
+        "rij": 2,
+        "alt": "Wachtkamer van een tandartspraktijk met een rij stoelen, een balie op de achtergrond en planten in potten"
+      },
+      {
+        "label": "Lobby",
+        "beeldSlot": "lobby",
+        "rij": 2,
+        "alt": "Dubbelhoge kantoorlobby met een terrazzovloer, een walnoten balie en een groep kentiapalmen in grote potten"
+      }
     ]
   },
   "filosofie": {
@@ -43,10 +83,26 @@
     "railNote": "Van advies tot vervanging.",
     "kop": "Alles voor een verzorgde en representatieve ruimte.",
     "kaarten": [
-      { "icoon": "advies", "titel": "Advies", "tekst": "Samen bekijken we welke interieurbeplanting het beste past bij uw ruimte, wensen en uitstraling." },
-      { "icoon": "levering", "titel": "Levering & Plaatsing", "tekst": "Professioneel geleverd en zorgvuldig geplaatst, met oog voor ieder detail." },
-      { "icoon": "onderhoud", "titel": "Onderhoud", "tekst": "Regelmatige verzorging zodat uw interieurbeplanting gezond, verzorgd en representatief blijft." },
-      { "icoon": "vervanging", "titel": "Vervanging", "tekst": "Wanneer nodig vervangen wij planten tijdig, zodat uw interieur altijd verzorgd oogt." }
+      {
+        "icoon": "advies",
+        "titel": "Advies",
+        "tekst": "Samen bekijken we welke interieurbeplanting het beste past bij uw ruimte, wensen en uitstraling."
+      },
+      {
+        "icoon": "levering",
+        "titel": "Levering & Plaatsing",
+        "tekst": "Professioneel geleverd en zorgvuldig geplaatst, met oog voor ieder detail."
+      },
+      {
+        "icoon": "onderhoud",
+        "titel": "Onderhoud",
+        "tekst": "Regelmatige verzorging zodat uw interieurbeplanting gezond, verzorgd en representatief blijft."
+      },
+      {
+        "icoon": "vervanging",
+        "titel": "Vervanging",
+        "tekst": "Wanneer nodig vervangen wij planten tijdig, zodat uw interieur altijd verzorgd oogt."
+      }
     ]
   },
   "inspiratieboek": {
@@ -68,25 +124,42 @@
         "code": "S",
         "naam": "Impact",
         "beschrijving": "Een stijlvolle groene basis.",
-        "punten": ["3 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
+        "punten": [
+          "3 planten",
+          "Hoogte 1,20 tot 1,80 m",
+          "Onderhoud 1 tot 2 keer per maand"
+        ]
       },
       {
         "code": "M",
         "naam": "Corporate",
         "beschrijving": "Meer groen voor een representatieve werkomgeving.",
-        "punten": ["5 tot 7 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 1 tot 2 keer per maand"]
+        "punten": [
+          "5 tot 7 planten",
+          "Hoogte 1,20 tot 1,80 m",
+          "Onderhoud 1 tot 2 keer per maand"
+        ]
       },
       {
         "code": "L",
         "naam": "Signature",
         "beschrijving": "Waar interieurbeplanting onderdeel wordt van het interieur.",
-        "punten": ["10 tot 15 planten", "Hoogte 1,20 tot 1,80 m", "Onderhoud 2 keer per maand"]
+        "punten": [
+          "10 tot 15 planten",
+          "Hoogte 1,20 tot 1,80 m",
+          "Onderhoud 2 keer per maand"
+        ]
       },
       {
         "code": "XL",
         "naam": "Prestige",
         "beschrijving": "Een compleet verzorgd groenconcept.",
-        "punten": ["20 tot 30 planten of meer", "Hoogte 1,20 tot 2,00 m", "Onderhoud 2 keer per maand", "In overleg samengesteld"]
+        "punten": [
+          "20 tot 30 planten of meer",
+          "Hoogte 1,20 tot 2,00 m",
+          "Onderhoud 2 keer per maand",
+          "In overleg samengesteld"
+        ]
       }
     ]
   },
@@ -101,7 +174,7 @@
         "sub": "Een groen welkom voor nieuwe medewerkers.",
         "tekst": "Geef nieuwe collega's een warm welkom met een stijlvol groen cadeau.",
         "beeldSlot": "onboarding",
-        "alt": "Klein welkomstcadeau op een eiken bureau: een zamioculcas in een keramische pot met een donkergroen lint, naast een dichtgeklapte laptop"
+        "alt": "Welkomstkaartje met de tekst 'Welkom aan boord!' naast een plant in een keramische pot op een houten bureau"
       },
       {
         "icoon": "relatie",
@@ -109,7 +182,7 @@
         "sub": "Duurzame geschenken voor klanten en zakelijke relaties.",
         "tekst": "Van een luxe orchideeënarrangement tot een stijlvol terrarium: een groen geschenk dat blijvend indruk maakt.",
         "beeldSlot": "relatie",
-        "alt": "Geopende donkergroene geschenkdoos op een walnoten tafel, met witte orchideeën in een bed van mos en een lint naast de doos"
+        "alt": "Geopende donkergroene geschenkdoos met witte orchideeën, mos en een kaartje, met een lint om de doos"
       },
       {
         "icoon": "kerst",
@@ -117,7 +190,7 @@
         "sub": "Stijlvolle groene cadeaus voor de feestdagen.",
         "tekst": "Exclusieve groene kerstgeschenken die nog lang worden gewaardeerd.",
         "beeldSlot": "kerst",
-        "alt": "Feestelijk arrangement in een stenen schaal op een walnoten dressoir: dennentakken, dennenappels, eucalyptus en witte orchideeën, met warme lichtjes op de achtergrond"
+        "alt": "Kerstarrangement in een stenen schaal met dennengroen, dennenappels, orchideeën en een kaartje met 'Fijne feestdagen'"
       }
     ],
     "seizoen": {
@@ -125,8 +198,8 @@
       "titel": "Seizoensstyling",
       "sub": "Vier keer per jaar een vernieuwde uitstraling.",
       "tekst": "Stijlvolle seizoensarrangementen voor recepties, balies en ontvangstruimtes. Zo blijft uw interieur het hele jaar door representatief.",
-      "afsluiter": "Groen dat klopt.",
-      "alt": "Weelderig seizoensarrangement in een travertin schaal op een eiken receptiebalie: witte orchideeën, kronkeltakken, varens en vetplanten, met planten op de achtergrond"
+      "afsluiter": "",
+      "alt": "Weelderig arrangement met witte orchideeën, groen en takken in een stenen schaal op een houten receptiebalie"
     }
   },
   "over": {
