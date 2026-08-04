@@ -1,4 +1,18 @@
 import type { Inhoud } from './inhoud';
+export function vragenSchema(vragen: Inhoud['vragen']) {
+  /* FAQPage moet exact overeenkomen met wat de bezoeker ziet, anders is het
+     misleidend voor Google. Daarom uit dezelfde bron als de sectie zelf. */
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: vragen.items.map((v) => ({
+      '@type': 'Question',
+      name: v.vraag,
+      acceptedAnswer: { '@type': 'Answer', text: v.antwoord },
+    })),
+  };
+}
+
 import logoHexagon from '../beelden/logo-hexagon.png';
 import heroBreed from '../beelden/hero-breed.jpg';
 

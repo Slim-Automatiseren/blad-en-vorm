@@ -60,7 +60,8 @@ const QUERY = `{
   "pagina": *[_id == "pagina"][0],
   "instellingen": *[_id == "instellingen"][0],
   "pakketten": *[_type == "pakket"] | order(volgorde asc),
-  "inspiratiebeelden": *[_type == "inspiratiebeeld"] | order(volgorde asc)
+  "inspiratiebeelden": *[_type == "inspiratiebeeld"] | order(volgorde asc),
+  "vragen": *[_type == "vraag"] | order(volgorde asc)
 }`;
 
 export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
@@ -80,6 +81,7 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
   const inst = lokaliseer(ruw.instellingen, taal) as Record<string, any> | null;
   const ruwePakketten = (lokaliseer(ruw.pakketten, taal) as any[]) ?? [];
   const inspiratiebeelden = (lokaliseer(ruw.inspiratiebeelden, taal) as any[]) ?? [];
+  const ruweVragen = (lokaliseer(ruw.vragen, taal) as any[]) ?? [];
 
   /* Overgangsslot: zolang de dataset nog de oude paginastructuur heeft (van vóór
      de tekstaanlevering van 26 juli, herkenbaar aan het ontbreken van de
@@ -87,6 +89,10 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
      zonder dat de volgorde push/herimport uitmaakt. */
   const p = ruwePagina?.filosofie ? ruwePagina : null;
   const pakketten = p ? ruwePakketten : [];
+  /* Zelfde slot voor de vragen: de oude dataset bevat nog vraag-documenten uit
+     de vorige opzet met termijnen die Marco nooit bevestigde. Die mogen niet
+     opduiken; tot de herimport bouwen we uit de seed. */
+  const vragen = p ? ruweVragen : [];
 
   return {
     nav: p?.nav ?? basis.nav,
@@ -110,6 +116,10 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
     },
     geschenken: p?.geschenken ?? basis.geschenken,
     over: p?.over ?? basis.over,
+    vragen: {
+      kop: p?.vragenSectie?.kop ?? basis.vragen.kop,
+      items: vragen.length ? vragen : basis.vragen.items,
+    },
     contact: {
       label: p?.contactSectie?.label ?? basis.contact.label,
       kop: p?.contactSectie?.kop ?? basis.contact.kop,

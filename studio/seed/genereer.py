@@ -53,6 +53,8 @@ gs = seed["geschenken"]
 gs_en = seed_en["geschenken"]
 ov = seed["over"]
 ov_en = seed_en["over"]
+vr = seed["vragen"]
+vr_en = seed_en["vragen"]
 ct = seed["contact"]
 ct_en = seed_en["contact"]
 f = ct["formulier"]
@@ -166,6 +168,9 @@ pagina = {
         "tekst2": L(ov["tekst2"], ov_en["tekst2"]),
         "foto": beeld("over-vignet.jpg", ov["fotoAlt"]),
     },
+    "vragenSectie": {
+        "kop": L(vr["kop"], vr_en["kop"]),
+    },
     "contactSectie": {
         "label": L(ct["label"], ct_en["label"]),
         "kop": L(ct["kop"], ct_en["kop"]),
@@ -249,6 +254,18 @@ for i, item in enumerate(insp["items"]):
             "rij": item["rij"],
             "volgorde": i + 1,
             "foto": beeld(BEELDSLOT_BESTAND[slot]),
+        }
+    )
+
+for i, item in enumerate(vr["items"]):
+    item_en = vr_en["items"][i]
+    documenten.append(
+        {
+            "_id": f"vraag-{i + 1}",
+            "_type": "vraag",
+            "vraag": L(item["vraag"], item_en["vraag"]),
+            "antwoord": L(item["antwoord"], item_en["antwoord"]),
+            "volgorde": i + 1,
         }
     )
 

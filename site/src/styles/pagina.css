@@ -350,6 +350,33 @@ dialog.lightbox :focus-visible { outline: 2px solid var(--gold-light); outline-o
 .over-grid .plate { aspect-ratio: 3 / 4; }
 @media (max-width: 799px) { .over-grid .plate { order: -1; } }
 
+/* ---------- Veelgestelde vragen ---------- */
+.faq { max-width: 780px; margin: 0 auto; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+  padding: 1.15rem 0; cursor: pointer; list-style: none;
+  font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.15rem, 2vw, 1.35rem);
+  color: var(--green); transition: color var(--dur) var(--ease);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--text); }
+/* Plusje dat een streepje wordt bij open; puur CSS, dus ook zonder JS goed */
+.faq .teken { position: relative; flex: none; width: 12px; height: 12px; align-self: center; }
+.faq .teken::before,
+.faq .teken::after {
+  content: ""; position: absolute; background: var(--gold);
+  transition: opacity var(--dur) var(--ease);
+}
+.faq .teken::before { top: 5px; left: 0; width: 12px; height: 2px; }
+.faq .teken::after { top: 0; left: 5px; width: 2px; height: 12px; }
+.faq details[open] .teken::after { opacity: 0; }
+.faq .antwoord { color: var(--muted); font-size: 0.96rem; line-height: 1.65; padding: 0 0 1.3rem; max-width: 68ch; }
+@media (prefers-reduced-motion: reduce) {
+  .faq summary, .faq .teken::before, .faq .teken::after { transition: none; }
+}
+
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; gap: 2.5rem; }
 @media (min-width: 860px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }

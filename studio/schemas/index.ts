@@ -3,5 +3,6 @@ import { pagina } from './pagina';
 import { instellingen } from './instellingen';
 import { pakket } from './pakket';
 import { inspiratiebeeld } from './inspiratiebeeld';
+import { vraag } from './vraag';
 
-export const schemaTypes = [taalString, taalTekst, pagina, instellingen, pakket, inspiratiebeeld];
+export const schemaTypes = [taalString, taalTekst, pagina, instellingen, pakket, inspiratiebeeld, vraag];

@@ -6,20 +6,25 @@ interface Props {
 }
 const { vragen } = Astro.props;
 ---
-<section id="vragen" class="band">
+<!-- Compacte FAQ vlak boven het contactblok (besluit 4 augustus). Bewust
+     details/summary: klapt open zonder JS en schermlezers kondigen de staat
+     zelf aan. De antwoorden staan altijd in de HTML, ook dichtgeklapt, dus
+     zoekmachines en AI-assistenten lezen ze hoe dan ook. -->
+<section id="vragen">
   <div class="wrap">
-    <div class="vragen-kolom">
-      <div class="reveal">
-        <h2 class="section-h">Veelgestelde vragen</h2>
-        <div class="faq">
-          {vragen.map((v) => (
-            <details>
-              <summary>{v.vraag}</summary>
-              <p class="antwoord">{v.antwoord}</p>
-            </details>
-          ))}
-        </div>
-      </div>
+    <div class="kop-midden reveal">
+      <h2 class="section-h">{vragen.kop}</h2>
+    </div>
+    <div class="faq reveal">
+      {vragen.items.map((v) => (
+        <details>
+          <summary>
+            <span>{v.vraag}</span>
+            <span class="teken" aria-hidden="true"></span>
+          </summary>
+          <p class="antwoord">{v.antwoord}</p>
+        </details>
+      ))}
     </div>
   </div>
 </section>

@@ -209,6 +209,35 @@
     "tekst2": "From offices and reception areas to professional practices and private residences, we create planting solutions that feel perfectly at home in every environment.",
     "fotoAlt": "Close-up of a monstera leaf with visible veins against a soft out-of-focus background"
   },
+  "vragen": {
+    "kop": "Frequently asked questions",
+    "items": [
+      {
+        "vraag": "How much does interior planting cost per month?",
+        "antwoord": "Interior planting by Blad & Vorm starts from 149 euros per month. That amount covers advice, delivery, installation, maintenance and replacement. What you pay depends on your space and the number of plants. After the Site Consultation you receive a proposal with a fixed monthly fee, so there are no surprises later on."
+      },
+      {
+        "vraag": "What is included in the monthly fee?",
+        "antwoord": "Everything the planting needs. We supply the plants with matching planters including maintenance, so you buy nothing separately and arrange nothing yourself. Advice, delivery, installation, care and replacement are all covered by a single monthly fee."
+      },
+      {
+        "vraag": "What happens if a plant declines?",
+        "antwoord": "We replace it at no extra cost. Replacement is part of the monthly fee, so you never receive a separate invoice for it. During maintenance we also look ahead and move plants that are not thriving in their position."
+      },
+      {
+        "vraag": "How often do you visit for maintenance?",
+        "antwoord": "Once or twice a month, depending on the package. The larger packages include two visits per month. We schedule every visit with you, so it fits into your working day."
+      },
+      {
+        "vraag": "Which areas do you serve?",
+        "antwoord": "Based in Wassenaar, we provide interior planting in The Hague, Voorburg, Leidschendam, Voorschoten, Leiden, Oegstgeest, Warmond, Katwijk and Noordwijk. If your location falls just outside this area, please get in touch and we will see what is possible."
+      },
+      {
+        "vraag": "What does a first meeting look like?",
+        "antwoord": "It starts with a Site Consultation at your location. We look at the space, the light and the atmosphere you are after, and bring our Inspiration Book so we can go through plants, planters and materials together. You then receive a tailored proposal. The Site Consultation is free of charge."
+      }
+    ]
+  },
   "contact": {
     "label": "Contact",
     "kop": "Let's start the conversation.",

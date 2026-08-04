@@ -20,8 +20,9 @@ interface Props {
   /* Paden van deze pagina in beide talen, voor de hreflang-links.
      Weglaten op pagina's zonder tegenhanger (bedankt) */
   vertaling?: { nl: string; en: string };
-  /* LocalBusiness-gegevens (lib/schema.ts), alleen op de startpagina's */
-  schema?: object;
+  /* Gestructureerde gegevens (lib/schema.ts): één blok of meerdere,
+     bijvoorbeeld LocalBusiness plus FAQPage op de startpagina's */
+  schema?: object | object[];
 }
 
 const { titel, beschrijving, nooitIndexeren = false, taal = 'nl', vertaling, schema } = Astro.props;
@@ -71,7 +72,10 @@ const ogAlt = taal === 'en' ? 'Interior planting by Blad & Vorm' : 'Interieurbep
   <meta property="og:image:height" content={String(ogHoogte)} />
   <meta property="og:image:alt" content={ogAlt} />
   <meta name="twitter:card" content="summary_large_image" />
-  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  {schema &&
+    (Array.isArray(schema) ? schema : [schema]).map((blok) => (
+      <script type="application/ld+json" set:html={JSON.stringify(blok)} />
+    ))}
   <script is:inline>
     document.documentElement.classList.add('js');
     /* Beslis vóór de eerste paint of het logo zich tekent: bij elke paginalading,

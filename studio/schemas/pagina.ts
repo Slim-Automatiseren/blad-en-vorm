@@ -41,6 +41,7 @@ export const pagina = defineType({
     { name: 'pakketten', title: 'Pakketten' },
     { name: 'geschenken', title: 'Geschenken' },
     { name: 'over', title: 'Over' },
+    { name: 'vragen', title: 'Veelgestelde vragen' },
     { name: 'contact', title: 'Contact en formulier' },
   ],
   fields: [
@@ -289,6 +290,13 @@ export const pagina = defineType({
         t('tekst2', 'Tweede alinea'),
         foto('foto', 'Foto', 'Sfeerfoto bij deze sectie.'),
       ],
+    }),
+    defineField({
+      name: 'vragenSectie',
+      title: 'Veelgestelde vragen (kop; de vragen zelf staan als eigen lijst)',
+      type: 'object',
+      group: 'vragen',
+      fields: [s('kop', 'Kop boven de vragen')],
     }),
     defineField({
       name: 'contactSectie',

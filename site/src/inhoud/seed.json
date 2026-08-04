@@ -209,6 +209,35 @@
     "tekst2": "Voor kantoren, praktijken, ontvangstruimtes en stijlvolle woonomgevingen zorgen wij voor interieurbeplanting die past bij de ruimte én bij de mensen die er dagelijks gebruik van maken.",
     "fotoAlt": "Close-up van een monsterablad met zichtbare nerven, met een zachte onscherpe achtergrond"
   },
+  "vragen": {
+    "kop": "Veelgestelde vragen",
+    "items": [
+      {
+        "vraag": "Wat kost interieurbeplanting per maand?",
+        "antwoord": "Interieurbeplanting van Blad & Vorm start vanaf 149 euro per maand. In dat bedrag zitten advies, levering, plaatsing, onderhoud en vervanging. Wat u precies betaalt hangt af van uw ruimte en het aantal planten. Na de Ruimtescan ontvangt u een voorstel met een vast maandbedrag, zodat u niet achteraf voor verrassingen komt te staan."
+      },
+      {
+        "vraag": "Wat zit er in het maandbedrag?",
+        "antwoord": "Alles wat bij de beplanting hoort. Wij leveren de planten met bijpassende potten inclusief onderhoud, dus u schaft niets los aan en regelt niets zelf. Advies, levering, plaatsing, verzorging en vervanging vallen samen onder één maandbedrag."
+      },
+      {
+        "vraag": "Wat gebeurt er als een plant achteruitgaat?",
+        "antwoord": "Dan vervangen wij de plant, zonder extra kosten. Vervanging hoort bij het maandbedrag, dus u krijgt daar geen aparte rekening voor. Bij het onderhoud kijken wij ook vooruit: planten die minder goed op hun plek staan, wisselen wij op tijd om."
+      },
+      {
+        "vraag": "Hoe vaak komt u langs voor onderhoud?",
+        "antwoord": "Eén tot twee keer per maand, afhankelijk van het pakket. Bij de grotere pakketten komen wij twee keer per maand langs. Wij plannen de bezoeken in overleg met u, zodat ze uitkomen binnen uw werkdag."
+      },
+      {
+        "vraag": "In welke regio werkt Blad & Vorm?",
+        "antwoord": "Vanuit Wassenaar verzorgen wij interieurbeplanting in Den Haag, Voorburg, Leidschendam, Voorschoten, Leiden, Oegstgeest, Warmond, Katwijk en Noordwijk. Zit uw locatie net buiten dit gebied? Neem dan gerust contact op, dan kijken wij wat mogelijk is."
+      },
+      {
+        "vraag": "Hoe verloopt de eerste kennismaking?",
+        "antwoord": "Die begint met een Ruimtescan bij u op locatie. Wij bekijken de ruimte, het licht en de uitstraling die u zoekt, en nemen ons Inspiration Book mee om samen planten, potten en materialen door te nemen. Daarna ontvangt u een voorstel op maat. Aan de Ruimtescan zijn geen kosten verbonden."
+      }
+    ]
+  },
   "contact": {
     "label": "Contact",
     "kop": "Laten we kennismaken.",

@@ -9,10 +9,11 @@ import InspiratieBoek from '../componenten/InspiratieBoek.astro';
 import Pakketten from '../componenten/Pakketten.astro';
 import Geschenken from '../componenten/Geschenken.astro';
 import Over from '../componenten/Over.astro';
+import Vragen from '../componenten/Vragen.astro';
 import Contact from '../componenten/Contact.astro';
 import Voet from '../componenten/Voet.astro';
 import { haalInhoud } from '../lib/inhoud';
-import { bedrijfsSchema } from '../lib/schema';
+import { bedrijfsSchema, vragenSchema } from '../lib/schema';
 
 const inhoud = await haalInhoud('nl');
 const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
@@ -21,7 +22,7 @@ const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
   titel="Blad & Vorm · Interieurbeplanting voor bedrijven en stijlvolle woonomgevingen"
   beschrijving="Blad & Vorm ontwerpt, levert en onderhoudt interieurbeplanting voor bedrijven en stijlvolle woonomgevingen, vanuit Wassenaar voor de regio Den Haag tot Noordwijk."
   vertaling={{ nl: '/', en: '/en/' }}
-  schema={bedrijfsSchema(inhoud.instellingen, 'nl', Astro.site!)}
+  schema={[bedrijfsSchema(inhoud.instellingen, 'nl', Astro.site!), vragenSchema(inhoud.vragen)]}
 >
   <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} taal="nl" />
 
@@ -34,6 +35,7 @@ const pakketOpties = inhoud.pakketten.kaarten.map((k) => k.naam);
     <Pakketten pakketten={inhoud.pakketten} />
     <Geschenken geschenken={inhoud.geschenken} />
     <Over over={inhoud.over} />
+    <Vragen vragen={inhoud.vragen} />
     <Contact contact={inhoud.contact} instellingen={inhoud.instellingen} pakketOpties={pakketOpties} />
   </main>
 
