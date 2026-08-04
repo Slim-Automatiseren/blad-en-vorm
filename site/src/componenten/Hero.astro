@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import heroBreed from '../beelden/hero-breed.jpg';
 import heroMobiel from '../beelden/hero-mobiel.jpg';
 import logoHexagon from '../beelden/logo-hexagon.png';
@@ -14,6 +14,21 @@ const { hero } = Astro.props;
 const standaardAlt =
   'Ontvangsthal met een hoge strelitzia en fauteuils bij het raam, daarachter een gang met palmen en een houten ontvangstbalie met witte orchideeën in zacht daglicht';
 const eigenFoto = beeldBron(hero.foto, [640, 960, 1440, 1920]);
+
+/* Het mobiele herobeeld is op de telefoon het grootste element in beeld en
+   bepaalt dus de laadscore. Daarom door dezelfde beeldpijplijn als de rest:
+   webp op meerdere breedtes in plaats van het onbewerkte bronbestand. Niet
+   groter dan de bron zelf (576 px breed), want opschalen kost bytes zonder
+   dat er detail bij komt. */
+const mobielBreedtes = [384, 480, heroMobiel.width];
+const mobielBronnen = await Promise.all(
+  mobielBreedtes.map((breedte) => getImage({ src: heroMobiel, width: breedte, format: 'webp' })),
+);
+const mobielSrcset = mobielBronnen.map((b, i) => `${b.src} ${mobielBreedtes[i]}w`).join(', ');
+
+/* Het logo tekent zichzelf boven de vouw, dus dat bestand telt ook mee.
+   Een 74 kB PNG wordt hier een paar kilobyte webp. */
+const logoWebp = await getImage({ src: logoHexagon, format: 'webp' });
 ---
 <section class="hero">
   <div class="wrap">
@@ -31,8 +46,8 @@ const eigenFoto = beeldBron(hero.foto, [640, 960, 1440, 1920]);
               </g>
             </mask>
           </defs>
-          <image class="mk-final" href={logoHexagon.src} x="0" y="0" width="237" height="278" />
-          <image class="mk-draw" href={logoHexagon.src} x="0" y="0" width="237" height="278" mask="url(#bv-mark-draw)" />
+          <image class="mk-final" href={logoWebp.src} x="0" y="0" width="237" height="278" />
+          <image class="mk-draw" href={logoWebp.src} x="0" y="0" width="237" height="278" mask="url(#bv-mark-draw)" />
         </svg>
         <span class="naam">Blad &amp; Vorm</span>
       </div>
@@ -52,7 +67,7 @@ const eigenFoto = beeldBron(hero.foto, [640, 960, 1440, 1920]);
   </div>
   <div class="hero-bg">
     <picture>
-      <source media="(max-width: 959px)" srcset={heroMobiel.src} sizes="100vw" />
+      <source media="(max-width: 959px)" srcset={mobielSrcset} sizes="100vw" type="image/webp" />
       {eigenFoto ? (
         <img
           src={eigenFoto.src}
