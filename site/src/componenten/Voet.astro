@@ -41,6 +41,29 @@ const rijen = [0, 1, 2]
         </a>
         <p class="tagline">{instellingen.voetTagline}</p>
         <p class="omschrijving">{instellingen.branche}</p>
+        <!-- Sociale iconen prominent in de linkerkolom (verzoek Jordy 4 augustus).
+             Zonder URL staat het icoon er gedempt en onklikbaar als plekhouder;
+             zodra de URL in Sanity staat wordt het vanzelf een link. -->
+        <div class="sociaal-rij">
+          {instellingen.linkedinUrl ? (
+            <a href={instellingen.linkedinUrl} target="_blank" rel="noopener" class="sociaal" aria-label="LinkedIn (opent in een nieuw tabblad)">
+              <Fragment set:html={linkedinIcoon} />
+            </a>
+          ) : (
+            <span class="sociaal wacht" aria-hidden="true">
+              <Fragment set:html={linkedinIcoon} />
+            </span>
+          )}
+          {instellingen.instagramUrl ? (
+            <a href={instellingen.instagramUrl} target="_blank" rel="noopener" class="sociaal" aria-label="Instagram (opent in een nieuw tabblad)">
+              <Fragment set:html={instagramIcoon} />
+            </a>
+          ) : (
+            <span class="sociaal wacht" aria-hidden="true">
+              <Fragment set:html={instagramIcoon} />
+            </span>
+          )}
+        </div>
       </div>
       <div class="meta-f">
         <span class="label">{labelWerkgebied}</span>
@@ -55,22 +78,6 @@ const rijen = [0, 1, 2]
         <a href={taal === 'nl' ? '/privacy/' : '/en/privacy/'}>{instellingen.privacyLabel}</a>
         {' · '}
         <a href={taal === 'nl' ? '/algemene-voorwaarden.pdf' : '/general-terms-and-conditions.pdf'}>{instellingen.voorwaardenLabel}</a>
-        {instellingen.linkedinUrl && (
-          <>
-            {' · '}
-            <a href={instellingen.linkedinUrl} rel="noopener" class="sociaal" aria-label="LinkedIn">
-              <Fragment set:html={linkedinIcoon} />
-            </a>
-          </>
-        )}
-        {instellingen.instagramUrl && (
-          <>
-            {' · '}
-            <a href={instellingen.instagramUrl} rel="noopener" class="sociaal" aria-label="Instagram">
-              <Fragment set:html={instagramIcoon} />
-            </a>
-          </>
-        )}
         {' · '}
         {taal === 'nl' ? <span aria-current="page">NL</span> : <a href={linkNl}>NL</a>}
         {' / '}
@@ -81,15 +88,28 @@ const rijen = [0, 1, 2]
 </footer>
 
 <style>
-  /* Sociale iconen op de hoogte van de omliggende tekst in de onderregel */
-  footer.site .onder a.sociaal {
+  .sociaal-rij {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.1rem;
+  }
+  .sociaal-rij .sociaal {
     display: inline-flex;
     align-items: center;
-    vertical-align: middle;
+    color: var(--muted);
+    transition: color var(--dur) var(--ease);
+  }
+  .sociaal-rij a.sociaal:hover,
+  .sociaal-rij a.sociaal:focus-visible {
+    color: var(--green);
+  }
+  /* Plekhouder zolang de URL nog niet in Sanity staat */
+  .sociaal-rij .sociaal.wacht {
+    opacity: 0.4;
   }
   /* :global omdat de svg via set:html binnenkomt en Astro die niet scopet */
-  footer.site .onder a.sociaal :global(svg) {
-    width: 15px;
-    height: 15px;
+  .sociaal-rij .sociaal :global(svg) {
+    width: 20px;
+    height: 20px;
   }
 </style>
