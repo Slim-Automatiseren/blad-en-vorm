@@ -45,15 +45,12 @@ const rijen = [0, 1, 2]
              Zonder URL staat het icoon er gedempt en onklikbaar als plekhouder;
              zodra de URL in Sanity staat wordt het vanzelf een link. -->
         <div class="sociaal-rij">
-          {instellingen.linkedinUrl ? (
-            <a href={instellingen.linkedinUrl} target="_blank" rel="noopener" class="sociaal" aria-label="LinkedIn (opent in een nieuw tabblad)">
-              <Fragment set:html={linkedinIcoon} />
-            </a>
-          ) : (
-            <span class="sociaal wacht" aria-hidden="true">
-              <Fragment set:html={linkedinIcoon} />
-            </span>
-          )}
+          <!-- Tot Marco's eigen pagina-URL er is linkt het icoon naar linkedin.com
+               (besluit Jordy 4 augustus); het schema-sameAs blijft wel leeg tot de
+               echte URL in Sanity staat -->
+          <a href={instellingen.linkedinUrl || 'https://www.linkedin.com/'} target="_blank" rel="noopener" class="sociaal" aria-label="LinkedIn (opent in een nieuw tabblad)">
+            <Fragment set:html={linkedinIcoon} />
+          </a>
           {instellingen.instagramUrl ? (
             <a href={instellingen.instagramUrl} target="_blank" rel="noopener" class="sociaal" aria-label="Instagram (opent in een nieuw tabblad)">
               <Fragment set:html={instagramIcoon} />
@@ -102,10 +99,6 @@ const rijen = [0, 1, 2]
   .sociaal-rij a.sociaal:hover,
   .sociaal-rij a.sociaal:focus-visible {
     color: var(--green);
-  }
-  /* Plekhouder zolang de URL nog niet in Sanity staat */
-  .sociaal-rij .sociaal.wacht {
-    opacity: 0.4;
   }
   /* :global omdat de svg via set:html binnenkomt en Astro die niet scopet */
   .sociaal-rij .sociaal :global(svg) {
