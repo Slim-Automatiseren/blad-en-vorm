@@ -39,7 +39,7 @@ const kaartFotos: Record<string, ImageMetadata> = {
 
     <div class="cards">
       {pakketten.kaarten.map((k) => {
-        const eigenFoto = beeldBron(k.foto, [400, 640], 2 / 3);
+        const eigenFoto = beeldBron(k.foto, [400, 640], 3 / 4);
         const standaard = kaartFotos[k.code] ?? fotoImpact;
         return (
           <div class="card">
