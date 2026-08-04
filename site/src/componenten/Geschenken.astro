@@ -22,8 +22,9 @@ const kaartFotos: Record<string, ImageMetadata> = {
 
 /* Bewust compacter dan Marco's indicatie-visual: dit is een bijdienst en mag
    de pakketten erboven niet overvleugelen. Seizoensstyling is de vierde
-   gelijke kaart in plaats van een brede kaart. De standaardfoto's zijn
-   1-op-1 uitsnedes uit Marco's eigen visual (besluit Jordy 3 augustus). */
+   gelijke kaart in plaats van een brede kaart. De standaardfoto's zijn de
+   losse originelen die Marco op 3 augustus nastuurde (curatienotities in
+   docs/beeld.md). */
 const s = geschenken.seizoen;
 const kaarten = [
   ...geschenken.items,
@@ -40,7 +41,7 @@ const kaarten = [
 
     <div class="geschenken-grid reveal">
       {kaarten.map((item) => {
-        const eigenFoto = beeldBron(item.foto, [480, 768], 5 / 6);
+        const eigenFoto = beeldBron(item.foto, [480, 768], 4 / 3);
         const standaard = kaartFotos[item.beeldSlot] ?? fotoRelatie;
         return (
           <div class="g-kaart">

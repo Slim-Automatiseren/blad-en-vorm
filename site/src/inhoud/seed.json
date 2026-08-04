@@ -174,7 +174,7 @@
         "sub": "Een groen welkom voor nieuwe medewerkers.",
         "tekst": "Geef nieuwe collega's een warm welkom met een stijlvol groen cadeau.",
         "beeldSlot": "onboarding",
-        "alt": "Welkomstkaartje met de tekst 'Welkom aan boord!' naast een plant in een keramische pot op een houten bureau"
+        "alt": "Kraft cadeautas met een plant in een keramische pot en het label 'Welkom bij het team', op een bureau in een kantoor"
       },
       {
         "icoon": "relatie",
@@ -182,7 +182,7 @@
         "sub": "Duurzame geschenken voor klanten en zakelijke relaties.",
         "tekst": "Van een luxe orchideeënarrangement tot een stijlvol terrarium: een groen geschenk dat blijvend indruk maakt.",
         "beeldSlot": "relatie",
-        "alt": "Geopende donkergroene geschenkdoos met witte orchideeën, mos en een kaartje, met een lint om de doos"
+        "alt": "Stel ontvangt bij de woningoverdracht een geschenkdoos met een witte orchidee, met een verkocht-bord op de achtergrond"
       },
       {
         "icoon": "kerst",
@@ -190,7 +190,7 @@
         "sub": "Stijlvolle groene cadeaus voor de feestdagen.",
         "tekst": "Exclusieve groene kerstgeschenken die nog lang worden gewaardeerd.",
         "beeldSlot": "kerst",
-        "alt": "Kerstarrangement in een stenen schaal met dennengroen, dennenappels, orchideeën en een kaartje met 'Fijne feestdagen'"
+        "alt": "Terrarium met kerstgroen in een witte geschenkdoos met venster en het label 'Fijne kerstdagen', met een verlichte kerstboom op de achtergrond"
       }
     ],
     "seizoen": {
@@ -199,7 +199,7 @@
       "sub": "Vier keer per jaar een vernieuwde uitstraling.",
       "tekst": "Stijlvolle seizoensarrangementen voor recepties, balies en ontvangstruimtes. Zo blijft uw interieur het hele jaar door representatief.",
       "afsluiter": "",
-      "alt": "Weelderig arrangement met witte orchideeën, groen en takken in een stenen schaal op een houten receptiebalie"
+      "alt": "Voorjaarsarrangement met witte orchideeën en bloesemtakken in een witte schaal op een receptiebalie, met een kentiapalm op de achtergrond"
     }
   },
   "over": {
@@ -249,6 +249,6 @@
     "privacyLabel": "Privacyverklaring",
     "voorwaardenLabel": "Algemene voorwaarden",
     "linkedinUrl": "",
-    "instagramUrl": ""
+    "instagramUrl": "https://www.instagram.com/bladenvorm.nl/"
   }
 }

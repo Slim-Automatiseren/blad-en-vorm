@@ -54,7 +54,7 @@ const rijen = [0, 1, 2]
       <span>
         <a href={taal === 'nl' ? '/privacy/' : '/en/privacy/'}>{instellingen.privacyLabel}</a>
         {' · '}
-        <a href="/algemene-voorwaarden.pdf">{instellingen.voorwaardenLabel}</a>
+        <a href={taal === 'nl' ? '/algemene-voorwaarden.pdf' : '/general-terms-and-conditions.pdf'}>{instellingen.voorwaardenLabel}</a>
         {instellingen.linkedinUrl && (
           <>
             {' · '}

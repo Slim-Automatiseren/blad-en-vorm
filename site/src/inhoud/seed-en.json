@@ -174,7 +174,7 @@
         "sub": "A warm welcome for new team members.",
         "tekst": "Help new colleagues feel at home from day one with a beautifully presented green gift.",
         "beeldSlot": "onboarding",
-        "alt": "Welcome card next to a plant in a ceramic pot on a wooden desk"
+        "alt": "Kraft gift bag holding a potted plant with a welcome tag, on an office desk"
       },
       {
         "icoon": "relatie",
@@ -182,7 +182,7 @@
         "sub": "Sustainable gifts for clients and business relationships.",
         "tekst": "From elegant orchid arrangements to beautifully crafted terrariums, every gift is designed to leave a lasting impression.",
         "beeldSlot": "relatie",
-        "alt": "Open dark green gift box with white orchids, moss and a card, tied with a ribbon"
+        "alt": "Couple receiving a gift box with a white orchid at the handover of their new home, a sold sign in the background"
       },
       {
         "icoon": "kerst",
@@ -190,7 +190,7 @@
         "sub": "Stylish green gifts for the festive season.",
         "tekst": "Exclusive Christmas arrangements that will be appreciated long after the festive season has passed.",
         "beeldSlot": "kerst",
-        "alt": "Christmas arrangement in a stone bowl with pine, pine cones, orchids and a greeting card"
+        "alt": "Terrarium in a white gift box with a festive tag, a lit Christmas tree in the background"
       }
     ],
     "seizoen": {
@@ -199,7 +199,7 @@
       "sub": "A refreshed look, four times a year.",
       "tekst": "Elegant seasonal arrangements for receptions, welcome areas and meeting spaces, ensuring your interior remains welcoming, refined and beautifully presented throughout the year.",
       "afsluiter": "",
-      "alt": "Lush arrangement of white orchids, greenery and branches in a stone bowl on a wooden reception desk"
+      "alt": "Spring arrangement of white orchids and blossom branches in a white bowl on a reception desk, with a kentia palm in the background"
     }
   },
   "over": {
@@ -249,6 +249,6 @@
     "privacyLabel": "Privacy policy",
     "voorwaardenLabel": "Terms and conditions",
     "linkedinUrl": "",
-    "instagramUrl": ""
+    "instagramUrl": "https://www.instagram.com/bladenvorm.nl/"
   }
 }
