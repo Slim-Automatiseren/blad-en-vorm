@@ -28,7 +28,7 @@ const kaartFotos: Record<string, ImageMetadata> = {
   {eigenAchtergrond ? (
     <img src={eigenAchtergrond.src} srcset={eigenAchtergrond.srcset} sizes="100vw" loading="lazy" alt="" aria-hidden="true" />
   ) : (
-    <Image src={achtergrond} widths={[960, 1376]} sizes="100vw" alt="" aria-hidden="true" />
+    <Image src={achtergrond} widths={[960, 1376]} sizes="100vw" quality={40} alt="" aria-hidden="true" />
   )}
   <div class="scrim" aria-hidden="true"></div>
   <div class="wrap">
