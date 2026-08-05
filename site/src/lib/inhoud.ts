@@ -118,6 +118,7 @@ export async function haalInhoud(taal: Taal = 'nl'): Promise<Inhoud> {
     over: p?.over ?? basis.over,
     vragen: {
       kop: p?.vragenSectie?.kop ?? basis.vragen.kop,
+      lede: p?.vragenSectie?.lede ?? basis.vragen.lede,
       meerLabel: p?.vragenSectie?.meerLabel ?? basis.vragen.meerLabel,
       minderLabel: p?.vragenSectie?.minderLabel ?? basis.vragen.minderLabel,
       items: vragen.length ? vragen : basis.vragen.items,

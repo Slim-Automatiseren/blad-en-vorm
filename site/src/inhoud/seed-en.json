@@ -214,31 +214,88 @@
     "items": [
       {
         "vraag": "How much does interior planting cost per month?",
-        "antwoord": "Interior planting by Blad & Vorm starts from 149 euros per month. That amount covers advice, delivery, installation, maintenance and replacement. What you pay depends on your space and the number of plants. After the Site Consultation you receive a proposal with a fixed monthly fee, so there are no surprises later on."
+        "antwoord": "The cost of interior planting depends on the size of the space, the number of plants, the look you are after and how often maintenance is required. That is why we work with tailored solutions rather than standard packages.\n\nOur subscriptions start from €149 per month. During a personal Site Consultation we assess your space and you receive a clear proposal that suits your requirements, your interior and your budget."
       },
       {
         "vraag": "What is included in the monthly fee?",
-        "antwoord": "Everything the planting needs. We supply the plants with matching planters including maintenance, so you buy nothing separately and arrange nothing yourself. Advice, delivery, installation, care and replacement are all covered by a single monthly fee."
+        "antwoord": "With a subscription from Blad & Vorm you are assured of a fully managed planting concept. Depending on the package you choose, this includes delivery, professional installation, periodic maintenance and the replacement of plants in the event of normal decline.\n\nThis keeps your interior planting well cared for and beautifully presented all year round, without you having to give it a second thought."
       },
       {
-        "vraag": "What happens if a plant declines?",
-        "antwoord": "We replace it at no extra cost. Replacement is part of the monthly fee, so you never receive a separate invoice for it. During maintenance we also look ahead and move plants that are not thriving in their position."
+        "vraag": "Why do businesses choose interior planting?",
+        "antwoord": "Interior planting brings calm, atmosphere and a well cared for appearance to any space. A green working environment makes a pleasant impression on employees, clients and visitors, and contributes to how your organisation presents itself.\n\nBlad & Vorm looks beyond the plants themselves and considers the space as a whole. The result is a planting concept that complements your interior and reflects the identity of your organisation."
+      },
+      {
+        "vraag": "What is a Site Consultation and how does it work?",
+        "antwoord": "A Site Consultation is a personal appointment at your location, and it is where every collaboration begins. During this visit we look at your space, discuss your requirements and assess the natural light, the layout and the atmosphere you are after.\n\nWith our Inspiration Book, full of examples of plants, planters and materials, we show you the possibilities. Together we decide which approach suits your interior and your organisation best. Afterwards you receive a personal proposal for a planting concept tailored entirely to your space and requirements."
+      },
+      {
+        "vraag": "How quickly can you deliver and install?",
+        "antwoord": "Delivery time depends on the plants and planters chosen and on the scale of the project. In many cases we can arrange delivery and installation within a few weeks.\n\nInstallation is always scheduled in consultation with you and can usually be completed within one working day, so your daily activities are disrupted as little as possible."
       },
       {
         "vraag": "How often do you visit for maintenance?",
-        "antwoord": "Once or twice a month, depending on the package. The larger packages include two visits per month. We schedule every visit with you, so it fits into your working day."
+        "antwoord": "That depends on the package you choose and on the planting itself. In most cases we carry out maintenance once or twice a month. During every visit we check the health of the plants and take care of watering, feeding and pruning. This keeps your planting concept well cared for and beautifully presented throughout the year."
       },
       {
-        "vraag": "Which areas do you serve?",
-        "antwoord": "Based in Wassenaar, we provide interior planting in The Hague, Voorburg, Leidschendam, Voorschoten, Leiden, Oegstgeest, Warmond, Katwijk and Noordwijk. If your location falls just outside this area, please get in touch and we will see what is possible."
+        "vraag": "What happens if a plant declines?",
+        "antwoord": "Even with professional care, a plant can sometimes decline. When a plant no longer meets the required quality and falls within our replacement conditions, we arrange a suitable replacement. Your interior keeps its appearance and you have nothing to worry about."
       },
       {
-        "vraag": "What does a first meeting look like?",
-        "antwoord": "It starts with a Site Consultation at your location. We look at the space, the light and the atmosphere you are after, and bring our Inspiration Book so we can go through plants, planters and materials together. You then receive a tailored proposal. The Site Consultation is free of charge."
+        "vraag": "Do the plants remain the property of Blad & Vorm?",
+        "antwoord": "Yes. With our subscriptions, the plants and planters remain the property of Blad & Vorm. This allows us to safeguard quality and to provide professional maintenance and timely replacement whenever needed. All arrangements are set out clearly in advance."
+      },
+      {
+        "vraag": "Can I choose the plants and planters myself?",
+        "antwoord": "Certainly. During the Site Consultation we discuss your requirements and use our Inspiration Book to show you different plants, planters and materials. Together we put together a planting concept that suits your interior, the function of the space and the atmosphere you want to create."
+      },
+      {
+        "vraag": "Which plants are suitable for an office?",
+        "antwoord": "That depends on the space, the natural light and how the office is used. Popular species include Kentia, Strelitzia, Ficus and Dracaena. During the Site Consultation we advise which planting suits you best, so your office not only looks well cared for but the plants also stay healthy for years to come."
+      },
+      {
+        "vraag": "Which organisations does Blad & Vorm work with?",
+        "antwoord": "Blad & Vorm provides interior planting for a wide range of organisations where appearance and presentation matter. Think of offices, notaries, estate agents, accountants, law firms, private clinics, dental practices, hotels and other professional working environments. For every space we develop a planting concept that suits the atmosphere, the interior and the identity of your organisation."
+      },
+      {
+        "vraag": "Do you also provide interior planting for private homes?",
+        "antwoord": "Yes. Alongside businesses we also provide interior planting for beautifully designed living spaces, such as villas and luxury apartments. Personal advice, quality materials and professional maintenance are central, so the greenery fits your interior and stays beautiful for years."
+      },
+      {
+        "vraag": "Which areas does Blad & Vorm serve?",
+        "antwoord": "Based in Wassenaar, Blad & Vorm provides interior planting for businesses and stylish homes in The Hague, Voorburg, Leidschendam, Voorschoten, Leiden, Oegstgeest, Warmond, Katwijk and Noordwijk, among others. Not sure whether your location falls within our service area? Please get in touch, we are happy to think along with you."
+      },
+      {
+        "vraag": "Can I expand my planting concept later on?",
+        "antwoord": "Of course. Is your organisation growing, are you moving to a new location, or would you like to add planting to further spaces? We are glad to expand your existing planting concept, so your working environment continues to reflect your organisation."
+      },
+      {
+        "vraag": "Do you also provide large plants for entrances and reception areas?",
+        "antwoord": "Yes. Large interior planting instantly gives an entrance, reception or meeting room more presence. We are happy to advise which plants, planters and dimensions suit your interior best, so the result radiates calm, balance and a professional appearance."
+      },
+      {
+        "vraag": "Can I buy individual plants without maintenance?",
+        "antwoord": "No. Blad & Vorm works exclusively with complete planting concepts including professional maintenance. This is the only way we can safeguard the quality, appearance and consistency we stand for. It assures you of a well cared for interior without having to worry about maintenance."
+      },
+      {
+        "vraag": "Is interior planting possible in every space?",
+        "antwoord": "Almost every space offers possibilities for a suitable planting concept. During the Site Consultation we assess the natural light, the temperature and the function of the space. Based on that we advise on planting that complements your interior and stays beautiful and healthy for a long time."
+      },
+      {
+        "vraag": "Do you also provide seasonal styling and green corporate gifts?",
+        "antwoord": "Yes. Alongside complete planting concepts we also provide seasonal styling, onboarding gifts for new employees, green corporate gifts and stylish Christmas gifts on request. This way we also take care of a well presented look during special moments."
+      },
+      {
+        "vraag": "Why do organisations choose Blad & Vorm?",
+        "antwoord": "Blad & Vorm develops complete planting concepts in which personal advice, quality planting and professional maintenance come together. We believe a space is only truly in balance when every detail feels right. That is why we create solutions that suit your interior, the identity of your organisation and the people who use the space every day."
+      },
+      {
+        "vraag": "Can I arrange a meeting without obligation?",
+        "antwoord": "Yes. Every collaboration begins with a Site Consultation, entirely without obligation. During this personal appointment we look at your space, discuss your requirements and use our Inspiration Book to show you the possibilities. You can explore at your leisure which planting concept suits your interior and your organisation best, with no strings attached."
       }
     ],
     "meerLabel": "More questions",
-    "minderLabel": "Fewer questions"
+    "minderLabel": "Fewer questions",
+    "lede": "Clear answers to the questions we are asked most often."
   },
   "contact": {
     "label": "Contact",

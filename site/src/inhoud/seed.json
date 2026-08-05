@@ -214,31 +214,88 @@
     "items": [
       {
         "vraag": "Wat kost interieurbeplanting per maand?",
-        "antwoord": "Interieurbeplanting van Blad & Vorm start vanaf 149 euro per maand. In dat bedrag zitten advies, levering, plaatsing, onderhoud en vervanging. Wat u precies betaalt hangt af van uw ruimte en het aantal planten. Na de Ruimtescan ontvangt u een voorstel met een vast maandbedrag, zodat u niet achteraf voor verrassingen komt te staan."
+        "antwoord": "De kosten van interieurbeplanting zijn afhankelijk van de grootte van de ruimte, het aantal planten, de gekozen uitstraling en de gewenste onderhoudsfrequentie. Daarom werken wij met maatwerk in plaats van standaardoplossingen.\n\nOnze abonnementen beginnen vanaf €149 per maand. Tijdens een persoonlijke Ruimtescan bekijken wij uw ruimte en ontvangt u een helder voorstel dat past bij uw wensen, interieur en budget."
       },
       {
         "vraag": "Wat zit er in het maandbedrag?",
-        "antwoord": "Alles wat bij de beplanting hoort. Wij leveren de planten met bijpassende potten inclusief onderhoud, dus u schaft niets los aan en regelt niets zelf. Advies, levering, plaatsing, verzorging en vervanging vallen samen onder één maandbedrag."
+        "antwoord": "Met een abonnement van Blad & Vorm bent u verzekerd van een compleet verzorgd groenconcept. Afhankelijk van het gekozen pakket zijn onder andere de levering, professionele plaatsing, het periodieke onderhoud en de vervanging van planten bij normale uitval inbegrepen.\n\nZo blijft uw interieurbeplanting het hele jaar door verzorgd en representatief, zonder dat u daar zelf omkijken naar heeft."
+      },
+      {
+        "vraag": "Waarom kiezen bedrijven voor interieurbeplanting?",
+        "antwoord": "Interieurbeplanting brengt rust, sfeer en een verzorgde uitstraling in iedere ruimte. Een groene werkomgeving maakt een prettige indruk op medewerkers, klanten en bezoekers en draagt bij aan een representatieve uitstraling van uw organisatie.\n\nBlad & Vorm kijkt daarbij niet alleen naar de planten, maar naar het totaalbeeld. Zo ontstaat een groenconcept dat perfect aansluit bij uw interieur en de identiteit van uw organisatie."
+      },
+      {
+        "vraag": "Wat is een Ruimtescan en hoe verloopt deze?",
+        "antwoord": "Een Ruimtescan is een persoonlijke afspraak op locatie waarmee iedere samenwerking begint. Tijdens deze afspraak bekijken wij uw ruimte, bespreken wij uw wensen en observeren wij onder andere de lichtinval, inrichting en gewenste uitstraling.\n\nMet ons Inspiration Book, vol inspirerende voorbeelden van planten, potten en materialen, laten wij de verschillende mogelijkheden zien. Samen bepalen we welke invulling het beste past bij uw interieur en organisatie. Na afloop ontvangt u een persoonlijk voorstel voor een groenconcept dat volledig is afgestemd op uw ruimte en wensen."
+      },
+      {
+        "vraag": "Hoe snel kunnen jullie leveren en plaatsen?",
+        "antwoord": "De levertijd is afhankelijk van de gekozen planten, potten en de omvang van het project. In veel gevallen kunnen wij de levering en plaatsing binnen enkele weken verzorgen.\n\nDe plaatsing wordt altijd in overleg gepland en kan meestal binnen één werkdag worden uitgevoerd, zodat uw dagelijkse werkzaamheden zo min mogelijk worden verstoord."
+      },
+      {
+        "vraag": "Hoe vaak komen jullie langs voor onderhoud?",
+        "antwoord": "Dat hangt af van het gekozen pakket en de interieurbeplanting. In de meeste gevallen verzorgen wij het onderhoud één tot twee keer per maand. Tijdens ieder bezoek controleren wij de gezondheid van de planten en verzorgen wij onder andere de watergift, voeding en snoei. Zo blijft uw groenconcept het hele jaar door verzorgd en representatief."
       },
       {
         "vraag": "Wat gebeurt er als een plant achteruitgaat?",
-        "antwoord": "Dan vervangen wij de plant, zonder extra kosten. Vervanging hoort bij het maandbedrag, dus u krijgt daar geen aparte rekening voor. Bij het onderhoud kijken wij ook vooruit: planten die minder goed op hun plek staan, wisselen wij op tijd om."
+        "antwoord": "Ondanks professionele verzorging kan een plant soms achteruitgaan. Wanneer een plant binnen onze vervangingsvoorwaarden niet meer aan de gewenste kwaliteit voldoet, zorgen wij voor een passende vervanging. Zo blijft de uitstraling van uw interieur behouden en hoeft u zich nergens zorgen over te maken."
       },
       {
-        "vraag": "Hoe vaak komt u langs voor onderhoud?",
-        "antwoord": "Eén tot twee keer per maand, afhankelijk van het pakket. Bij de grotere pakketten komen wij twee keer per maand langs. Wij plannen de bezoeken in overleg met u, zodat ze uitkomen binnen uw werkdag."
+        "vraag": "Zijn de planten eigendom van Blad & Vorm?",
+        "antwoord": "Ja. Bij onze abonnementen blijven de planten en potten eigendom van Blad & Vorm. Hierdoor kunnen wij de kwaliteit waarborgen en zorgen voor professioneel onderhoud en tijdige vervanging wanneer dat nodig is. De gemaakte afspraken worden vooraf duidelijk vastgelegd."
       },
       {
-        "vraag": "In welke regio werkt Blad & Vorm?",
-        "antwoord": "Vanuit Wassenaar verzorgen wij interieurbeplanting in Den Haag, Voorburg, Leidschendam, Voorschoten, Leiden, Oegstgeest, Warmond, Katwijk en Noordwijk. Zit uw locatie net buiten dit gebied? Neem dan gerust contact op, dan kijken wij wat mogelijk is."
+        "vraag": "Kan ik zelf planten en potten kiezen?",
+        "antwoord": "Zeker. Tijdens de Ruimtescan bespreken wij uw wensen en laten wij met ons Inspiration Book verschillende planten, potten en materialen zien. Samen stellen we een groenconcept samen dat past bij uw interieur, de functie van de ruimte en de gewenste uitstraling."
       },
       {
-        "vraag": "Hoe verloopt de eerste kennismaking?",
-        "antwoord": "Die begint met een Ruimtescan bij u op locatie. Wij bekijken de ruimte, het licht en de uitstraling die u zoekt, en nemen ons Inspiration Book mee om samen planten, potten en materialen door te nemen. Daarna ontvangt u een voorstel op maat. Aan de Ruimtescan zijn geen kosten verbonden."
+        "vraag": "Welke planten zijn geschikt voor een kantoor?",
+        "antwoord": "Dat hangt af van de ruimte, de lichtinval en het gebruik van het kantoor. Populaire soorten zijn onder andere Kentia, Strelitzia, Ficus en Dracaena. Tijdens de Ruimtescan adviseren wij welke interieurbeplanting het beste past, zodat uw kantoor niet alleen een verzorgde uitstraling krijgt, maar de planten ook langdurig gezond blijven."
+      },
+      {
+        "vraag": "Voor welke organisaties is Blad & Vorm geschikt?",
+        "antwoord": "Blad & Vorm verzorgt interieurbeplanting voor uiteenlopende organisaties waar uitstraling en representativiteit belangrijk zijn. Denk aan kantoren, notariskantoren, makelaars, accountants, advocaten, private clinics, tandartspraktijken, hotels en andere professionele werkomgevingen. Voor iedere ruimte ontwikkelen wij een groenconcept dat past bij de uitstraling, het interieur en de identiteit van uw organisatie."
+      },
+      {
+        "vraag": "Verzorgen jullie ook interieurbeplanting voor woningen?",
+        "antwoord": "Ja. Naast bedrijven verzorgen wij ook interieurbeplanting voor stijlvolle woonomgevingen, zoals villa's en luxe appartementen. Daarbij staan persoonlijk advies, hoogwaardige materialen en professioneel onderhoud centraal, zodat het groen naadloos aansluit bij uw interieur en jarenlang mooi blijft."
+      },
+      {
+        "vraag": "In welke regio is Blad & Vorm actief?",
+        "antwoord": "Vanuit Wassenaar verzorgt Blad & Vorm interieurbeplanting voor bedrijven en stijlvolle woonomgevingen in onder andere Den Haag, Voorburg, Leidschendam, Voorschoten, Leiden, Oegstgeest, Warmond, Katwijk en Noordwijk. Twijfelt u of uw locatie binnen ons werkgebied valt? Neem gerust contact met ons op. Wij denken graag met u mee."
+      },
+      {
+        "vraag": "Kan ik mijn groenconcept later uitbreiden?",
+        "antwoord": "Natuurlijk. Groeit uw organisatie, verhuist u naar een nieuwe locatie of wilt u extra ruimtes voorzien van interieurbeplanting? Dan breiden wij uw bestaande groenconcept graag uit. Zo blijft de uitstraling van uw werkomgeving perfect aansluiten bij uw organisatie."
+      },
+      {
+        "vraag": "Verzorgen jullie ook grote planten voor entrees en ontvangstruimtes?",
+        "antwoord": "Ja. Grote interieurbeplanting geeft een entree, receptie of vergaderruimte direct meer uitstraling. Wij adviseren graag welke planten, potten en afmetingen het beste passen bij uw interieur, zodat het geheel rust, balans en een representatieve uitstraling uitstraalt."
+      },
+      {
+        "vraag": "Kan ik ook losse planten aanschaffen zonder onderhoud?",
+        "antwoord": "Nee. Blad & Vorm werkt uitsluitend met complete groenconcepten inclusief professioneel onderhoud. Alleen op deze manier kunnen wij de kwaliteit, uitstraling en continuïteit waarborgen waar wij voor staan. Zo bent u verzekerd van een verzorgd en representatief interieur, zonder dat u zich zorgen hoeft te maken over het onderhoud."
+      },
+      {
+        "vraag": "Is interieurbeplanting mogelijk in iedere ruimte?",
+        "antwoord": "Vrijwel iedere ruimte biedt mogelijkheden voor een passend groenconcept. Tijdens de Ruimtescan beoordelen wij onder andere de lichtinval, temperatuur en de functie van de ruimte. Op basis daarvan adviseren wij interieurbeplanting die perfect aansluit bij uw interieur én langdurig mooi en gezond blijft."
+      },
+      {
+        "vraag": "Verzorgen jullie ook seizoensstyling en groene relatiegeschenken?",
+        "antwoord": "Ja. Naast complete groenconcepten verzorgen wij op aanvraag ook seizoensstyling, onboardinggeschenken voor nieuwe medewerkers, groene relatiegeschenken en stijlvolle kerstgeschenken. Zo zorgen wij ook tijdens bijzondere momenten voor een verzorgde en representatieve uitstraling."
+      },
+      {
+        "vraag": "Waarom kiezen organisaties voor Blad & Vorm?",
+        "antwoord": "Blad & Vorm ontwikkelt complete groenconcepten waarin persoonlijk advies, hoogwaardige interieurbeplanting en professioneel onderhoud samenkomen. Wij geloven dat een ruimte pas echt in balans is wanneer alles klopt. Daarom creëren wij oplossingen die naadloos aansluiten bij uw interieur, de identiteit van uw organisatie en de mensen die dagelijks van de ruimte gebruikmaken."
+      },
+      {
+        "vraag": "Kan ik vrijblijvend kennismaken?",
+        "antwoord": "Ja. Iedere samenwerking begint met een vrijblijvende Ruimtescan. Tijdens deze persoonlijke afspraak bekijken wij uw ruimte, bespreken wij uw wensen en laten wij met ons Inspiration Book de verschillende mogelijkheden zien. Zo ontdekt u in alle rust welk groenconcept het beste past bij uw interieur en organisatie, zonder verdere verplichtingen."
       }
     ],
     "meerLabel": "Meer vragen",
-    "minderLabel": "Minder vragen"
+    "minderLabel": "Minder vragen",
+    "lede": "Heldere antwoorden op de vragen die wij het vaakst krijgen."
   },
   "contact": {
     "label": "Contact",

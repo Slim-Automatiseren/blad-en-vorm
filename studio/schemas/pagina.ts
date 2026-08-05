@@ -298,6 +298,7 @@ export const pagina = defineType({
       group: 'vragen',
       fields: [
         s('kop', 'Kop boven de vragen'),
+        t('lede', 'Introregel onder de kop'),
         s('meerLabel', 'Knop: meer vragen tonen'),
         s('minderLabel', 'Knop: vragen weer inklappen'),
       ],

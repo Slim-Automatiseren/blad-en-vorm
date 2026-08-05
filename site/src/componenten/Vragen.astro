@@ -17,6 +17,7 @@ const heeftMeer = vragen.items.length > ZICHTBAAR;
   <div class="wrap">
     <div class="kop-midden reveal">
       <h2 class="section-h">{vragen.kop}</h2>
+      {vragen.lede && <p class="lede">{vragen.lede}</p>}
     </div>
     <div class="faq reveal">
       {vragen.items.map((v, i) => (
@@ -25,7 +26,9 @@ const heeftMeer = vragen.items.length > ZICHTBAAR;
             <span>{v.vraag}</span>
             <span class="teken" aria-hidden="true"></span>
           </summary>
-          <p class="antwoord">{v.antwoord}</p>
+          <div class="antwoord">
+            {v.antwoord.split('\n').filter(Boolean).map((alinea) => <p>{alinea}</p>)}
+          </div>
         </details>
       ))}
       {heeftMeer && (

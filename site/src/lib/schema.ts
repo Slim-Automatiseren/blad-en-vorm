@@ -8,7 +8,7 @@ export function vragenSchema(vragen: Inhoud['vragen']) {
     mainEntity: vragen.items.map((v) => ({
       '@type': 'Question',
       name: v.vraag,
-      acceptedAnswer: { '@type': 'Answer', text: v.antwoord },
+      acceptedAnswer: { '@type': 'Answer', text: v.antwoord.split('\n').filter(Boolean).join(' ') },
     })),
   };
 }
