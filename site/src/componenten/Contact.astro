@@ -18,6 +18,15 @@ const f = contact.formulier;
    schreef. Let op: in Netlify moet per formulier een melding ingesteld worden. */
 const formulierNaam = taal === 'en' ? 'contact-en' : 'contact';
 const bedanktPad = taal === 'en' ? '/en/bedankt/' : '/bedankt/';
+
+/* Onderwerpregel van de melding. Netlify kent in het instellingenveld alleen
+   %{formName}, %{siteName} en %{submissionId}, dus de naam van de aanvrager
+   past daar niet in. Via dit verborgen veld kan het wel: het script hieronder
+   plakt de ingevulde naam erachter vlak voor het verzenden. Zonder JS blijft
+   deze vaste tekst staan. De taal volgt de pagina, want Marco antwoordt vanuit
+   deze mail en dan gaat het onderwerp mee terug naar de aanvrager. */
+const onderwerpBasis =
+  taal === 'en' ? 'New enquiry via bladenvorm.nl' : 'Nieuwe aanvraag via bladenvorm.nl';
 ---
 <section id="contact" class="cream">
   <div class="wrap">
@@ -52,6 +61,7 @@ const bedanktPad = taal === 'en' ? '/en/bedankt/' : '/bedankt/';
           netlify-honeypot="website"
         >
           <input type="hidden" name="form-name" value={formulierNaam} />
+          <input type="hidden" name="subject" id="f-onderwerp" value={onderwerpBasis} data-basis={onderwerpBasis} />
           <div>
             <label for="f-naam">{f.veldNaam}</label>
             <input id="f-naam" name="naam" type="text" autocomplete="name" required />
@@ -120,6 +130,15 @@ const bedanktPad = taal === 'en' ? '/en/bedankt/' : '/bedankt/';
       return;
     }
     fout.style.display = 'none';
+    /* Naam van de aanvrager in de onderwerpregel, zodat Marco in zijn inbox
+       ziet wie er schrijft zonder de mail te openen. */
+    const onderwerp = document.getElementById('f-onderwerp') as HTMLInputElement | null;
+    const naamVeld = document.getElementById('f-naam') as HTMLInputElement | null;
+    if (onderwerp && naamVeld) {
+      const basis = onderwerp.dataset.basis ?? onderwerp.value;
+      const naam = naamVeld.value.trim();
+      onderwerp.value = naam ? `${basis}: ${naam}` : basis;
+    }
     try {
       const velden = new URLSearchParams();
       new FormData(form).forEach((waarde, naam) => {
