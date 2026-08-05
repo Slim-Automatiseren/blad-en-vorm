@@ -1,0 +1,29 @@
+---
+import Basis from '../../layouts/Basis.astro';
+import Nav from '../../componenten/Nav.astro';
+import Voet from '../../componenten/Voet.astro';
+import { haalInhoud } from '../../lib/inhoud';
+
+/* Engelse tegenhanger van bedankt.astro: zonder JS post het Engelse formulier
+   hierheen, en dan hoort de bevestiging ook Engels te zijn. Altijd noindex. */
+const inhoud = await haalInhoud('en');
+const f = inhoud.contact.formulier;
+---
+<Basis titel="Thank you for your enquiry · Blad & Vorm" beschrijving={f.succesTekst} taal="en" nooitIndexeren>
+  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} taal="en" />
+
+  <main id="hoofd">
+    <section class="bedankt">
+      <div class="wrap">
+        <div>
+          <span class="label">{inhoud.contact.label}</span>
+          <h1 class="section-h kop-na-label">{f.succesKop}</h1>
+          <p class="lede">{f.succesTekst}</p>
+          <a class="btn ghost terug" href="/en/">Back to the page</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Voet instellingen={inhoud.instellingen} labelWerkgebied={inhoud.contact.labelWerkgebied} taal="en" linkNl="/" linkEn="/en/" />
+</Basis>

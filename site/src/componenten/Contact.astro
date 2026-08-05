@@ -6,9 +6,18 @@ interface Props {
   contact: Inhoud['contact'];
   instellingen: Inhoud['instellingen'];
   pakketOpties: string[];
+  taal?: 'nl' | 'en';
 }
-const { contact, instellingen, pakketOpties } = Astro.props;
+const { contact, instellingen, pakketOpties, taal = 'nl' } = Astro.props;
 const f = contact.formulier;
+
+/* Elke taal een eigen formuliernaam. Netlify bewaart per formuliernaam één
+   veldschema, en met twee pagina's onder dezelfde naam won willekeurig de
+   Engelse: Marco kreeg daardoor Engelse veldnamen in zijn meldingen. Nu leest
+   een Nederlandse aanvraag Nederlands, en ziet hij meteen in welke taal iemand
+   schreef. Let op: in Netlify moet per formulier een melding ingesteld worden. */
+const formulierNaam = taal === 'en' ? 'contact-en' : 'contact';
+const bedanktPad = taal === 'en' ? '/en/bedankt/' : '/bedankt/';
 ---
 <section id="contact" class="cream">
   <div class="wrap">
@@ -36,13 +45,13 @@ const f = contact.formulier;
         <form
           class="enq"
           id="contactForm"
-          name="contact"
+          name={formulierNaam}
           method="post"
-          action="/bedankt/"
+          action={bedanktPad}
           data-netlify="true"
           netlify-honeypot="website"
         >
-          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="form-name" value={formulierNaam} />
           <div>
             <label for="f-naam">{f.veldNaam}</label>
             <input id="f-naam" name="naam" type="text" autocomplete="name" required />
