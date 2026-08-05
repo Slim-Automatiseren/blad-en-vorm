@@ -21,8 +21,12 @@ const structuur: StructureResolver = (S) =>
         .id('instellingen')
         .child(S.document().schemaType('instellingen').documentId('instellingen')),
       S.divider(),
+      /* Let op: elk type dat hier staat moet ook in schemas/index.ts staan,
+         anders start de studio niet op ("Schema type with name X not found").
+         Het oude type 'scenario' is op 27 juli vervangen door
+         'inspiratiebeeld' en stond hier per ongeluk nog. */
       S.documentTypeListItem('pakket').title('Pakketten'),
-      S.documentTypeListItem('scenario').title("Scenario's"),
+      S.documentTypeListItem('inspiratiebeeld').title('Inspiratiebeelden'),
       S.documentTypeListItem('vraag').title('Veelgestelde vragen'),
     ]);
 
