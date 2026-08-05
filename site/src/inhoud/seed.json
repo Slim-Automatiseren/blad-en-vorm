@@ -236,7 +236,9 @@
         "vraag": "Hoe verloopt de eerste kennismaking?",
         "antwoord": "Die begint met een Ruimtescan bij u op locatie. Wij bekijken de ruimte, het licht en de uitstraling die u zoekt, en nemen ons Inspiration Book mee om samen planten, potten en materialen door te nemen. Daarna ontvangt u een voorstel op maat. Aan de Ruimtescan zijn geen kosten verbonden."
       }
-    ]
+    ],
+    "meerLabel": "Meer vragen",
+    "minderLabel": "Minder vragen"
   },
   "contact": {
     "label": "Contact",

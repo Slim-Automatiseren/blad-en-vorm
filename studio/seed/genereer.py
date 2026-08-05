@@ -170,6 +170,8 @@ pagina = {
     },
     "vragenSectie": {
         "kop": L(vr["kop"], vr_en["kop"]),
+        "meerLabel": L(vr["meerLabel"], vr_en["meerLabel"]),
+        "minderLabel": L(vr["minderLabel"], vr_en["minderLabel"]),
     },
     "contactSectie": {
         "label": L(ct["label"], ct_en["label"]),

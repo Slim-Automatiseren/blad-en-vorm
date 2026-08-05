@@ -373,6 +373,22 @@ dialog.lightbox :focus-visible { outline: 2px solid var(--gold-light); outline-o
 .faq .teken::after { top: 0; left: 5px; width: 2px; height: 12px; }
 .faq details[open] .teken::after { opacity: 0; }
 .faq .antwoord { color: var(--muted); font-size: 0.96rem; line-height: 1.65; padding: 0 0 1.3rem; max-width: 68ch; }
+/* Alleen als het script draait verdwijnen de extra vragen achter de knop */
+.faq.js-inklap details.extra { display: none; }
+.faq.js-inklap.js-uitgeklapt details.extra { display: block; }
+.faq-meer {
+  display: flex; align-items: center; justify-content: center; gap: 0.55rem;
+  width: 100%; margin-top: 1.4rem; padding: 0.75rem 1rem;
+  background: none; border: 1px solid var(--line); border-radius: 2px; cursor: pointer;
+  font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.05rem; color: var(--green);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.faq-meer:hover, .faq-meer:focus-visible { border-color: var(--green); }
+.faq-meer .teken { width: 11px; height: 11px; }
+.faq-meer .teken::before { top: 4.5px; left: 0; width: 11px; height: 2px; }
+.faq-meer .teken::after { top: 0; left: 4.5px; width: 2px; height: 11px; }
+.faq.js-uitgeklapt .faq-meer .teken::after { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .faq-meer { transition: none; } }
 @media (prefers-reduced-motion: reduce) {
   .faq summary, .faq .teken::before, .faq .teken::after { transition: none; }
 }

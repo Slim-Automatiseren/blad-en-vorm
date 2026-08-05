@@ -296,7 +296,11 @@ export const pagina = defineType({
       title: 'Veelgestelde vragen (kop; de vragen zelf staan als eigen lijst)',
       type: 'object',
       group: 'vragen',
-      fields: [s('kop', 'Kop boven de vragen')],
+      fields: [
+        s('kop', 'Kop boven de vragen'),
+        s('meerLabel', 'Knop: meer vragen tonen'),
+        s('minderLabel', 'Knop: vragen weer inklappen'),
+      ],
     }),
     defineField({
       name: 'contactSectie',

@@ -236,7 +236,9 @@
         "vraag": "What does a first meeting look like?",
         "antwoord": "It starts with a Site Consultation at your location. We look at the space, the light and the atmosphere you are after, and bring our Inspiration Book so we can go through plants, planters and materials together. You then receive a tailored proposal. The Site Consultation is free of charge."
       }
-    ]
+    ],
+    "meerLabel": "More questions",
+    "minderLabel": "Fewer questions"
   },
   "contact": {
     "label": "Contact",
