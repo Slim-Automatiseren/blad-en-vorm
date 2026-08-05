@@ -4,6 +4,10 @@
 
 section { padding-top: clamp(3rem, 7vw, 5.5rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
 section.band { background: var(--stone); }
+section.cream { background: var(--cream); }
+
+/* Warme waas over alle fotografie, één regel, overal gelijk */
+.hero-bg img, .plate img, .m-kaart img, .card .kaart-foto img, .foto-band > img { filter: sepia(0.06) saturate(1.04); }
 
 /* Rail-raster: smalle linkerkolom met label, content rechts */
 .grid2 { display: grid; gap: 2.2rem; }
@@ -17,59 +21,130 @@ section.band { background: var(--stone); }
 .rail .rail-note { margin-top: 0.8rem; color: var(--muted); font-size: 0.9rem; max-width: 22ch; }
 
 h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-spacing: -0.01em; }
+/* Gouden onderstreping als achtergrondlijn, zodat hij zichzelf kan "tekenen".
+   Standaard (en zonder JS) staat hij volledig; met JS start hij op 0 en groeit
+   naar 100% zodra de sectie voor het eerst in beeld komt (.reveal.in). */
+h2.section-h em {
+  font-style: italic; color: inherit;
+  /* Lijn zit iets boven de onderkant, zodat de staarten van p en j eroverheen
+     vallen. De achtergrondlijn schildert achter de tekst, dus dat gebeurt vanzelf.
+     Links een klein stukje ingekort (start op 0,1em). */
+  background-image: linear-gradient(var(--gold), var(--gold));
+  background-repeat: no-repeat;
+  background-position: 0.1em 88%;
+  background-size: calc(100% - 0.1em) 2px;
+}
+.js h2.section-h em {
+  background-size: 0 2px;
+  transition: background-size 0.9s var(--ease) 0.35s;
+}
+.js .reveal.in h2.section-h em { background-size: calc(100% - 0.1em) 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .js h2.section-h em { background-size: calc(100% - 0.1em) 2px; transition: none; }
+}
 .lede { color: var(--muted); font-size: clamp(1rem, 1.9vw, 1.14rem); line-height: 1.6; max-width: 58ch; margin-top: 1.2rem; }
 
-/* ---------- Hero: paginabreed beeld, tekst op de rustige linkerzone ---------- */
-.hero { position: relative; display: flex; align-items: center; padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+/* Kop direct onder een label (Inspiration Book, Over, contact, bedankt-pagina) */
+.kop-na-label { margin-top: 1rem; }
+
+/* ---------- Hero: paginabreed beeld, merk-lockup op de rustige linkerzone ----------
+   Het logo (hexagon plus wordmark) staat groot in de hero met de slogan als kop
+   eronder, zoals het gestapelde logo zelf is opgebouwd. */
+.hero { position: relative; display: flex; align-items: center; padding-top: clamp(2.5rem, 6vw, 5rem); padding-bottom: clamp(2.5rem, 5vw, 4.5rem); }
 .hero > .wrap { position: relative; z-index: 1; width: 100%; }
 .hero-inhoud { max-width: 620px; }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; }
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 62%; display: block; }
-/* Tekstzone: dekkend papier tot voorbij de tekstkolom, daarna uitlopend over het beeld.
-   De solide stop staat in px zodat de tekst op elke breedte op dekkende ondergrond staat. */
+/* Tekstzone: dekkend papier tot voorbij de tekstkolom (vaste 640px), daarna
+   uitlopend over het beeld. De vervolgstappen hebben een pixel-ondergrens via
+   max(): puur procentuele stops komen op schermen onder circa 1240px vóór de
+   640px te liggen en dan klapt de gradient in elkaar tot een harde rand. De
+   regel erboven is de terugval voor browsers zonder max() in kleurstops. */
 .hero-bg::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.6) 52%, rgba(247, 244, 239, 0) 74%);
+  background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.85) 760px, rgba(247, 244, 239, 0.5) 900px, rgba(247, 244, 239, 0) 1100px);
+  background: linear-gradient(90deg, var(--paper) 0, var(--paper) 640px, rgba(247, 244, 239, 0.85) max(44%, 760px), rgba(247, 244, 239, 0.5) max(52%, 900px), rgba(247, 244, 239, 0) max(74%, 1100px));
 }
-@media (min-width: 960px) { .hero { min-height: clamp(560px, 78vh, 800px); } }
+@media (min-width: 960px) { .hero { min-height: clamp(560px, 80vh, 820px); } }
 @media (max-width: 959px) {
-  .hero { min-height: min(184vw, 770px); align-items: flex-start; padding-top: clamp(2.4rem, 9vw, 3.6rem); padding-bottom: 2.4rem; }
+  .hero { min-height: min(190vw, 800px); align-items: flex-start; padding-top: clamp(2rem, 7vw, 3rem); padding-bottom: 2.4rem; }
   .hero-bg::after { background: linear-gradient(90deg, var(--paper) 0, rgba(247, 244, 239, 0.92) 54%, rgba(247, 244, 239, 0.82) 66%, rgba(247, 244, 239, 0.32) 79%, rgba(247, 244, 239, 0) 91%); }
-  .hero-bg img { object-position: 50% 50%; transform: scale(1.08); transform-origin: left center; }
-  .hero .hero-inhoud h1 { font-size: 2.5rem; max-width: 20ch; }
-  .hero .hero-inhoud .sub { max-width: 22ch; }
-  .hero .fineprint { max-width: 20ch; }
-  .hero .meta { display: none; }
+  /* Sinds de spiegeling (31 juli) staan de palmen rechts in het mobiele beeld;
+     rechts verankeren, anders valt het groen buiten de uitsnede en blijft
+     vooral de houten kolom over. */
+  .hero-bg img { object-position: 100% 50%; transform: scale(1.08); transform-origin: right center; }
+  .hero .hero-inhoud h1 { font-size: 2.7rem; }
+  .hero .hero-inhoud .sub { max-width: 24ch; }
+  .hero .hero-inhoud .intro { max-width: 24ch; }
 }
+
+/* Merk-lockup: de grote, tekenende versie van de mark. De SVG-markup staat in
+   Hero.astro (verplaatst uit Nav.astro); de nav zelf toont enkel de statische
+   crop uit basis.css. Animatietiming ongewijzigd overgenomen (commit "Rustiger
+   logo-tempo"): eerst het blad, dan de zeshoek, één keer per paginalading. */
+.hero-merk { display: flex; flex-direction: column; gap: 0.9rem; }
+.hero-merk .mark-groot { display: block; overflow: visible; width: 81.8px; height: 96px; }
+.hero-merk .naam {
+  font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600;
+  font-size: 1.9rem; line-height: 1; letter-spacing: 0.01em; color: var(--green);
+}
+@media (max-width: 959px) {
+  .hero-merk .mark-groot { width: 54.6px; height: 64px; }
+  .hero-merk .naam { font-size: 1.5rem; }
+}
+
+/* Rusttoestand: zonder JS, bij reduced-motion, of bij een herhaald bezoek staat
+   het volledige logo er meteen (zie .js/.logo-teken in Basis.astro). */
+.hero-merk .mark-groot .mk-final { opacity: 1; }
+
+.logo-teken .hero-merk .mark-groot .mk-final {
+  opacity: 0;
+  animation: bv-mark-settle 0.4s ease 1.85s forwards;
+}
+.logo-teken .hero-merk .mark-groot .dw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.logo-teken .hero-merk .mark-groot .leaf-stalk { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 0.1s both; }
+.logo-teken .hero-merk .mark-groot .leaf-a { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 0.3s both; }
+.logo-teken .hero-merk .mark-groot .leaf-b { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 0.42s both; }
+.logo-teken .hero-merk .mark-groot .hex-inner { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 1.15s both; }
+.logo-teken .hero-merk .mark-groot .hex-outer { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 1.3s both; }
+
+@keyframes bv-mark-draw { to { stroke-dashoffset: 0; } }
+@keyframes bv-mark-settle { to { opacity: 1; } }
+
 .hero h1 {
-  font-size: clamp(2.9rem, 7vw, 5.1rem);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
-  margin-top: 1.5rem;
-  max-width: 15ch;
-}
-.hero h1 em {
   font-style: italic;
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--gold);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.14em;
+  font-size: clamp(2.9rem, 6.4vw, 4.7rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin-top: 1.4rem;
+  max-width: 14ch;
 }
-.rule { display: flex; align-items: center; gap: 0.9rem; margin: 2rem 0 1.6rem; max-width: 30rem; }
+.rule { display: flex; align-items: center; gap: 0.9rem; margin: 1.7rem 0 1.5rem; max-width: 30rem; }
 .rule::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .pip { width: 7px; height: 7px; flex: none; border: 1px solid var(--gold); transform: rotate(45deg); }
-.hero .sub { color: var(--muted); font-size: clamp(1.02rem, 1.9vw, 1.16rem); max-width: 44ch; }
-.actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
-.fineprint { margin-top: 1rem; color: var(--muted); font-size: 0.85rem; }
-
-.meta {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-  margin: 2.8rem 0 0; padding-top: 1.6rem; border-top: 1px solid var(--line);
+.hero .sub {
+  font-family: "Cormorant Garamond", Georgia, serif; color: var(--green);
+  font-size: clamp(1.25rem, 2.3vw, 1.55rem); line-height: 1.35; max-width: 34ch;
+  margin-top: 0.9rem;
 }
-@media (max-width: 480px) { .meta { grid-template-columns: 1fr 1fr; } }
-.meta dt { margin-bottom: 0.35rem; }
-.meta dd { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.3rem; line-height: 1.25; color: var(--green); }
+.hero .intro { color: var(--muted); font-size: clamp(1rem, 1.9vw, 1.14rem); max-width: 44ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+/* Op telefoonbreedte stapelen de twee heroknoppen toch al; even breed en
+   gecentreerd oogt dan rustiger. De hiërarchie blijft via vol tegenover ghost. */
+@media (max-width: 520px) {
+  .hero .actions { flex-direction: column; align-items: stretch; max-width: 20rem; }
+  .hero .actions .btn { justify-content: center; }
+}
+.cue {
+  display: inline-flex; align-items: center; gap: 0.7rem; margin-top: 2.6rem;
+  color: var(--muted); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none;
+}
+.cue svg { width: 14px; height: 14px; color: var(--gold); }
+.cue:hover { color: var(--green); }
 
 /* ---------- Omkaderde plaat ---------- */
 .plate {
@@ -87,170 +162,236 @@ h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-sp
 .plate .bl { bottom: 9px; left: 9px; transform: scaleY(-1); }
 .plate .br { bottom: 9px; right: 9px; transform: scale(-1, -1); }
 
-/* ---------- Zekerhedenstrip onder de hero ---------- */
-.strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--stone); }
-.strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
-.strip .z-item {
-  display: flex; align-items: center; gap: 0.7rem;
-  padding: 1.15rem 1rem;
-  border-left: 1px solid var(--line);
+/* ---------- Inspiratie: twee rustige stroken, tegengesteld schuivend ----------
+   Puur CSS, geen JS nodig. De tweede helft van elke strook is een kopie
+   (aria-hidden) zodat de lus naadloos is. Pauzeert bij hover en focus,
+   en staat stil met horizontale scroll bij prefers-reduced-motion. */
+.marquee { overflow: hidden; margin-top: 2.6rem; }
+.marquee + .marquee { margin-top: 1.25rem; }
+.marquee .track { display: flex; width: max-content; animation: m-schuif 75s linear infinite; }
+.marquee.rechts .track { animation-direction: reverse; }
+.marquee.links .track { animation-duration: 88s; }
+.marquee:hover .track, .marquee:focus-within .track { animation-play-state: paused; }
+@keyframes m-schuif { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee .groep { display: flex; gap: 1.25rem; padding-right: 1.25rem; }
+.m-kaart { margin: 0; flex: none; width: clamp(230px, 30vw, 390px); }
+/* height: auto is nodig omdat astro:assets een height-attribuut meegeeft;
+   zonder override wint dat attribuut van aspect-ratio en rekt de kaart uit */
+.m-kaart img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 1px solid var(--line); }
+.m-kaart figcaption {
+  margin-top: 0.55rem; font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
 }
-.strip .z-item:first-child { border-left: none; }
-.strip .z-item svg { width: 17px; height: 17px; flex: none; color: var(--leaf); }
-.strip .z-item span { font-size: 0.88rem; color: var(--text); line-height: 1.35; }
-@media (max-width: 880px) {
-  .strip .wrap { grid-template-columns: 1fr 1fr; }
-  .strip .z-item:nth-child(3) { border-left: none; }
-  .strip .z-item:nth-child(n+3) { border-top: 1px solid var(--line); }
-}
-@media (max-width: 440px) {
-  .strip .wrap { grid-template-columns: 1fr; }
-  .strip .z-item { border-left: none; border-top: 1px solid var(--line); padding: 0.85rem 0.2rem; }
-  .strip .z-item:first-child { border-top: none; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; }
+  .marquee .track { animation: none; }
+  .marquee .groep[aria-hidden] { display: none; }
 }
 
-/* ---------- Pakketten ---------- */
-.cards { display: grid; gap: 1.25rem; margin-top: 2rem; }
-@media (min-width: 820px) { .cards { grid-template-columns: repeat(3, 1fr); } }
-.card {
-  border: 1px solid var(--line); background: var(--paper);
-  padding: 1.8rem 1.6rem; display: flex; flex-direction: column; gap: 0.85rem;
+/* Foto's aanklikbaar: alleen de echte (niet-duplicaat) kaarten krijgen de
+   button. Reset van de standaard button-stijl, zodat hij oogt als de foto
+   zelf. Zonder JS blijft dit een gewone, niet-actieve knop: de zoom-cursor en
+   de hover-aanwijzing komen pas met de klasse "js" die het script bij
+   initialisatie op de sectie zet (progressive enhancement). */
+.m-zoom {
+  display: block; width: 100%; padding: 0; margin: 0; border: none; background: none;
+  font: inherit; color: inherit; text-align: inherit; cursor: default;
 }
-.card .kicker { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
-.card h3 { font-size: 1.75rem; line-height: 1.1; }
-.card .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; color: var(--green); }
-.card .prijs small { font-family: "Inter", system-ui, sans-serif; font-size: 0.8rem; color: var(--muted); }
-.card .desc { color: var(--muted); font-style: italic; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.1rem; }
-.card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
-.card ul li { display: flex; gap: 0.6rem; font-size: 0.93rem; align-items: baseline; color: var(--text); }
+#inspiratie.js .m-zoom { cursor: zoom-in; }
+#inspiratie.js .m-zoom img { transition: opacity var(--dur) var(--ease); }
+#inspiratie.js .m-zoom:hover img, #inspiratie.js .m-zoom:focus-visible img { opacity: 0.88; }
+
+/* ---------- Lightbox ----------
+   Eén dialoog voor alle inspiratiefoto's. Fade-in en fade-out lopen op
+   opacity, gestuurd door het attribuut data-open dat het script zet; zo
+   blijft de dialoog tijdens het sluiten nog even zichtbaar voor de overgang
+   afloopt.
+   Bij prefers-reduced-motion staat de overgang uit en verschijnt/verdwijnt de
+   foto direct, zie ook de globale regel in basis.css. */
+dialog.lightbox {
+  border: none; padding: 0; background: transparent; color: var(--paper);
+  max-width: min(92vw, 1200px); max-height: 92vh;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+dialog.lightbox[data-open] { opacity: 1; }
+dialog.lightbox::backdrop {
+  background: rgba(45, 50, 29, 0.82);
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+dialog.lightbox[data-open]::backdrop { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  dialog.lightbox, dialog.lightbox::backdrop { transition: none; }
+}
+
+.lb-inhoud { position: relative; display: inline-block; }
+.lb-foto img {
+  display: block; max-width: 90vw; max-height: 78vh; width: auto; height: auto;
+  object-fit: contain; border: 1px solid rgba(247, 244, 239, 0.25); cursor: zoom-out;
+}
+.lb-bijschrift {
+  margin: 0.8rem 0 0; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(247, 244, 239, 0.75); text-align: center;
+}
+
+/* Bladerknoppen: rustige ghost-stijl, crème op donker */
+.lb-sluit, .lb-vorige, .lb-volgende {
+  position: absolute;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(247, 244, 239, 0.4); border-radius: 2px;
+  background: rgba(45, 50, 29, 0.55); color: var(--paper);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.lb-sluit:hover, .lb-vorige:hover, .lb-volgende:hover {
+  background: rgba(45, 50, 29, 0.8); border-color: var(--gold-light);
+}
+.lb-sluit svg, .lb-vorige svg, .lb-volgende svg { width: 18px; height: 18px; }
+.lb-sluit { top: 0.6rem; right: 0.6rem; }
+/* De pijlen liggen altijd óp de foto, nooit erbuiten: buiten de fotorand
+   vallen ze op gewone laptopbreedtes buiten het venster (90vw foto plus
+   tweemaal een knop past niet). Smal: op de onderrand; vanaf 700px verticaal
+   gecentreerd op de zijranden. */
+.lb-vorige { left: 0.6rem; bottom: 0.6rem; }
+.lb-volgende { right: 0.6rem; bottom: 0.6rem; }
+@media (min-width: 700px) {
+  .lb-vorige, .lb-volgende { top: 50%; bottom: auto; transform: translateY(-50%); }
+  .lb-vorige { left: 0.8rem; }
+  .lb-volgende { right: 0.8rem; }
+}
+
+/* Zichtbare focus in de bestaande stijl van de site, maar in goud-licht:
+   het gewone groene :focus-visible-contrast valt weg tegen de donkere
+   overlay (zie huisstijl.md, goud-licht is wel AA op het groene vlak). */
+dialog.lightbox :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
+/* ---------- Filosofie ---------- */
+.filosofie-plate { margin-top: 2.4rem; }
+.filosofie-plate .plate { aspect-ratio: 21 / 9; }
+@media (max-width: 700px) { .filosofie-plate .plate { aspect-ratio: 16 / 10; } }
+
+/* ---------- Diensten: vier rustige kaarten ---------- */
+.diensten-grid { display: grid; gap: 1.25rem; margin-top: 2.2rem; }
+@media (min-width: 620px) { .diensten-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 980px) { .diensten-grid { grid-template-columns: repeat(4, 1fr); } }
+.d-kaart { border: 1px solid var(--line); background: var(--paper); padding: 1.6rem 1.4rem; }
+.d-kaart svg { width: 30px; height: 30px; color: var(--green); }
+.d-kaart h3 { font-size: 1.45rem; margin: 0.8rem 0 0.4rem; }
+.d-kaart p { color: var(--muted); font-size: 0.94rem; }
+
+/* ---------- Inspiration Book ---------- */
+.boek-grid { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 800px) { .boek-grid { grid-template-columns: 380px 1fr; gap: 3.5rem; } }
+.boek-grid .plate { aspect-ratio: 4 / 3; }
+.boek-grid .actions { margin-top: 1.6rem; }
+
+/* ---------- Pakketten ----------
+   Op verzoek van Marco (26 juli) heeft elke kaart een foto met per stap iets
+   meer groen, plus prijs en specificaties. De foto's zijn sfeerbeelden zonder
+   bijschrift, zodat ze niet als projectfoto's lezen. Gecentreerde kop in plaats
+   van het rail-raster: bij vier kaarten naast elkaar oogt een linkerkolom leeg. */
+.kop-midden { max-width: 620px; margin: 0 auto 2.4rem; text-align: center; }
+.kop-midden .label { display: block; margin-bottom: 0.9rem; }
+.cards { display: grid; gap: 1.25rem; }
+@media (min-width: 560px) { .cards { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+.card { border: 1px solid var(--line); background: var(--paper); display: flex; flex-direction: column; }
+.card .kaart-foto { margin: 0; }
+.card .kaart-foto img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-bottom: 1px solid var(--line); }
+.card .kaart-inhoud { padding: 1.3rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.75rem; flex: 1; }
+.card h3 { font-size: 1.5rem; line-height: 1.1; }
+.card .desc { color: var(--muted); font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 1.04rem; }
+.card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+.card ul li { display: flex; gap: 0.6rem; font-size: 0.87rem; align-items: baseline; color: var(--text); }
 .card ul li::before { content: ""; width: 5px; height: 5px; flex: none; background: var(--gold); margin-top: 0.5rem; }
-.card .foot { margin-top: auto; padding-top: 0.8rem; }
-.card .foot .btn { width: 100%; justify-content: center; padding-left: 0.6rem; padding-right: 0.6rem; white-space: nowrap; }
+.card .foot { margin-top: auto; padding-top: 0.4rem; }
+.card .foot .btn { width: 100%; justify-content: center; }
 
-/* Fotoachtergrond onder de pakketsectie: één sfeerbeeld met groene waas,
-   de lichte kaarten drijven erop. Geen foto's per kaart, dat leest als portfolio. */
+/* Fotoachtergrond onder de pakketsectie: één sfeerbeeld met warme groene waas,
+   de lichte kaarten drijven erop. */
 .foto-band { position: relative; overflow: hidden; }
 .foto-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.foto-band > .scrim { position: absolute; inset: 0; background: rgba(32, 43, 26, 0.82); }
+.foto-band > .scrim { position: absolute; inset: 0; background: rgba(45, 50, 29, 0.82); }
 .foto-band > .wrap { position: relative; z-index: 1; }
-.foto-band .rail .label { color: rgba(247, 244, 239, 0.72); }
-.foto-band .rail .rail-note { color: rgba(247, 244, 239, 0.75); }
+.foto-band .label { color: rgba(247, 244, 239, 0.72); }
 .foto-band h2.section-h { color: var(--paper); }
 .foto-band .lede { color: rgba(247, 244, 239, 0.78); }
-.foto-band .xl-band { background: rgba(247, 244, 239, 0.08); border-color: rgba(247, 244, 239, 0.25); }
-.foto-band .xl-band h3 { color: var(--paper); }
-.foto-band .xl-band .prijs { color: var(--gold-light); }
-.foto-band .xl-band .prijs small { color: rgba(247, 244, 239, 0.6); }
-.foto-band .xl-band p.x-desc { color: rgba(247, 244, 239, 0.75); }
-.foto-band .xl-band .kicker { color: rgba(247, 244, 239, 0.6); }
-.foto-band .xl-band .btn { background: var(--paper); border-color: var(--paper); color: var(--green); }
-.foto-band .xl-band .btn:hover { background: var(--stone); border-color: var(--stone); }
 
-.xl-band {
-  margin-top: 1.25rem; border: 1px solid var(--line); background: var(--stone);
-  display: grid; gap: 1.2rem; padding: 1.8rem 1.6rem;
+/* ---------- Geschenken ----------
+   Bijdienst, dus bewust een maat kleiner dan de pakketten erboven: één rij van
+   vier compacte kaarten in het diensten-register, met een lage fotocrop.
+   De lede centreert mee onder de kop. */
+.kop-midden .lede { margin-left: auto; margin-right: auto; }
+.geschenken-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 620px) { .geschenken-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 980px) { .geschenken-grid { grid-template-columns: repeat(4, 1fr); } }
+.g-kaart { border: 1px solid var(--line); background: var(--paper); }
+.g-kaart figure { margin: 0; }
+.g-kaart figure img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  border-bottom: 1px solid var(--line);
 }
-@media (min-width: 820px) {
-  .xl-band { grid-template-columns: 1fr auto; align-items: center; gap: 2.5rem; }
+.g-inhoud { padding: 1.2rem 1.2rem 1.4rem; }
+.g-inhoud svg { width: 24px; height: 24px; color: var(--green); }
+.g-inhoud h3 { font-size: 1.3rem; line-height: 1.1; margin: 0.65rem 0 0.35rem; }
+.g-sub { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+.g-tekst { color: var(--muted); font-size: 0.88rem; margin-top: 0.35rem; }
+.g-afsluiter {
+  margin-top: 1.8rem; text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif; font-style: italic;
+  color: var(--green); font-size: 1.2rem;
 }
-.xl-band .kicker { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
-.xl-band h3 { font-size: 1.75rem; }
-.xl-band .prijs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; color: var(--green); margin-top: 0.2rem; }
-.xl-band p.x-desc { color: var(--muted); font-size: 0.95rem; margin-top: 0.6rem; max-width: 56ch; }
 
-/* ---------- Werkwijze ---------- */
-.steps { display: grid; gap: 0; border-top: 1px solid var(--line); margin-top: 2rem; }
-@media (min-width: 780px) { .steps { grid-template-columns: repeat(4, 1fr); border-top: none; } }
-.step { padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
-@media (min-width: 780px) {
-  .step { padding: 0 1.5rem; border-bottom: none; border-left: 1px solid var(--line); }
-  .step:first-child { padding-left: 0; border-left: none; }
-}
-.step .num { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); }
-.step h3 { font-size: 1.45rem; margin-top: 0.5rem; margin-bottom: 0.45rem; }
-.step p { color: var(--muted); font-size: 0.94rem; }
+/* ---------- Over ---------- */
+.over-grid { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 800px) { .over-grid { grid-template-columns: 1fr 300px; gap: 3.5rem; } }
+.over-grid .plate { aspect-ratio: 3 / 4; }
+@media (max-width: 799px) { .over-grid .plate { order: -1; } }
 
-/* ---------- Voor wie: sleepbare rij ruimtetypes ----------
-   Dit zijn ruimtesoorten, geen portfolio. Bijschriften benoemen het type ruimte,
-   nooit een project of plaats, want dat werk is er nog niet. */
-.vw-rail {
-  margin-top: 1.8rem;
-  display: flex;
-  gap: 1.4rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  cursor: grab;
-  padding-bottom: 4px;
-}
-.vw-rail::-webkit-scrollbar { display: none; }
-.vw-rail.slepen { cursor: grabbing; scroll-snap-type: none; }
-.vw-rail.slepen * { user-select: none; }
-
-.vw-card { flex: 0 0 auto; width: clamp(240px, 74vw, 320px); scroll-snap-align: start; }
-.vw-card .plate { aspect-ratio: 4 / 3; }
-.vw-card .plate img { -webkit-user-drag: none; user-drag: none; }
-.vw-card h3 { font-size: 1.4rem; margin: 0.95rem 0 0.35rem; }
-.vw-card p { color: var(--muted); font-size: 0.95rem; }
-.vw-card .past { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.85rem; font-size: 0.88rem; color: var(--green); text-decoration: none; }
-.vw-card .past:hover { text-decoration: underline; }
-
-.vw-hint { display: none; margin-top: 1.1rem; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
-.vw-hint.zichtbaar { display: block; }
-
-/* ---------- Marco ---------- */
-.marco-grid { display: grid; gap: 2.5rem; align-items: center; }
-@media (min-width: 800px) { .marco-grid { grid-template-columns: 280px 1fr; gap: 3.5rem; } }
-.marco-grid .plate { aspect-ratio: 3 / 4; display: flex; align-items: center; justify-content: center; }
-.marco-grid .plate .leeg {
-  font-size: 0.64rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-}
-/* Kop direct onder een label (Marco, contact, bedankt-pagina) */
-.kop-na-label { margin-top: 1rem; }
-
-/* ---------- Vragen ---------- */
-.vragen-kolom { max-width: 840px; margin: 0 auto; }
-.vragen-kolom .section-h { text-align: center; }
-.faq { border-top: 1px solid var(--line); margin-top: 2rem; }
+/* ---------- Veelgestelde vragen ---------- */
+.faq { max-width: 780px; margin: 0 auto; }
 .faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
 .faq summary {
-  cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
-  padding: 1.15rem 0; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500;
-  font-size: 1.3rem; color: var(--green);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+  padding: 1.15rem 0; cursor: pointer; list-style: none;
+  font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.15rem, 2vw, 1.35rem);
+  color: var(--green); transition: color var(--dur) var(--ease);
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-family: "Inter", system-ui, sans-serif; color: var(--gold); font-size: 1.1rem; flex: none; }
-.faq details[open] summary::after { content: "\2212"; }
-.faq .antwoord { padding: 0 0 1.3rem; color: var(--muted); font-size: 0.97rem; max-width: 62ch; }
-
-/* ---------- Pijler-iconen ---------- */
-.pijlers-grid { display: grid; gap: 1.5rem 2rem; margin-top: 2.2rem; }
-@media (min-width: 620px) { .pijlers-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 980px) { .pijlers-grid { grid-template-columns: 1fr 1fr 1fr; } }
-.p-item { border-top: 1px solid var(--line); padding-top: 1.1rem; }
-.p-item svg { width: 30px; height: 30px; color: var(--green); }
-.p-item h3 { font-family: "Inter", system-ui, sans-serif; font-weight: 500; font-size: 1rem; color: var(--green); margin: 0.7rem 0 0.3rem; }
-.p-item p { color: var(--muted); font-size: 0.93rem; }
-
-/* ---------- Plantladder op de kaarten ---------- */
-.card-top { display: flex; justify-content: space-between; align-items: flex-end; }
-.card-top svg { color: var(--leaf); opacity: 0.75; }
-
-/* ---------- Tagline-band ---------- */
-.tag-band { position: relative; overflow: hidden; height: clamp(220px, 32vw, 340px); padding: 0; }
-.tag-band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
-.tag-band .scrim { position: absolute; inset: 0; background: rgba(32, 43, 26, 0.62); }
-.tag-band .tekst {
-  position: relative; z-index: 1; height: 100%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+.faq summary:hover { color: var(--text); }
+/* Plusje dat een streepje wordt bij open; puur CSS, dus ook zonder JS goed */
+.faq .teken { position: relative; flex: none; width: 12px; height: 12px; align-self: center; }
+.faq .teken::before,
+.faq .teken::after {
+  content: ""; position: absolute; background: var(--gold);
+  transition: opacity var(--dur) var(--ease);
 }
-.tag-band .tekst h2 {
-  font-style: italic; font-weight: 500; color: #F7F4EF;
-  font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: 0.01em;
+.faq .teken::before { top: 5px; left: 0; width: 12px; height: 2px; }
+.faq .teken::after { top: 0; left: 5px; width: 2px; height: 12px; }
+.faq details[open] .teken::after { opacity: 0; }
+.faq .antwoord { color: var(--muted); font-size: 0.96rem; line-height: 1.65; padding: 0 0 1.3rem; max-width: 68ch; }
+/* Alleen als het script draait verdwijnen de extra vragen achter de knop */
+.faq.js-inklap details.extra { display: none; }
+.faq.js-inklap.js-uitgeklapt details.extra { display: block; }
+.faq-meer {
+  display: flex; align-items: center; justify-content: center; gap: 0.55rem;
+  width: 100%; margin-top: 1.4rem; padding: 0.75rem 1rem;
+  background: none; border: 1px solid var(--line); border-radius: 2px; cursor: pointer;
+  font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.05rem; color: var(--green);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
-.tag-band .tekst .pip { border-color: var(--gold-light); }
+.faq-meer:hover, .faq-meer:focus-visible { border-color: var(--green); }
+.faq-meer .teken { width: 11px; height: 11px; }
+.faq-meer .teken::before { top: 4.5px; left: 0; width: 11px; height: 2px; }
+.faq-meer .teken::after { top: 0; left: 4.5px; width: 2px; height: 11px; }
+.faq.js-uitgeklapt .faq-meer .teken::after { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .faq-meer { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .faq summary, .faq .teken::before, .faq .teken::after { transition: none; }
+}
 
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; gap: 2.5rem; }
@@ -267,6 +408,8 @@ h2.section-h { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.08; letter-sp
 }
 .wa:hover { border-color: var(--green); }
 .wa svg { width: 18px; height: 18px; color: var(--leaf); }
+.werkgebied { margin-top: 1.8rem; }
+.werkgebied p { color: var(--muted); font-size: 0.94rem; max-width: 46ch; margin-top: 0.5rem; }
 
 form.enq { display: flex; flex-direction: column; gap: 1rem; }
 form.enq label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.4rem; }
@@ -278,7 +421,6 @@ form.enq input, form.enq textarea, form.enq select {
 }
 form.enq select { appearance: none; }
 form.enq input:focus, form.enq textarea:focus, form.enq select:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: transparent; }
-form.enq select.flash { outline: 2px solid var(--gold); outline-offset: 1px; }
 form.enq .form-note { color: var(--muted); font-size: 0.82rem; }
 form.enq .form-fout { display: none; border: 1px solid var(--gold); padding: 0.9rem 1rem; font-size: 0.92rem; color: var(--text); }
 .succes { border: 1px solid var(--line); background: var(--paper); padding: 1.6rem; display: none; }
@@ -294,8 +436,11 @@ form.enq .form-fout { display: none; border: 1px solid var(--gold); padding: 0.9
 footer.site { border-top: 1px solid var(--line); padding-top: 3rem; padding-bottom: 3rem; }
 footer.site .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: flex-start; }
 footer.site .tagline { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; color: var(--green); font-size: 1.1rem; margin-top: 0.3rem; }
-footer.site .meta-f { display: flex; flex-direction: column; gap: 0.35rem; text-align: right; }
+footer.site .omschrijving { color: var(--muted); font-size: 0.9rem; max-width: 44ch; margin-top: 0.7rem; }
+footer.site .meta-f { display: flex; flex-direction: column; gap: 0.3rem; text-align: right; }
 footer.site .meta-f span { color: var(--muted); font-size: 0.85rem; }
+footer.site .meta-f .label { margin-bottom: 0.1rem; }
+footer.site .meta-f .contact-regel { margin-top: 0.6rem; }
 @media (max-width: 600px) { footer.site .meta-f { text-align: left; } }
 footer.site .onder {
   margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
@@ -303,3 +448,5 @@ footer.site .onder {
   color: var(--muted); font-size: 0.82rem;
 }
 footer.site .onder a { color: var(--muted); }
+/* De auteursrechtregel op een eigen regel onder de rest */
+footer.site .onder .auteursrecht { flex-basis: 100%; order: 3; }

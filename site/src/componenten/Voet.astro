@@ -1,31 +1,108 @@
 ---
-import logoHexagon from '../beelden/logo-hexagon.png';
+import { linkedinIcoon, instagramIcoon } from '../lib/iconen';
 import type { Inhoud } from '../lib/inhoud';
 
 interface Props {
   instellingen: Inhoud['instellingen'];
+  labelWerkgebied: string;
+  taal: 'nl' | 'en';
+  /* Doelen van de taalwissel; op een subpagina wijzen ze naar de tegenhanger
+     van die pagina in plaats van naar de home */
+  linkNl?: string;
+  linkEn?: string;
 }
-const { instellingen } = Astro.props;
+const { instellingen, labelWerkgebied, taal, linkNl = '/', linkEn = '/en/' } = Astro.props;
+
+/* Auteursrechtregel, toegezegd aan Marco (mail 31 juli). Statisch, niet in het
+   CMS: juridische regel die synchroon hoort te blijven met beide talen. Het
+   jaartal is het bouwjaar; elke Sanity-publicatie bouwt de site opnieuw. */
+const jaar = new Date().getFullYear();
+const auteursrecht =
+  taal === 'nl'
+    ? `© ${jaar} Blad & Vorm · Beeld en teksten: alle rechten voorbehouden`
+    : `© ${jaar} Blad & Vorm · Images and texts: all rights reserved`;
+
+/* Werkgebied in drie rustige regels in plaats van één lange omslaande regel.
+   De plaatsen blijven in het CMS één veld met puntjes ertussen. */
+const plaatsen = instellingen.werkgebied.split('·').map((p) => p.trim()).filter(Boolean);
+const perRij = Math.ceil(plaatsen.length / 3);
+const rijen = [0, 1, 2]
+  .map((r) => plaatsen.slice(r * perRij, (r + 1) * perRij))
+  .filter((rij) => rij.length > 0)
+  .map((rij) => rij.join(' · '));
 ---
 <footer class="site">
   <div class="wrap">
     <div class="top">
       <div>
         <a class="brand" href="#hoofd">
-          <img class="mark" src={logoHexagon.src} width="29" height="34" alt="" aria-hidden="true" />
+          <span class="mark" aria-hidden="true"></span>
           <span class="name">Blad &amp; Vorm</span>
         </a>
         <p class="tagline">{instellingen.voetTagline}</p>
+        <p class="omschrijving">{instellingen.branche}</p>
+        <!-- Sociale iconen prominent in de linkerkolom (verzoek Jordy 4 augustus).
+             Zonder URL staat het icoon er gedempt en onklikbaar als plekhouder;
+             zodra de URL in Sanity staat wordt het vanzelf een link. -->
+        <div class="sociaal-rij">
+          <!-- Tot Marco's eigen pagina-URL er is linkt het icoon naar linkedin.com
+               (besluit Jordy 4 augustus); het schema-sameAs blijft wel leeg tot de
+               echte URL in Sanity staat -->
+          <a href={instellingen.linkedinUrl || 'https://www.linkedin.com/'} target="_blank" rel="noopener" class="sociaal" aria-label="LinkedIn (opent in een nieuw tabblad)">
+            <Fragment set:html={linkedinIcoon} />
+          </a>
+          {instellingen.instagramUrl ? (
+            <a href={instellingen.instagramUrl} target="_blank" rel="noopener" class="sociaal" aria-label="Instagram (opent in een nieuw tabblad)">
+              <Fragment set:html={instagramIcoon} />
+            </a>
+          ) : (
+            <span class="sociaal wacht" aria-hidden="true">
+              <Fragment set:html={instagramIcoon} />
+            </span>
+          )}
+        </div>
       </div>
       <div class="meta-f">
-        <span>{instellingen.branche}</span>
-        <span>{instellingen.werkgebied}</span>
-        <span>{instellingen.email} · {instellingen.telefoonWeergave}</span>
+        <span class="label">{labelWerkgebied}</span>
+        {rijen.map((rij) => <span>{rij}</span>)}
+        <span class="contact-regel">{instellingen.email} · {instellingen.telefoonWeergave}</span>
       </div>
     </div>
     <div class="onder">
       <span>{instellingen.kvkRegel}</span>
-      <span><a href="#">Algemene voorwaarden</a> · <a href="#">Privacyverklaring</a> · NL / EN</span>
+      <span class="auteursrecht">{auteursrecht}</span>
+      <span>
+        <a href={taal === 'nl' ? '/privacy/' : '/en/privacy/'}>{instellingen.privacyLabel}</a>
+        {' · '}
+        <a href={taal === 'nl' ? '/algemene-voorwaarden.pdf' : '/general-terms-and-conditions.pdf'}>{instellingen.voorwaardenLabel}</a>
+        {' · '}
+        {taal === 'nl' ? <span aria-current="page">NL</span> : <a href={linkNl}>NL</a>}
+        {' / '}
+        {taal === 'en' ? <span aria-current="page">EN</span> : <a href={linkEn}>EN</a>}
+      </span>
     </div>
   </div>
 </footer>
+
+<style>
+  .sociaal-rij {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.1rem;
+  }
+  .sociaal-rij .sociaal {
+    display: inline-flex;
+    align-items: center;
+    color: var(--muted);
+    transition: color var(--dur) var(--ease);
+  }
+  .sociaal-rij a.sociaal:hover,
+  .sociaal-rij a.sociaal:focus-visible {
+    color: var(--green);
+  }
+  /* :global omdat de svg via set:html binnenkomt en Astro die niet scopet */
+  .sociaal-rij .sociaal :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+</style>

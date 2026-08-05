@@ -78,12 +78,24 @@ img { max-width: 100%; display: block; }
 .btn.ghost:hover { background: transparent; border-color: var(--green); }
 
 /* ---------- Logo ----------
-   De hexagon staat als eigen bestand (uit het logo gesneden, want de PNG bevat
-   de tagline in leiblauw en die mag niet op de site). */
+   De nav-mark is statisch: een achtergrond-crop van logo-hexagon.png, net als
+   richting A in het prototype (prototype/shared/base.css). Ons eigen bestand
+   is al uitgesneden tot precies de zeshoek (237x278), dus de crop is hier een
+   simpele 1-op-1 schaling, zonder de crop-offsets die het prototype nodig heeft
+   voor het ongesneden logo.png. De tekenende versie (SVG met mask) staat groot
+   in de hero, zie pagina.css. */
 
 .brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
 
-.brand .mark { width: 29px; height: 34px; flex: none; }
+.brand .mark {
+  width: 29px;
+  height: 34px;
+  flex: none;
+  background-image: url("../beelden/logo-mark.webp");
+  background-repeat: no-repeat;
+  background-size: 29px 34px;
+  background-position: 0 0;
+}
 
 .brand .name {
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -92,33 +104,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.01em;
   color: var(--green);
 }
-
-/* Het merkteken tekent zichzelf: eerst het blad (steel, dan de twee bladhelften),
-   daarna de zeshoek eromheen. Eén keer per bezoek, alleen als html.logo-teken
-   vóór de eerste paint is gezet (zie Basis.astro). De mask-paden volgen de
-   geometrie van onze eigen logo-hexagon.png (237x278). */
-.brand .mark { display: block; overflow: visible; }
-
-/* Rusttoestand: zonder JS, bij reduced-motion, of bij een herhaald bezoek staat
-   het volledige logo er meteen. */
-.brand .mark .mk-final { opacity: 1; }
-
-.logo-teken .brand .mark .mk-final {
-  opacity: 0;
-  animation: bv-mark-settle 0.4s ease 1.85s forwards;
-}
-.logo-teken .brand .mark .dw {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-}
-.logo-teken .brand .mark .leaf-stalk { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 0.1s both; }
-.logo-teken .brand .mark .leaf-a { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 0.3s both; }
-.logo-teken .brand .mark .leaf-b { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 0.42s both; }
-.logo-teken .brand .mark .hex-inner { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 1.15s both; }
-.logo-teken .brand .mark .hex-outer { animation: bv-mark-draw 0.7s cubic-bezier(0.33, 0, 0.2, 1) 1.3s both; }
-
-@keyframes bv-mark-draw { to { stroke-dashoffset: 0; } }
-@keyframes bv-mark-settle { to { opacity: 1; } }
 
 /* ---------- Nav ---------- */
 
@@ -159,7 +144,7 @@ img { max-width: 100%; display: block; }
   .nav .btn .kort { display: inline; }
   .nav .btn { padding: 0.62rem 1rem; font-size: 0.86rem; }
   .brand .name { font-size: 1.05rem; }
-  .brand .mark { width: 23px; height: 27px; }
+  .brand .mark { width: 23px; height: 27px; background-size: 23px 27px; }
 }
 
 /* ---------- Toegankelijkheid ---------- */

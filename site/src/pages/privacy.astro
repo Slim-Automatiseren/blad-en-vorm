@@ -1,0 +1,113 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Nav from '../componenten/Nav.astro';
+import Voet from '../componenten/Voet.astro';
+import { haalInhoud } from '../lib/inhoud';
+
+/* Juridische pagina, bewust statisch in de code en niet in het CMS: de tekst
+   moet synchroon blijven met wat de site technisch echt doet (formulier,
+   diensten, cookies). Wijzigen alleen samen met de techniek, in overleg met
+   Jordy. Engelse versie: en/privacy.astro. */
+const inhoud = await haalInhoud('nl');
+---
+<Basis
+  titel="Privacyverklaring · Blad & Vorm"
+  beschrijving="Hoe Blad & Vorm met uw gegevens omgaat: wat wij verwerken, waarvoor, hoe lang wij bewaren en welke rechten u heeft."
+  vertaling={{ nl: '/privacy/', en: '/en/privacy/' }}
+>
+  <Nav nav={inhoud.nav} ctaLang={inhoud.hero.ctaPrimair} ctaKort={inhoud.hero.ctaPrimairKort} taal="nl" linkEn="/en/privacy/" />
+
+  <main id="hoofd">
+    <section class="cream">
+      <div class="wrap prose">
+        <span class="label">Privacy</span>
+        <h1 class="section-h kop-na-label">Privacyverklaring</h1>
+        <p class="lede">
+          Blad &amp; Vorm gaat zorgvuldig met uw gegevens om. Op deze pagina leest u welke gegevens
+          wij verwerken, waarvoor wij dat doen, hoe lang wij ze bewaren en welke rechten u heeft.
+          Laatst bijgewerkt op 31 juli 2026.
+        </p>
+
+        <h2>Wie wij zijn</h2>
+        <p>
+          Blad &amp; Vorm is een handelsnaam van Hilforce, gevestigd aan de Anemonenweg 30,
+          2241 XL Wassenaar, ingeschreven bij de Kamer van Koophandel onder nummer 42033993,
+          btw-id NL005445661B23. Hilforce is verantwoordelijk voor de verwerking van
+          persoonsgegevens zoals beschreven in deze verklaring. Voor vragen over privacy mailt u
+          naar <a href="mailto:info@bladenvorm.nl">info@bladenvorm.nl</a>.
+        </p>
+
+        <h2>Welke gegevens wij verwerken</h2>
+        <p>
+          Vult u het contactformulier in, dan verwerken wij uw naam, e-mailadres en bericht, en
+          wanneer u die invult ook uw bedrijfsnaam, telefoonnummer en pakketkeuze. Neemt u contact
+          op via e-mail, telefoon of WhatsApp, dan verwerken wij de gegevens die u daarbij zelf
+          deelt. Daarnaast legt onze hostingpartij bij een bezoek aan de website technische
+          gegevens vast in beveiligingslogboeken, zoals uw IP-adres en browsertype.
+        </p>
+
+        <h2>Waarvoor wij uw gegevens gebruiken</h2>
+        <p>
+          Wij gebruiken uw gegevens om te reageren op uw aanvraag, een Ruimtescan in te plannen en
+          een voorstel voor te bereiden. De grondslag daarvoor is de uitvoering van een
+          overeenkomst of het op uw verzoek nemen van stappen daarnaartoe (artikel 6 lid 1 onder b
+          AVG). De technische logboeken dienen de veiligheid en het functioneren van de website
+          (gerechtvaardigd belang, artikel 6 lid 1 onder f AVG). Wij gebruiken uw gegevens niet
+          voor geautomatiseerde besluitvorming en verkopen ze nooit.
+        </p>
+
+        <h2>Hoe lang wij uw gegevens bewaren</h2>
+        <p>
+          Inzendingen via het contactformulier verwijderen wij uiterlijk twaalf maanden na
+          afhandeling. Wordt u klant, dan bewaren wij de gegevens die bij de overeenkomst horen
+          zolang de wet dat vraagt; voor de administratie is dat zeven jaar.
+        </p>
+
+        <h2>Wie er verder toegang heeft</h2>
+        <p>
+          Wij delen uw gegevens alleen met partijen die nodig zijn om de website en het contact te
+          laten werken: Netlify (hosting van de website en verwerking van het contactformulier),
+          Sanity (beheer van de teksten en foto's op de website) en onze e-mailprovider. Netlify
+          en Sanity zijn Amerikaanse bedrijven; doorgifte naar de Verenigde Staten vindt plaats op
+          basis van het EU-VS Data Privacy Framework of de Europese standaardcontractbepalingen.
+          Wij delen uw gegevens niet met advertentiepartijen.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          Deze website plaatst geen cookies en gebruikt geen trackingsoftware. Verandert dat in de
+          toekomst, bijvoorbeeld door bezoekersstatistieken, dan werken wij deze verklaring bij en
+          vragen wij waar nodig eerst uw toestemming.
+        </p>
+
+        <h2>Uw rechten</h2>
+        <p>
+          U heeft het recht uw gegevens in te zien, te laten corrigeren of verwijderen, de
+          verwerking te beperken, bezwaar te maken en uw gegevens overgedragen te krijgen. Mail
+          daarvoor naar <a href="mailto:info@bladenvorm.nl">info@bladenvorm.nl</a>; u ontvangt binnen
+          een maand een reactie. Bent u niet tevreden over hoe wij met uw gegevens omgaan, dan
+          kunt u een klacht indienen bij de Autoriteit Persoonsgegevens.
+        </p>
+
+        <h2>Wijzigingen</h2>
+        <p>
+          Verandert er iets in hoe de website werkt of in de diensten die wij gebruiken, dan
+          werken wij deze verklaring bij. Op deze pagina staat altijd de actuele versie.
+        </p>
+
+        <a class="btn ghost terug" href="/">Terug naar de pagina</a>
+      </div>
+    </section>
+  </main>
+
+  <Voet instellingen={inhoud.instellingen} labelWerkgebied={inhoud.contact.labelWerkgebied} taal="nl" linkEn="/en/privacy/" />
+</Basis>
+
+<style>
+  /* Rustige leesbreedte voor een tekstpagina; koppen volgen de globale stijl */
+  .prose { max-width: 46rem; }
+  .prose h2 { font-size: 1.45rem; margin: 2.2rem 0 0.6rem; }
+  .prose p { color: var(--text); line-height: 1.65; }
+  .prose p a { color: var(--green); }
+  .prose .terug { display: inline-flex; margin-top: 2.6rem; }
+</style>

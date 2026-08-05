@@ -2,8 +2,9 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
 
 /* Alle teksten van de one-pager, per sectie gegroepeerd. Foto's staan ook in
    het CMS (eigen beheer van Marco); een leeg fotoveld valt terug op de
-   standaardfoto in de site. Bij de kwetsbare slots staat een adviesregel,
-   de curatie-eisen staan in docs/beeld.md in het projectarchief. */
+   standaardfoto in de site. De inspiratiebeelden (de twee schuivende
+   beeldstroken) staan als eigen documenttype 'inspiratiebeeld', niet hier.
+   Curatie-eisen voor beeld staan in docs/beeld.md in het projectarchief. */
 
 const s = (naam: string, titel: string) =>
   defineField({ name: naam, title: titel, type: 'taalString' });
@@ -31,78 +32,111 @@ export const pagina = defineType({
   title: 'Pagina',
   type: 'document',
   groups: [
+    { name: 'navigatie', title: 'Navigatie' },
     { name: 'hero', title: 'Hero' },
-    { name: 'zekerheden', title: 'Zekerheden' },
-    { name: 'maandbedrag', title: 'Maandbedrag' },
+    { name: 'inspiratie', title: 'Inspiratie' },
+    { name: 'filosofie', title: 'Filosofie' },
+    { name: 'diensten', title: 'Diensten' },
+    { name: 'inspiratieboek', title: 'Inspiration Book' },
     { name: 'pakketten', title: 'Pakketten' },
-    { name: 'werkwijze', title: 'Werkwijze' },
-    { name: 'scenarios', title: "Scenario's" },
-    { name: 'marco', title: 'Over Marco' },
+    { name: 'geschenken', title: 'Geschenken' },
+    { name: 'over', title: 'Over' },
+    { name: 'vragen', title: 'Veelgestelde vragen' },
     { name: 'contact', title: 'Contact en formulier' },
   ],
   fields: [
+    defineField({
+      name: 'nav',
+      title: 'Navigatie (menu bovenin)',
+      type: 'object',
+      group: 'navigatie',
+      fields: [
+        s('inspiratie', 'Menu-item: Inspiratie'),
+        s('diensten', 'Menu-item: Diensten'),
+        s('contact', 'Menu-item: Contact'),
+      ],
+    }),
     defineField({
       name: 'hero',
       title: 'Hero (bovenkant van de pagina)',
       type: 'object',
       group: 'hero',
       fields: [
-        s('label', 'Label boven de kop'),
         s('kop', 'Kop'),
-        s('kopAccent', 'Kop, benadrukt deel (cursief met gouden lijn)'),
-        t('sub', 'Tekst onder de kop'),
+        s('sub', 'Subregel onder de kop'),
+        t('intro', 'Introductietekst'),
         s('ctaPrimair', 'Groene knop'),
+        s('ctaPrimairKort', 'Groene knop, korte versie (bijvoorbeeld voor mobiel)'),
         s('ctaSecundair', 'Tweede knop'),
-        s('fineprint', 'Kleine regel onder de knoppen'),
+        s('cueTekst', 'Tekst bij de scroll-cue naar Inspiratie'),
         foto(
           'foto',
           'Foto (paginabreed achter de hero)',
           'De tekst staat over de linkerhelft van deze foto heen. Kies dus een foto waarvan de linkerkant rustig en licht is, met het onderwerp rechts.',
         ),
-        defineField({
-          name: 'meta',
-          title: 'Drie feiten onderin de hero',
-          type: 'array',
-          of: [
-            defineArrayMember({
-              name: 'metaItem',
-              title: 'Feit',
-              type: 'object',
-              fields: [s('label', 'Label'), s('waarde', 'Waarde')],
-              preview: {
-                select: { title: 'waarde.nl', subtitle: 'label.nl' },
-              },
-            }),
-          ],
-        }),
       ],
     }),
     defineField({
-      name: 'zekerheden',
-      title: 'Zekerhedenstrip (vinkjes onder de hero)',
-      type: 'array',
-      group: 'zekerheden',
-      of: [defineArrayMember({ type: 'taalString' })],
-      validation: (regel) => regel.max(4).warning('Vier past het mooist op één regel.'),
-    }),
-    defineField({
-      name: 'maandbedrag',
-      title: 'Wat zit er in het maandbedrag',
+      name: 'inspiratieSectie',
+      title: 'Inspiratie (koppen; de beelden zelf staan als eigen lijst)',
       type: 'object',
-      group: 'maandbedrag',
+      group: 'inspiratie',
       fields: [
         s('railLabel', 'Label in de linkerkolom'),
         s('railNote', 'Notitie in de linkerkolom'),
         s('kop', 'Kop'),
         t('lede', 'Intro'),
+      ],
+    }),
+    defineField({
+      name: 'filosofie',
+      title: 'Filosofie',
+      type: 'object',
+      group: 'filosofie',
+      fields: [
+        s('railLabel', 'Label in de linkerkolom'),
+        s('railNote', 'Notitie in de linkerkolom'),
         defineField({
-          name: 'pijlers',
-          title: 'De zes pijlers',
+          name: 'kop',
+          title: 'Kop, eerste regel',
+          type: 'taalString',
+          description: 'Vormt samen met "Kop, tweede regel" de eerste twee regels van de kop.',
+        }),
+        defineField({
+          name: 'kopVervolg',
+          title: 'Kop, tweede regel',
+          type: 'taalString',
+          description:
+            'Tweede regel van de kop, sluit aan op "Kop, eerste regel" en loopt door naar het cursieve slot (kopAccent).',
+        }),
+        defineField({
+          name: 'kopAccent',
+          title: 'Kop, cursief slot (gouden onderstreping)',
+          type: 'taalString',
+          description:
+            'Het cursieve slotwoord of de slotzin van de kop. Krijgt op de site een gouden onderstreping.',
+        }),
+        t('tekst', 'Tekst'),
+        foto('foto', 'Foto', 'Sfeerfoto bij de filosofietekst.'),
+      ],
+    }),
+    defineField({
+      name: 'dienstenSectie',
+      title: 'Diensten',
+      type: 'object',
+      group: 'diensten',
+      fields: [
+        s('railLabel', 'Label in de linkerkolom'),
+        s('railNote', 'Notitie in de linkerkolom'),
+        s('kop', 'Kop'),
+        defineField({
+          name: 'kaarten',
+          title: 'De vier dienstenkaarten',
           type: 'array',
           of: [
             defineArrayMember({
-              name: 'pijler',
-              title: 'Pijler',
+              name: 'dienst',
+              title: 'Dienst',
               type: 'object',
               fields: [
                 defineField({
@@ -115,8 +149,6 @@ export const pagina = defineType({
                       { title: 'Bezorgwagen (levering)', value: 'levering' },
                       { title: 'Druppel (onderhoud)', value: 'onderhoud' },
                       { title: 'Pijlen rond (vervanging)', value: 'vervanging' },
-                      { title: 'Persoon (aanspreekpunt)', value: 'aanspreekpunt' },
-                      { title: 'Kalender met vinkje (maandbedrag)', value: 'maandbedrag' },
                     ],
                   },
                 }),
@@ -130,6 +162,23 @@ export const pagina = defineType({
       ],
     }),
     defineField({
+      name: 'inspiratieboek',
+      title: 'Inspiration Book',
+      type: 'object',
+      group: 'inspiratieboek',
+      fields: [
+        s('label', 'Label'),
+        s('kop', 'Kop'),
+        t('tekst', 'Tekst'),
+        s('ctaTekst', 'Knoptekst'),
+        foto(
+          'foto',
+          'Foto',
+          'Foto van het Inspiration Book, bijvoorbeeld opengeslagen naast stalen en materialen.',
+        ),
+      ],
+    }),
+    defineField({
       name: 'pakkettenSectie',
       title: 'Pakketten (koppen; de pakketten zelf staan als eigen lijst)',
       type: 'object',
@@ -138,8 +187,9 @@ export const pagina = defineType({
         s('railLabel', 'Label in de linkerkolom'),
         s('railNote', 'Notitie in de linkerkolom'),
         s('kop', 'Kop'),
-        t('lede', 'Intro'),
-        s('ctaTekst', 'Knoptekst op elke pakketkaart'),
+        s('prijsVanaf', 'Prijsindicatie onder de pakketkaarten'),
+        s('prijsToelichting', 'Toelichting achter de prijsindicatie'),
+        s('ctaTekst', 'Knoptekst op elke pakketkaart, springt naar het formulier'),
         foto(
           'achtergrondFoto',
           'Achtergrondfoto',
@@ -149,76 +199,123 @@ export const pagina = defineType({
       ],
     }),
     defineField({
-      name: 'werkwijze',
-      title: 'Werkwijze',
+      name: 'geschenken',
+      title: 'Geschenken (na de pakketten)',
       type: 'object',
-      group: 'werkwijze',
+      group: 'geschenken',
       fields: [
-        s('railLabel', 'Label in de linkerkolom'),
-        s('railNote', 'Notitie in de linkerkolom'),
+        s('railLabel', 'Label boven de kop'),
         s('kop', 'Kop'),
+        t('lede', 'Introductietekst onder de kop'),
         defineField({
-          name: 'stappen',
-          title: 'De vier stappen (nummering gaat vanzelf)',
+          name: 'items',
+          title: 'De drie geschenkkaarten',
           type: 'array',
           of: [
             defineArrayMember({
-              name: 'stap',
-              title: 'Stap',
+              name: 'geschenk',
+              title: 'Geschenk',
               type: 'object',
-              fields: [s('titel', 'Titel'), s('tekst', 'Tekst')],
+              fields: [
+                defineField({
+                  name: 'icoon',
+                  title: 'Icoon',
+                  type: 'string',
+                  options: {
+                    list: [
+                      { title: 'Persoon met plus (onboarding)', value: 'onboarding' },
+                      { title: 'Cadeau (relatiegeschenken)', value: 'relatie' },
+                      { title: 'Dennenboom (kerst)', value: 'kerst' },
+                      { title: 'Ontkiemende plant (seizoen)', value: 'seizoen' },
+                    ],
+                  },
+                }),
+                s('titel', 'Titel'),
+                s('sub', 'Vetgedrukte regel onder de titel'),
+                t('tekst', 'Tekst'),
+                defineField({
+                  name: 'beeldSlot',
+                  title: 'Standaardfoto (als het fotoveld leeg is)',
+                  type: 'string',
+                  options: {
+                    list: [
+                      { title: 'Onboarding', value: 'onboarding' },
+                      { title: 'Relatiegeschenk', value: 'relatie' },
+                      { title: 'Kerst', value: 'kerst' },
+                    ],
+                  },
+                }),
+                foto('foto', 'Foto', 'Liggende foto boven de kaart; wordt laag bijgesneden (2:1).'),
+              ],
               preview: { select: { title: 'titel.nl' } },
             }),
+          ],
+        }),
+        defineField({
+          name: 'seizoen',
+          title: 'Seizoensstyling (de vierde kaart, met de cursieve slotregel)',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'icoon',
+              title: 'Icoon',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Ontkiemende plant (seizoen)', value: 'seizoen' },
+                  { title: 'Persoon met plus (onboarding)', value: 'onboarding' },
+                  { title: 'Cadeau (relatiegeschenken)', value: 'relatie' },
+                  { title: 'Dennenboom (kerst)', value: 'kerst' },
+                ],
+              },
+            }),
+            s('titel', 'Titel'),
+            s('sub', 'Vetgedrukte regel onder de titel'),
+            t('tekst', 'Tekst'),
+            s('afsluiter', 'Cursieve slotregel (bijvoorbeeld de tagline)'),
+            foto('foto', 'Foto', 'Liggende foto boven de kaart; wordt laag bijgesneden (2:1).'),
           ],
         }),
       ],
     }),
     defineField({
-      name: 'scenariosSectie',
-      title: "Scenario's (koppen; de scenario's zelf staan als eigen lijst)",
+      name: 'over',
+      title: 'Over Blad & Vorm',
       type: 'object',
-      group: 'scenarios',
+      group: 'over',
       fields: [
         s('railLabel', 'Label in de linkerkolom'),
-        s('railNote', 'Notitie in de linkerkolom'),
         s('kop', 'Kop'),
+        t('tekst1', 'Eerste alinea'),
+        t('tekst2', 'Tweede alinea'),
+        foto('foto', 'Foto', 'Sfeerfoto bij deze sectie.'),
       ],
     }),
     defineField({
-      name: 'marco',
-      title: 'Over Marco',
+      name: 'vragenSectie',
+      title: 'Veelgestelde vragen (kop; de vragen zelf staan als eigen lijst)',
       type: 'object',
-      group: 'marco',
+      group: 'vragen',
       fields: [
-        s('label', 'Label'),
-        s('kop', 'Kop'),
-        t('tekst', 'Tekst'),
-        foto(
-          'foto',
-          'Foto van Marco',
-          'Staande foto, wordt 3:4 uitgesneden. Zet het rondje (de hotspot) op het gezicht. Zolang dit veld leeg is toont de site "Foto volgt".',
-        ),
+        s('kop', 'Kop boven de vragen'),
+        s('meerLabel', 'Knop: meer vragen tonen'),
+        s('minderLabel', 'Knop: vragen weer inklappen'),
       ],
-    }),
-    defineField({
-      ...s('tagline', 'Tagline in de brede beeldband'),
-      group: 'marco',
-    }),
-    defineField({
-      ...foto(
-        'taglineFoto',
-        'Foto achter de tagline-band',
-        'Decoratief, paginabreed. Krijgt een donkere waas met de tagline eroverheen; een foto met diepte en rustige tinten werkt het best.',
-        false,
-      ),
-      group: 'marco',
     }),
     defineField({
       name: 'contactSectie',
       title: 'Contact',
       type: 'object',
       group: 'contact',
-      fields: [s('label', 'Label'), s('kop', 'Kop'), t('lede', 'Intro')],
+      fields: [
+        s('label', 'Label'),
+        s('kop', 'Kop'),
+        t('lede', 'Intro'),
+        s('labelEmail', 'Label: e-mail'),
+        s('labelTelefoon', 'Label: telefoon'),
+        s('labelWerkgebied', 'Label: werkgebied'),
+        t('werkgebiedTekst', 'Tekst: werkgebied'),
+      ],
     }),
     defineField({
       name: 'formulier',
@@ -228,6 +325,7 @@ export const pagina = defineType({
       fields: [
         s('veldNaam', 'Veld: naam'),
         s('veldBedrijf', 'Veld: bedrijf'),
+        s('veldBedrijfToevoeging', 'Toevoeging bij bedrijf'),
         s('veldEmail', 'Veld: e-mail'),
         s('veldTelefoon', 'Veld: telefoon'),
         s('veldTelefoonToevoeging', 'Toevoeging bij telefoon'),

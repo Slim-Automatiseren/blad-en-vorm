@@ -1,13 +1,18 @@
 ---
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/cormorant-garamond/400.css';
-import '@fontsource/cormorant-garamond/500.css';
-import '@fontsource/cormorant-garamond/600.css';
-import '@fontsource/cormorant-garamond/500-italic.css';
+/* Alleen de latijnse subsets: de volledige bestanden dragen ook cyrillisch,
+   grieks en vietnamees mee, en die regels staan in de stylesheet die het
+   tekenen van de pagina tegenhoudt. Nederlands en Engels passen volledig in
+   latin. */
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/cormorant-garamond/latin-400.css';
+import '@fontsource/cormorant-garamond/latin-500.css';
+import '@fontsource/cormorant-garamond/latin-600.css';
+import '@fontsource/cormorant-garamond/latin-500-italic.css';
 import '../styles/tokens.css';
 import '../styles/basis.css';
 import '../styles/pagina.css';
+import { getImage } from 'astro:assets';
 import ogBeeld from '../beelden/hero-breed.jpg';
 
 interface Props {
@@ -15,15 +20,34 @@ interface Props {
   beschrijving: string;
   /* De bedankt-pagina blijft altijd noindex, ook na livegang */
   nooitIndexeren?: boolean;
+  taal?: 'nl' | 'en';
+  /* Paden van deze pagina in beide talen, voor de hreflang-links.
+     Weglaten op pagina's zonder tegenhanger (bedankt) */
+  vertaling?: { nl: string; en: string };
+  /* Gestructureerde gegevens (lib/schema.ts): één blok of meerdere,
+     bijvoorbeeld LocalBusiness plus FAQPage op de startpagina's */
+  schema?: object | object[];
 }
 
-const { titel, beschrijving, nooitIndexeren = false } = Astro.props;
+const { titel, beschrijving, nooitIndexeren = false, taal = 'nl', vertaling, schema } = Astro.props;
 
 /* Tot de livegang krijgt alles noindex; omzetten via PUBLIC_INDEXEERBAAR=ja */
 const indexeerbaar = import.meta.env.PUBLIC_INDEXEERBAAR === 'ja' && !nooitIndexeren;
+
+/* In de build eindigen alle routes op een slash; in dev niet altijd. Eén vorm
+   voor canonical en og:url, anders ziet Google twee adressen per pagina. */
+const metSlash = (p: string) => (p.endsWith('/') ? p : `${p}/`);
+const paginaUrl = new URL(metSlash(Astro.url.pathname), Astro.site);
+
+/* Voorvertoningsbeeld voor LinkedIn en WhatsApp: verkleinde jpg, geen webp
+   (niet elke platform-scraper leest webp) en niet het originele bestand */
+const ogAfbeelding = await getImage({ src: ogBeeld, width: 1200, format: 'jpg' });
+const ogBreedte = 1200;
+const ogHoogte = Math.round((1200 * ogBeeld.height) / ogBeeld.width);
+const ogAlt = taal === 'en' ? 'Interior planting by Blad & Vorm' : 'Interieurbeplanting van Blad & Vorm';
 ---
 <!doctype html>
-<html lang="nl">
+<html lang={taal}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,12 +56,30 @@ const indexeerbaar = import.meta.env.PUBLIC_INDEXEERBAAR === 'ja' && !nooitIndex
   {!indexeerbaar && <meta name="robots" content="noindex" />}
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  <link rel="canonical" href={paginaUrl} />
+  {vertaling && (
+    <>
+      <link rel="alternate" hreflang="nl" href={new URL(metSlash(vertaling.nl), Astro.site)} />
+      <link rel="alternate" hreflang="en" href={new URL(metSlash(vertaling.en), Astro.site)} />
+      <link rel="alternate" hreflang="x-default" href={new URL(metSlash(vertaling.nl), Astro.site)} />
+    </>
+  )}
+  <meta property="og:site_name" content="Blad & Vorm" />
   <meta property="og:title" content={titel} />
   <meta property="og:description" content={beschrijving} />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="nl_NL" />
-  <meta property="og:image" content={new URL(ogBeeld.src, Astro.site)} />
+  <meta property="og:url" content={paginaUrl} />
+  <meta property="og:locale" content={taal === 'en' ? 'en_US' : 'nl_NL'} />
+  <meta property="og:locale:alternate" content={taal === 'en' ? 'nl_NL' : 'en_US'} />
+  <meta property="og:image" content={new URL(ogAfbeelding.src, Astro.site)} />
+  <meta property="og:image:width" content={String(ogBreedte)} />
+  <meta property="og:image:height" content={String(ogHoogte)} />
+  <meta property="og:image:alt" content={ogAlt} />
+  <meta name="twitter:card" content="summary_large_image" />
+  {schema &&
+    (Array.isArray(schema) ? schema : [schema]).map((blok) => (
+      <script type="application/ld+json" set:html={JSON.stringify(blok)} />
+    ))}
   <script is:inline>
     document.documentElement.classList.add('js');
     /* Beslis vóór de eerste paint of het logo zich tekent: bij elke paginalading,

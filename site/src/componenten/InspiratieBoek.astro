@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import inspiratieboekFoto from '../beelden/inspiratieboek.jpg';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  inspiratieboek: Inhoud['inspiratieboek'];
+}
+const { inspiratieboek } = Astro.props;
+const eigenFoto = beeldBron(inspiratieboek.foto, [420, 640, 900], 3 / 4);
+---
+<section id="inspiratieboek" class="cream">
+  <div class="wrap">
+    <div class="boek-grid">
+      <figure class="plate reveal">
+        <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+        {eigenFoto ? (
+          <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 800px) 380px, 92vw" loading="lazy" alt={eigenFoto.alt ?? inspiratieboek.fotoAlt} />
+        ) : (
+          <Image src={inspiratieboekFoto} widths={[420, 640, 900]} sizes="(min-width: 800px) 380px, 92vw" alt={inspiratieboek.fotoAlt} />
+        )}
+      </figure>
+      <div class="reveal">
+        <span class="label">{inspiratieboek.label}</span>
+        <h2 class="section-h kop-na-label">{inspiratieboek.kop}</h2>
+        <p class="lede">{inspiratieboek.tekst}</p>
+        <div class="actions">
+          <a href="#contact" class="btn">{inspiratieboek.ctaTekst}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

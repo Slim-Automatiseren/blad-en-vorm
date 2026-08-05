@@ -6,8 +6,8 @@ const lijn = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 export const pijlerIconen: Record<string, string> = {
   // Blad met nerf: het ontwerp en de beplanting
   advies: `<svg ${lijn}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></svg>`,
-  // Bestelbus met echte wielen
-  levering: `<svg ${lijn}><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>`,
+  // Bestelbus: Lucide "truck" (MIT), met de wielen iets vergroot naar r 2,5
+  levering: `<svg ${lijn}><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h1.5"/><path d="M14 18H10"/><path d="M19.5 18h1.5a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="18" r="2.5"/></svg>`,
   // Waterdruppel: verzorging (symmetrische druppel)
   onderhoud: `<svg ${lijn}><path d="M12 2.5C10.5 5.5 6 10 6 14.5a6 6 0 0 0 12 0C18 10 13.5 5.5 12 2.5Z"/></svg>`,
   // Twee pijlen rond: vervanging
@@ -18,13 +18,26 @@ export const pijlerIconen: Record<string, string> = {
   maandbedrag: `<svg ${lijn}><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>`,
 };
 
+/* Iconen bij de geschenken-sectie, vaste namen (veld "icoon" in Sanity) */
+export const geschenkIconen: Record<string, string> = {
+  // Persoon met plus: welkom voor nieuwe medewerkers (Lucide "user-plus", MIT)
+  onboarding: `<svg ${lijn}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>`,
+  // Cadeau met lint: relatiegeschenken (Lucide "gift", MIT)
+  relatie: `<svg ${lijn}><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>`,
+  // Dennenboom: kerstgeschenken (Lucide "tree-pine", MIT)
+  kerst: `<svg ${lijn}><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/></svg>`,
+  // Ontkiemende plant: seizoensstyling (Lucide "sprout", MIT)
+  seizoen: `<svg ${lijn}><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>`,
+};
+
 export const vinkje =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
 
-/* Plantladder op de pakketkaarten: één, twee of drie halmen, oplopend met het pakket */
+/* Plantladder op de pakketkaarten: één tot vier halmen, oplopend met het pakket */
 const halm1 = '<path d="M30 56 C30 40 30 30 30 18"/><path d="M30 38 C22 36 17 30 16 22 C25 22 30 28 30 38"/><path d="M30 30 C38 28 43 22 44 14 C35 14 30 20 30 30"/>';
 const halm2 = halm1 + '<path d="M44 56 C44 46 44 40 44 32"/><path d="M44 44 C39 42 36 38 35 32 C41 32 44 36 44 44"/>';
 const halm3 = halm2 + '<path d="M16 56 C16 48 16 44 16 36"/><path d="M16 48 C11 46 8 42 7 36 C13 36 16 40 16 48"/><path d="M16 44 C21 42 24 38 25 32 C19 32 16 36 16 44"/>';
+const halm4 = halm3 + '<path d="M53 56 C53 50 53 46 53 41"/><path d="M53 49 C49.5 47.5 47.5 44.5 47 41 C51 41 53 44 53 49"/>';
 
 function ladder(maat: number, paden: string): string {
   return `<svg width="${maat}" height="${maat}" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">${paden}</svg>`;
@@ -34,7 +47,16 @@ export const plantladders: Record<string, string> = {
   S: ladder(26, halm1),
   M: ladder(32, halm2),
   L: ladder(38, halm3),
+  XL: ladder(44, halm4),
 };
 
 export const whatsappIcoon =
   '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8.9-.1.2-.3.2-.5.1-1.2-.6-2-1.1-2.8-2.4-.2-.4.2-.3.6-1 .1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 3.9 3.5 1.5.6 2 .7 2.7.6.4-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>';
+
+// Sociale iconen in de voet, Lucide-lijnstijl (uitlijning met de omliggende tekst
+// via .sociaal in Voet.astro), alleen getoond als de bijbehorende URL is ingevuld
+export const linkedinIcoon =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>';
+
+export const instagramIcoon =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>';

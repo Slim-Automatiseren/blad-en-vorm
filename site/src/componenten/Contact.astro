@@ -10,7 +10,7 @@ interface Props {
 const { contact, instellingen, pakketOpties } = Astro.props;
 const f = contact.formulier;
 ---
-<section id="contact">
+<section id="contact" class="cream">
   <div class="wrap">
     <div class="contact-grid">
       <div class="reveal">
@@ -18,12 +18,16 @@ const f = contact.formulier;
         <h2 class="section-h kop-na-label">{contact.kop}</h2>
         <p class="lede">{contact.lede}</p>
         <div class="methods">
-          <div class="method"><span class="label">E-mail</span><span class="val"><a href={`mailto:${instellingen.email}`}>{instellingen.email}</a></span></div>
-          <div class="method"><span class="label">Telefoon</span><span class="val"><a href={`tel:${instellingen.telefoonInternationaal}`}>{instellingen.telefoonWeergave}</a></span></div>
-          <a href={`https://wa.me/${instellingen.whatsappNummer}`} class="wa" rel="noopener">
+          <div class="method"><span class="label">{contact.labelEmail}</span><span class="val"><a href={`mailto:${instellingen.email}`}>{instellingen.email}</a></span></div>
+          <div class="method"><span class="label">{contact.labelTelefoon}</span><span class="val"><a href={`tel:${instellingen.telefoonInternationaal}`}>{instellingen.telefoonWeergave}</a></span></div>
+          <a href={`https://wa.me/${instellingen.whatsappNummer}?text=${encodeURIComponent(instellingen.whatsappBericht)}`} class="wa" rel="noopener">
             <Fragment set:html={whatsappIcoon} />
             WhatsApp
           </a>
+        </div>
+        <div class="werkgebied">
+          <span class="label">{contact.labelWerkgebied}</span>
+          <p>{contact.werkgebiedTekst}</p>
         </div>
       </div>
       <div class="reveal">
@@ -44,8 +48,8 @@ const f = contact.formulier;
             <input id="f-naam" name="naam" type="text" autocomplete="name" required />
           </div>
           <div>
-            <label for="f-bedrijf">{f.veldBedrijf}</label>
-            <input id="f-bedrijf" name="bedrijf" type="text" autocomplete="organization" required />
+            <label for="f-bedrijf">{f.veldBedrijf} <span class="los">{f.veldBedrijfToevoeging}</span></label>
+            <input id="f-bedrijf" name="bedrijf" type="text" autocomplete="organization" />
           </div>
           <div>
             <label for="f-mail">{f.veldEmail}</label>
@@ -85,9 +89,9 @@ const f = contact.formulier;
 </section>
 
 <script>
-  // Pakket-CTA: vult het interesseveld zichtbaar voor
+  // Pakket-CTA: vult het interesseveld zichtbaar voor, zodat "er gebeurde niets" niet kan
   const select = document.getElementById('f-pakket') as HTMLSelectElement;
-  document.querySelectorAll<HTMLAnchorElement>('.pakket-cta').forEach((a) => {
+  document.querySelectorAll('.pakket-cta').forEach((a) => {
     a.addEventListener('click', () => {
       select.value = a.getAttribute('data-pakket') ?? '';
       select.classList.add('flash');

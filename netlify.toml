@@ -3,3 +3,24 @@
   base = "site"
   command = "npm run build"
   publish = "dist"
+
+# Alle domeinvarianten dwingend naar www.bladenvorm.nl; deze regels werken
+# zodra de domeinen als alias in Netlify hangen. blad-en-vorm.nl kan ook al
+# bij Cloud86 doorgestuurd worden, dan zijn die twee regels reserve.
+[[redirects]]
+  from = "https://bladenvorm.nl/*"
+  to = "https://www.bladenvorm.nl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blad-en-vorm.nl/*"
+  to = "https://www.bladenvorm.nl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.blad-en-vorm.nl/*"
+  to = "https://www.bladenvorm.nl/:splat"
+  status = 301
+  force = true

@@ -11,7 +11,7 @@ export const pakket = defineType({
       type: 'string',
       options: { list: ['S', 'M', 'L', 'XL'], layout: 'radio', direction: 'horizontal' },
       validation: (regel) => regel.required(),
-      description: 'S, M en L staan als kaarten naast elkaar; XL krijgt de brede band eronder.',
+      description: 'Bepaalt de standaardfoto en de vaste volgorde van klein naar groot.',
     }),
     defineField({
       name: 'naam',
@@ -20,28 +20,25 @@ export const pakket = defineType({
       validation: (regel) => regel.required(),
     }),
     defineField({
-      name: 'prijsBedrag',
-      title: 'Prijs per maand (alleen het getal, in euro)',
-      type: 'number',
-      validation: (regel) => regel.required().positive(),
-    }),
-    defineField({
-      name: 'vanaf',
-      title: 'Toon als "vanaf"-prijs',
-      type: 'boolean',
-      initialValue: false,
+      name: 'foto',
+      title: 'Foto',
+      type: 'image',
+      options: { hotspot: true },
+      description:
+        'Sfeerbeeld bovenin de kaart; de reeks toont per pakket iets meer groen. Leeg veld betekent: standaardfoto uit de site.',
     }),
     defineField({
       name: 'beschrijving',
       title: 'Beschrijving',
       type: 'taalTekst',
-      description: 'Bij S, M en L één korte zin; bij XL de volledige omschrijving.',
+      description: 'Eén korte zin onder de prijs.',
     }),
     defineField({
       name: 'punten',
-      title: 'Opsommingspunten (alleen S, M en L)',
+      title: 'Opsommingspunten',
       type: 'array',
       of: [defineArrayMember({ type: 'taalString' })],
+      description: 'Korte specificaties, drie of vier regels per kaart.',
     }),
     defineField({
       name: 'volgorde',
@@ -54,10 +51,9 @@ export const pakket = defineType({
     { name: 'volgorde', title: 'Volgorde', by: [{ field: 'volgorde', direction: 'asc' }] },
   ],
   preview: {
-    select: { code: 'code', naam: 'naam', prijs: 'prijsBedrag' },
-    prepare: ({ code, naam, prijs }) => ({
+    select: { code: 'code', naam: 'naam' },
+    prepare: ({ code, naam }) => ({
       title: `${code ?? ''} ${naam ?? ''}`.trim(),
-      subtitle: prijs ? `${prijs} euro per maand` : undefined,
     }),
   },
 });

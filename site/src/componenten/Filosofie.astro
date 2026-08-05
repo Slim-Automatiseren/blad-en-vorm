@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import bandBreed from '../beelden/band-breed.jpg';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  filosofie: Inhoud['filosofie'];
+}
+const { filosofie } = Astro.props;
+
+/* Brede plaat, 21:9 op desktop (16:10 op mobiel via CSS); één crop-ratio volstaat. */
+const eigenFoto = beeldBron(filosofie.foto, [700, 1100, 1600], 9 / 21);
+---
+<section id="filosofie">
+  <div class="wrap">
+    <div class="grid2">
+      <div class="rail reveal">
+        <span class="label">{filosofie.railLabel}</span>
+        <p class="rail-note">{filosofie.railNote}</p>
+      </div>
+      <div class="reveal">
+        <h2 class="section-h">{filosofie.kop}<br />{filosofie.kopVervolg} <em>{filosofie.kopAccent}</em>.</h2>
+        <p class="lede">{filosofie.tekst}</p>
+        <div class="filosofie-plate">
+          <figure class="plate">
+            <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+            {eigenFoto ? (
+              <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 700px) 900px, 92vw" loading="lazy" alt={eigenFoto.alt ?? filosofie.fotoAlt} />
+            ) : (
+              <Image src={bandBreed} widths={[700, 1100, 1600]} sizes="(min-width: 700px) 900px, 92vw" alt={filosofie.fotoAlt} />
+            )}
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import { geschenkIconen } from '../lib/iconen';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+import fotoOnboarding from '../beelden/geschenk-onboarding.jpg';
+import fotoRelatie from '../beelden/geschenk-relatie.jpg';
+import fotoKerst from '../beelden/geschenk-kerst.jpg';
+import fotoSeizoen from '../beelden/geschenk-seizoen.jpg';
+
+interface Props {
+  geschenken: Inhoud['geschenken'];
+}
+const { geschenken } = Astro.props;
+
+const kaartFotos: Record<string, ImageMetadata> = {
+  onboarding: fotoOnboarding,
+  relatie: fotoRelatie,
+  kerst: fotoKerst,
+  seizoen: fotoSeizoen,
+};
+
+/* Bewust compacter dan Marco's indicatie-visual: dit is een bijdienst en mag
+   de pakketten erboven niet overvleugelen. Seizoensstyling is de vierde
+   gelijke kaart in plaats van een brede kaart. De standaardfoto's zijn de
+   losse originelen die Marco op 3 augustus nastuurde (curatienotities in
+   docs/beeld.md). */
+const s = geschenken.seizoen;
+const kaarten = [
+  ...geschenken.items,
+  { icoon: s.icoon, titel: s.titel, sub: s.sub, tekst: s.tekst, beeldSlot: 'seizoen', alt: s.alt, foto: s.foto },
+];
+---
+<section id="geschenken" class="cream">
+  <div class="wrap">
+    <div class="kop-midden reveal">
+      <span class="label">{geschenken.railLabel}</span>
+      <h2 class="section-h">{geschenken.kop}</h2>
+      <p class="lede">{geschenken.lede}</p>
+    </div>
+
+    <div class="geschenken-grid reveal">
+      {kaarten.map((item) => {
+        const eigenFoto = beeldBron(item.foto, [480, 768], 3 / 4);
+        const standaard = kaartFotos[item.beeldSlot] ?? fotoRelatie;
+        return (
+          <div class="g-kaart">
+            <figure>
+              {eigenFoto ? (
+                <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 980px) 23vw, (min-width: 620px) 45vw, 92vw" loading="lazy" alt={eigenFoto.alt ?? item.alt} />
+              ) : (
+                <Image src={standaard} widths={[480, 768]} sizes="(min-width: 980px) 23vw, (min-width: 620px) 45vw, 92vw" alt={item.alt} />
+              )}
+            </figure>
+            <div class="g-inhoud">
+              <Fragment set:html={geschenkIconen[item.icoon] ?? geschenkIconen.relatie} />
+              <h3>{item.titel}</h3>
+              <p class="g-sub">{item.sub}</p>
+              <p class="g-tekst">{item.tekst}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    {s.afsluiter && <p class="g-afsluiter reveal">{s.afsluiter}</p>}
+  </div>
+</section>

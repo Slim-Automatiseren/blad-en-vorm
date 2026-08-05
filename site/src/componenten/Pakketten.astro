@@ -1,64 +1,97 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import achtergrond from '../beelden/pakketten-achtergrond.jpg';
+import fotoImpact from '../beelden/pakket-impact.jpg';
+import fotoCorporate from '../beelden/pakket-corporate.jpg';
+import fotoSignature from '../beelden/pakket-signature.jpg';
+import fotoPrestige from '../beelden/pakket-prestige.jpg';
 import { beeldBron } from '../lib/beeld';
-import { plantladders } from '../lib/iconen';
-import { prijsTekst, type Inhoud } from '../lib/inhoud';
+import type { Inhoud } from '../lib/inhoud';
 
 interface Props {
   pakketten: Inhoud['pakketten'];
 }
 const { pakketten } = Astro.props;
-const xl = pakketten.xl;
-const eigenFoto = beeldBron(pakketten.achtergrondFoto, [960, 1440]);
+const eigenAchtergrond = beeldBron(pakketten.achtergrondFoto, [960, 1440]);
+
+/* Standaardfoto per maat: de reeks toont per stap iets meer groen (vraag Marco).
+   Een eigen foto uit Sanity gaat voor. */
+const kaartFotos: Record<string, ImageMetadata> = {
+  S: fotoImpact,
+  M: fotoCorporate,
+  L: fotoSignature,
+  XL: fotoPrestige,
+};
 ---
 <section id="pakketten" class="foto-band">
-  {eigenFoto ? (
-    <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="100vw" loading="lazy" alt="" aria-hidden="true" />
+  {eigenAchtergrond ? (
+    <img src={eigenAchtergrond.src} srcset={eigenAchtergrond.srcset} sizes="100vw" loading="lazy" alt="" aria-hidden="true" />
   ) : (
-    <Image src={achtergrond} widths={[960, 1376]} sizes="100vw" alt="" aria-hidden="true" />
+    <Image src={achtergrond} widths={[960, 1376]} sizes="100vw" quality={40} alt="" aria-hidden="true" />
   )}
   <div class="scrim" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="grid2">
-      <div class="rail reveal">
-        <span class="label">{pakketten.railLabel}</span>
-        <p class="rail-note">{pakketten.railNote}</p>
-      </div>
-      <div class="reveal">
-        <h2 class="section-h">{pakketten.kop}</h2>
-        <p class="lede">{pakketten.lede}</p>
+    <div class="kop-midden reveal">
+      <span class="label">{pakketten.railLabel}</span>
+      <h2 class="section-h">{pakketten.kop}</h2>
+    </div>
 
-        <div class="cards">
-          {pakketten.kaarten.map((k) => (
-            <div class="card">
-              <div class="card-top">
-                <span class="kicker">{k.code}</span>
-                <Fragment set:html={plantladders[k.code] ?? plantladders.S} />
-              </div>
+    <div class="cards">
+      {pakketten.kaarten.map((k) => {
+        const eigenFoto = beeldBron(k.foto, [400, 640], 3 / 4);
+        const standaard = kaartFotos[k.code] ?? fotoImpact;
+        return (
+          <div class="card">
+            <figure class="kaart-foto" aria-hidden="true">
+              {eigenFoto ? (
+                <img src={eigenFoto.src} srcset={eigenFoto.srcset} sizes="(min-width: 900px) 23vw, (min-width: 560px) 45vw, 92vw" loading="lazy" alt="" />
+              ) : (
+                <Image src={standaard} widths={[400, 640]} sizes="(min-width: 900px) 23vw, (min-width: 560px) 45vw, 92vw" alt="" />
+              )}
+            </figure>
+            <div class="kaart-inhoud">
               <h3>{k.naam}</h3>
-              <span class="prijs">{prijsTekst(k)} <small>per maand</small></span>
               <p class="desc">{k.beschrijving}</p>
-              <ul>
-                {k.punten.map((punt) => <li>{punt}</li>)}
-              </ul>
+              {k.punten && k.punten.length > 0 && (
+                <ul>
+                  {k.punten.map((punt) => <li>{punt}</li>)}
+                </ul>
+              )}
               <div class="foot">
-                <a href="#contact" class="btn ghost pakket-cta" data-pakket={`${k.code} ${k.naam}`}>{pakketten.ctaTekst}</a>
+                <a href="#contact" class="btn ghost pakket-cta" data-pakket={k.naam}>{pakketten.ctaTekst}</a>
               </div>
             </div>
-          ))}
-        </div>
-
-        <div class="xl-band">
-          <div>
-            <span class="kicker">{xl.code}</span>
-            <h3>{xl.naam}</h3>
-            <span class="prijs">{prijsTekst(xl)} <small>per maand</small></span>
-            <p class="x-desc">{xl.beschrijving}</p>
           </div>
-          <a href="#contact" class="btn pakket-cta" data-pakket={`${xl.code} ${xl.naam}`}>{pakketten.ctaTekst}</a>
-        </div>
-      </div>
+        );
+      })}
+    </div>
+
+    <div class="prijs-blok reveal">
+      <p class="prijs-vanaf">{pakketten.prijsVanaf}</p>
+      <p class="prijs-toelichting">{pakketten.prijsToelichting}</p>
     </div>
   </div>
 </section>
+
+<style>
+  /* Eén gecentreerde prijsindicatie onder de kaarten in plaats van een prijs per
+     kaart (besluit Jordy 31 juli). Kleuren volgen dezelfde crème-op-scrim-regel
+     als de kop en lede van deze sectie in pagina.css (.foto-band). */
+  .prijs-blok {
+    margin-top: 2.6rem;
+    text-align: center;
+  }
+  .prijs-blok .prijs-vanaf {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+    color: var(--paper);
+  }
+  .prijs-blok .prijs-toelichting {
+    margin-top: 0.4rem;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.92rem;
+    color: rgba(247, 244, 239, 0.78);
+  }
+</style>

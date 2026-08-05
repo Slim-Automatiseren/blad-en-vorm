@@ -1,0 +1,278 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import hotel from '../beelden/inspiratie-hotel.jpg';
+import makelaar from '../beelden/inspiratie-makelaar.jpg';
+import directie from '../beelden/scenario-directie.jpg';
+import praktijk from '../beelden/scenario-praktijk.jpg';
+import ontvangst from '../beelden/scenario-ontvangst.jpg';
+import villa from '../beelden/inspiratie-villa.jpg';
+import tandarts from '../beelden/inspiratie-tandarts.jpg';
+import lobby from '../beelden/inspiratie-lobby.jpg';
+import { beeldBron } from '../lib/beeld';
+import type { Inhoud } from '../lib/inhoud';
+
+interface Props {
+  inspiratie: Inhoud['inspiratie'];
+}
+const { inspiratie } = Astro.props;
+
+/* Standaardfoto per beeldslot; een eigen foto uit Sanity gaat voor */
+const slots: Record<string, ImageMetadata> = {
+  hotel,
+  makelaar,
+  directie,
+  praktijk,
+  ontvangst,
+  villa,
+  tandarts,
+  lobby,
+};
+
+/* De kaarten in de strook zijn klein (30vw op desktop, 60vw op mobiel), maar
+   ze dienden tot 4 augustus 2026 ook als bron voor de lightbox. Daardoor laadde
+   iedere kaart een bestand van ruim 130 kB terwijl er hooguit 430 px van in
+   beeld komt. Nu zijn de twee losgekoppeld: de kaart krijgt kleine varianten en
+   de lightbox haalt pas bij het openen een grote versie op. */
+async function verrijk(items: typeof inspiratie.items) {
+  return Promise.all(
+    items.map(async (item) => ({
+      ...item,
+      eigenFoto: beeldBron(item.foto, [320, 480], 3 / 4),
+      eigenGroot: beeldBron(item.foto, [1200], 3 / 4)?.src,
+      beeld: slots[item.beeldSlot],
+      groot: (await getImage({ src: slots[item.beeldSlot], width: 1200, format: 'webp', quality: 78 })).src,
+    })),
+  );
+}
+
+const rij1 = await verrijk(inspiratie.items.filter((i) => i.rij === 1));
+const rij2 = await verrijk(inspiratie.items.filter((i) => i.rij === 2));
+---
+<section id="inspiratie" class="cream">
+  <div class="wrap">
+    <div class="grid2">
+      <div class="rail reveal">
+        <span class="label">{inspiratie.railLabel}</span>
+        <p class="rail-note">{inspiratie.railNote}</p>
+      </div>
+      <div class="reveal">
+        <h2 class="section-h">{inspiratie.kop}</h2>
+        <p class="lede">{inspiratie.lede}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee rechts reveal">
+    <div class="track">
+      <div class="groep">
+        {rij1.map((item, i) => (
+          <figure class="m-kaart">
+            <button type="button" class="m-zoom" data-index={i} data-groot={item.eigenGroot ?? item.groot} aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
+              ) : (
+                <Image src={item.beeld} widths={[320, 480]} sizes="(min-width: 880px) 30vw, 60vw" quality={70} alt={item.alt} />
+              )}
+            </button>
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <!-- De duplicaatgroep loopt gewoon mee in beeld, dus voor de bezoeker is
+           niet te zien welke kaart echt is en welke de kopie. Daarom zijn ook
+           de kopieën klikbaar (zelfde data-index als het origineel), maar met
+           tabindex -1 en binnen aria-hidden, zodat toetsenbord en screenreader
+           alleen de echte set tegenkomen. -->
+      <div class="groep" aria-hidden="true">
+        {rij1.map((item, i) => (
+          <figure class="m-kaart">
+            <button type="button" class="m-zoom" data-index={i} tabindex="-1">
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt="" />
+              ) : (
+                <Image src={item.beeld} widths={[320, 480]} sizes="(min-width: 880px) 30vw, 60vw" quality={70} alt="" />
+              )}
+            </button>
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee links reveal">
+    <div class="track">
+      <div class="groep">
+        {rij2.map((item, i) => (
+          <figure class="m-kaart">
+            <button type="button" class="m-zoom" data-index={rij1.length + i} data-groot={item.eigenGroot ?? item.groot} aria-label={`Vergroot foto: ${item.label}`} data-label={item.label}>
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt={item.alt} />
+              ) : (
+                <Image src={item.beeld} widths={[320, 480]} sizes="(min-width: 880px) 30vw, 60vw" quality={70} alt={item.alt} />
+              )}
+            </button>
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="groep" aria-hidden="true">
+        {rij2.map((item, i) => (
+          <figure class="m-kaart">
+            <button type="button" class="m-zoom" data-index={rij1.length + i} tabindex="-1">
+              {item.eigenFoto ? (
+                <img src={item.eigenFoto.src} srcset={item.eigenFoto.srcset} sizes="(min-width: 880px) 30vw, 60vw" loading="lazy" alt="" />
+              ) : (
+                <Image src={item.beeld} widths={[320, 480]} sizes="(min-width: 880px) 30vw, 60vw" quality={70} alt="" />
+              )}
+            </button>
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Eén lightbox-dialoog voor alle foto's van beide stroken. Bij openen wordt
+       de aangeklikte afbeelding hierin gekloond, zie het script hieronder. -->
+  <dialog id="inspLightbox" class="lightbox" aria-label="Vergrote foto">
+    <div class="lb-inhoud">
+      <button type="button" class="lb-sluit" aria-label="Sluiten">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+      </button>
+      <button type="button" class="lb-vorige" aria-label="Vorige foto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+      </button>
+      <button type="button" class="lb-volgende" aria-label="Volgende foto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+      </button>
+      <div class="lb-foto" id="lbFoto"></div>
+    </div>
+    <p class="lb-bijschrift" id="lbBijschrift"></p>
+  </dialog>
+</section>
+
+<script>
+  /* Lightbox voor de inspiratiefoto's. Eén dialoog voor alle foto's van beide
+     stroken; bij openen wordt de aangeklikte <img> gekloond (srcset en alt
+     gaan zo vanzelf mee). Zonder JS blijven het gewoon knoppen zonder gevolg:
+     de sectie krijgt pas de klasse "js" zodra dit script echt draait, en pas
+     dan krijgen de kaarten de zoom-cursor en de klikbaarheids-styling. */
+  const sectie = document.getElementById('inspiratie');
+  const dialoog = document.getElementById('inspLightbox');
+
+  if (sectie && dialoog instanceof HTMLDialogElement) {
+    sectie.classList.add('js');
+
+    /* Alleen de echte set (buiten aria-hidden) vormt de fotolijst; de kopieën
+       in de duplicaatgroepen verwijzen via data-index naar deze lijst. */
+    const fotos = Array.from(
+      sectie.querySelectorAll<HTMLButtonElement>('.groep:not([aria-hidden]) .m-zoom'),
+    );
+    const lbFoto = document.getElementById('lbFoto');
+    const bijschrift = document.getElementById('lbBijschrift');
+    const stilstaan = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let huidige = 0;
+    let sluitTimer: ReturnType<typeof setTimeout> | undefined;
+    let sluitKlaar: ((e: TransitionEvent) => void) | undefined;
+
+    function toon(i: number) {
+      huidige = (i + fotos.length) % fotos.length;
+      const bron = fotos[huidige].querySelector('img');
+      if (!bron || !lbFoto) return;
+      const kloon = bron.cloneNode(true) as HTMLImageElement;
+      kloon.loading = 'eager';
+      /* De kaartvarianten zijn te klein voor schermvullend gebruik; hier stapt
+         de lightbox over op de grote versie die alleen nu wordt opgehaald. */
+      const groot = fotos[huidige].dataset.groot;
+      if (groot) {
+        kloon.removeAttribute('srcset');
+        kloon.removeAttribute('sizes');
+        kloon.src = groot;
+      } else {
+        kloon.sizes = '90vw';
+      }
+      lbFoto.replaceChildren(kloon);
+      if (bijschrift) bijschrift.textContent = fotos[huidige].dataset.label ?? '';
+    }
+
+    function openFoto(i: number) {
+      /* Een nog lopende sluit-overgang afbreken, anders sluit die de zojuist
+         geopende dialoog alsnog (transitionend van de fade-in, of de timer) */
+      if (sluitKlaar) {
+        dialoog.removeEventListener('transitionend', sluitKlaar);
+        sluitKlaar = undefined;
+      }
+      clearTimeout(sluitTimer);
+      toon(i);
+      fotos[huidige].focus({ preventScroll: true });
+      if (!dialoog.open) dialoog.showModal();
+      if (stilstaan()) {
+        dialoog.dataset.open = 'true';
+      } else {
+        /* Dubbele rAF, zodat de begintoestand (opacity 0) eerst echt getekend
+           is voordat de overgang naar 1 in gang wordt gezet. */
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            dialoog.dataset.open = 'true';
+          });
+        });
+      }
+    }
+
+    function sluit() {
+      delete dialoog.dataset.open;
+      if (stilstaan()) {
+        dialoog.close();
+        return;
+      }
+      sluitKlaar = (e: TransitionEvent) => {
+        if (e.target !== dialoog || e.propertyName !== 'opacity') return;
+        if (sluitKlaar) dialoog.removeEventListener('transitionend', sluitKlaar);
+        sluitKlaar = undefined;
+        if (dialoog.open) dialoog.close();
+      };
+      dialoog.addEventListener('transitionend', sluitKlaar);
+      /* Veiligheidsnet: mocht transitionend om wat voor reden niet vuren,
+         dan sluit de dialoog alsnog. */
+      sluitTimer = setTimeout(() => {
+        if (dialoog.open) dialoog.close();
+      }, 320);
+    }
+
+    /* Alle kaarten klikbaar, ook de kopieën in de duplicaatgroepen: in een
+       lopende strook is voor de bezoeker niet te zien welke kaart de echte is.
+       Een klik op een kopie opent via data-index de echte foto, zodat ook de
+       focus daar terugkeert en niet in een aria-hidden groep belandt. */
+    sectie.querySelectorAll<HTMLButtonElement>('.m-zoom').forEach((knop) => {
+      knop.addEventListener('click', () => openFoto(Number(knop.dataset.index)));
+    });
+
+    dialoog.querySelector('.lb-sluit')?.addEventListener('click', sluit);
+    dialoog.querySelector('.lb-vorige')?.addEventListener('click', () => toon(huidige - 1));
+    dialoog.querySelector('.lb-volgende')?.addEventListener('click', () => toon(huidige + 1));
+
+    /* Klik op de foto zelf sluit ook: tweede klik sluit, wens van de klant */
+    lbFoto?.addEventListener('click', sluit);
+
+    /* Klik buiten de foto, dus ook de echte backdrop, sluit. Die klikken
+       hebben de dialoog zelf als target, nooit een kind-element. */
+    dialoog.addEventListener('click', (e) => {
+      if (e.target === dialoog) sluit();
+    });
+
+    dialoog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') toon(huidige + 1);
+      if (e.key === 'ArrowLeft') toon(huidige - 1);
+    });
+
+    /* Escape sluit al native; onderscheppen zodat ook dat via de nette
+       fade-out verloopt in plaats van abrupt te verdwijnen. */
+    dialoog.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      sluit();
+    });
+  }
+</script>

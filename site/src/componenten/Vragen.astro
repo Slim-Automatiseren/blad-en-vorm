@@ -5,21 +5,75 @@ interface Props {
   vragen: Inhoud['vragen'];
 }
 const { vragen } = Astro.props;
+
+/* Marco wil de pagina rustig houden: standaard drie vragen in beeld, de rest
+   achter een knop (mail 5 augustus). Zonder JS staan ze alle zes gewoon open
+   en blijft de knop verborgen, dus de pagina is nooit half leesbaar en
+   zoekmachines zien altijd alle antwoorden. */
+const ZICHTBAAR = 3;
+const heeftMeer = vragen.items.length > ZICHTBAAR;
 ---
-<section id="vragen" class="band">
+<section id="vragen">
   <div class="wrap">
-    <div class="vragen-kolom">
-      <div class="reveal">
-        <h2 class="section-h">Veelgestelde vragen</h2>
-        <div class="faq">
-          {vragen.map((v) => (
-            <details>
-              <summary>{v.vraag}</summary>
-              <p class="antwoord">{v.antwoord}</p>
-            </details>
-          ))}
-        </div>
-      </div>
+    <div class="kop-midden reveal">
+      <h2 class="section-h">{vragen.kop}</h2>
+    </div>
+    <div class="faq reveal">
+      {vragen.items.map((v, i) => (
+        <details class={i >= ZICHTBAAR ? 'extra' : undefined}>
+          <summary>
+            <span>{v.vraag}</span>
+            <span class="teken" aria-hidden="true"></span>
+          </summary>
+          <p class="antwoord">{v.antwoord}</p>
+        </details>
+      ))}
+      {heeftMeer && (
+        <button type="button" class="faq-meer" hidden aria-expanded="false" data-minder={vragen.minderLabel}>
+          <span class="faq-meer-tekst">{vragen.meerLabel}</span>
+          <span class="teken" aria-hidden="true"></span>
+        </button>
+      )}
     </div>
   </div>
 </section>
+
+<script>
+  /* Progressieve verbetering: de knop bestaat alleen als dit script draait.
+     Staat een van de verborgen vragen al open (bijvoorbeeld via een deeplink
+     of de zoekfunctie van de browser), dan klapt de hele lijst meteen uit. */
+  const faq = document.querySelector<HTMLElement>('#vragen .faq');
+  const knop = faq?.querySelector<HTMLButtonElement>('.faq-meer');
+  const extra = faq ? Array.from(faq.querySelectorAll<HTMLDetailsElement>('details.extra')) : [];
+
+  if (faq && knop && extra.length > 0) {
+    const tekst = knop.querySelector<HTMLElement>('.faq-meer-tekst');
+    const meerLabel = tekst?.textContent ?? '';
+    const minderLabel = knop.dataset.minder || meerLabel;
+
+    faq.classList.add('js-inklap');
+    knop.hidden = false;
+
+    const zet = (open: boolean) => {
+      faq.classList.toggle('js-uitgeklapt', open);
+      knop.setAttribute('aria-expanded', String(open));
+      if (tekst) tekst.textContent = open ? minderLabel : meerLabel;
+    };
+
+    knop.addEventListener('click', () => {
+      const wordtOpen = knop.getAttribute('aria-expanded') !== 'true';
+      zet(wordtOpen);
+      /* Bij inklappen ook de vragen zelf dichtdoen, anders springt de lijst
+         de volgende keer half open open. */
+      if (!wordtOpen) extra.forEach((d) => (d.open = false));
+    });
+
+    /* De browser opent een dichtgeklapte details vanzelf bij zoeken in de
+       pagina; dan moet de rest van de lijst ook zichtbaar worden. */
+    extra.forEach((d) =>
+      d.addEventListener('toggle', () => {
+        if (d.open && knop.getAttribute('aria-expanded') !== 'true') zet(true);
+      }),
+    );
+  }
+</script>
