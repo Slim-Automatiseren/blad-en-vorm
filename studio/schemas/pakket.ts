@@ -50,10 +50,13 @@ export const pakket = defineType({
   orderings: [
     { name: 'volgorde', title: 'Volgorde', by: [{ field: 'volgorde', direction: 'asc' }] },
   ],
+  /* De naam voorop, net als op de site; de maat eronder als hulpje bij het
+     sorteren. De codes S/M/L/XL staan bewust niet op de pagina zelf. */
   preview: {
     select: { code: 'code', naam: 'naam' },
     prepare: ({ code, naam }) => ({
-      title: `${code ?? ''} ${naam ?? ''}`.trim(),
+      title: naam ?? 'Naamloos pakket',
+      subtitle: code ? `Maat ${code}` : undefined,
     }),
   },
 });
